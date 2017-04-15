@@ -23,6 +23,7 @@ public class Card {
 		this.suit = suit;
 	}
 	
+	//Translates rank integer to string
 	private String rankToString(int rank){
 		if(rank == 10)
 			return "J";
@@ -36,6 +37,7 @@ public class Card {
 			return String.valueOf(rank);
 	}
 	
+	//Translates suit integer to string
 	private String suitToString(int suit){
 		if(suit == 1)
 			return "H";
@@ -48,6 +50,7 @@ public class Card {
 		return String.valueOf(suit);
 	}
 
+	//toString method for card object
 	@Override
 	public String toString() {
 		String rank = rankToString(this.rank);
