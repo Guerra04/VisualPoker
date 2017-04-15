@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Deck {								
-	public LinkedList<Card> cards = new LinkedList<Card>();   //Linked list that will contain the shuffled deck
+	private LinkedList<Card> cards = new LinkedList<Card>();   //Linked list that will contain the shuffled deck
 	
 	public Deck(){
 		int total;
@@ -23,7 +23,7 @@ public class Deck {
 		}
 	}
 	
-	public Card draw(Deck deck){
-		return deck.cards.pop();
+	public Card draw(){
+		return this.cards.pop();
 	}
 }
