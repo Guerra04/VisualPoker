@@ -15,8 +15,8 @@ package cards;
  ------------------------------------------------------------------------------*/
 
 public class Card {
-	private int rank;
-	private int suit;
+	public int rank;
+	public int suit;
 	
 	Card(int rank, int suit){
 		this.rank = rank;
