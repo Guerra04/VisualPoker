@@ -22,12 +22,12 @@ public class Hand {
 		for(int i = 0; i < 5; i++){
 			string = string + hand[i].toString() + " ";
 		}
-		return string;
+		return ("player's hand is " + string);
 	}
 	
 	public void hold(int index[], Deck deck){
 		for(int i = 0; i < 5; i++){
-			if(!contains(index, i)){
+			if(!contains(index, i+1)){
 				hand[i] = deck.draw();
 			}
 		}
@@ -76,6 +76,7 @@ public class Hand {
 		Card[] sortedhand = hand.hand;
 		
 		java.util.Arrays.sort(sortedhand, new  ComparatorByRank());
+
 		
 		int[] suit;
 		
