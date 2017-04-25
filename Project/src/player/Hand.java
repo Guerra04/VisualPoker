@@ -2,7 +2,7 @@ package player;
 
 import java.util.*;
 import cards.*;
-import virtualPoker.*;
+import videoPoker.*;
 
 
 public class Hand {
