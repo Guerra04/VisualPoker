@@ -3,7 +3,7 @@ package player;
 public class Player {
 	private int credit;
 	private int lastBet = 5;
-	private Hand hand;
+	public Hand hand;
 	private int statistics[] = new int[10];
 	private int handsPlayed;
 	

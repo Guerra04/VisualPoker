@@ -2,7 +2,7 @@ package player;
 
 import java.util.*;
 import cards.*;
-import virtualPoker.*;
+import videoPoker.*;
 
 
 public class Hand {
@@ -22,12 +22,12 @@ public class Hand {
 		for(int i = 0; i < 5; i++){
 			string = string + hand[i].toString() + " ";
 		}
-		return string;
+		return ("player's hand is " + string);
 	}
 	
 	public void hold(int index[], Deck deck){
 		for(int i = 0; i < 5; i++){
-			if(!contains(index, i)){
+			if(!contains(index, i+1)){
 				hand[i] = deck.draw();
 			}
 		}
@@ -70,10 +70,10 @@ public class Hand {
 	}
 	
 	private int handScore(Hand hand){
-		int score;	
+		int score = 0;	
 		Card[] sortedhand = hand.hand;
 		
-		java.util.Arrays.sort(sortedhand, new ComparetorByRank);
+		java.util.Arrays.sort(sortedhand, new ComparatorByRank());
 		
 		int[] suit;
 		

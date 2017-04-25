@@ -12,7 +12,7 @@ public class Deck {
 		int index; //Position variable to initialize deck;
 		
 		for(int s=1; s<=4; s++){ 		//Defining a cards suit: 1=H, 2=D, 3=C, 4=S .
-			for(int r=1; r<13 ;r++){   //Defining the value of the card: 2-10, 10=J, 11=Q, 12=K, 1=A
+			for(int r=1; r<14 ;r++){   //Defining the value of the card: 2-10, 11=J, 12=Q, 13=K, 1=A
 				Card card = new Card(r, s);
 				
 				total = cards.size();	//Verification of the total size of the deck

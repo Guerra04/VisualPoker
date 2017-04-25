@@ -1,4 +1,4 @@
-package virtualPoker;
+package videoPoker;
 
 import cards.Deck;
 import player.*;
