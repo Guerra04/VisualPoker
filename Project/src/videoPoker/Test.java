@@ -20,17 +20,17 @@ public class Test {
 		
 		//Test hold method
 		int index[] = new int[5];
-		index[0] = 0;
-		index[1] = 4;
-		index[2] = 5;
-		index[3] = 5;
-		index[4] = 5;
+		index[0] = 1;
+		index[1] = 3;
+		index[2] = 0;
+		index[3] = 0;
+		index[4] = 0;
 		hand.hold(index, deck2);
 		System.out.println(hand.toString());
 		
 		//test player statistics
-		Player dani = new Player(1000);
-		dani.statistics(1000);
+		/*Player dani = new Player(1000);
+		dani.statistics(1000);*/
 		
 	}
 

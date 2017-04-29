@@ -25,11 +25,11 @@ public class Card {
 	
 	//Translates rank integer to string
 	private String rankToString(int rank){
-		if(rank == 10)
-			return "J";
 		if(rank == 11)
-			return "Q";
+			return "J";
 		if(rank == 12)
+			return "Q";
+		if(rank == 13)
 			return "K";
 		if(rank == 1)
 			return "A";

@@ -69,7 +69,7 @@ public class Hand {
 		return samesuit;
 	}
 	
-	private int handScore(Hand hand){
+	public int handScore(Hand hand){
 		
 		int score=0; //Has nothing in hand
 		
@@ -77,6 +77,7 @@ public class Hand {
 		
 		java.util.Arrays.sort(sortedhand, new  ComparatorByRank());
 
+		/*************/
 		
 		int[] suit;
 		
@@ -113,10 +114,15 @@ public class Hand {
 		/*Checking pairs, three and four of a kind*/
 		
 		int[] ranks= isSameRank(hand);
+		
+		/**************/
+		for(int i = 0; i < 5; i++)
+			System.out.println(ranks[i]);
+		/**************/
 		int four=0, three=0, pair=0;
 		int rank_pos=0;	//Variable that will save the position of the possible four or three of a kind, so the rank can be determined
 		
-		for(int i=0; i<4; i++) {
+		for(int i=0; i<5; i++) {
 			if(ranks[i]==4){
 				four++;
 				rank_pos=i;
@@ -124,18 +130,20 @@ public class Hand {
 			if(ranks[i]==3){
 				three++;
 			}
-			if(ranks[i]==2)
+			if(ranks[i]==2){
 				pair++;
+				rank_pos = i;
+			}
 		}
 			
 		pair=pair/2; //number of pairs in hand
 		
 		if(four!=0){//Has a four a a kind
-			if(suit[rank_pos]==1)
+			if(sortedhand[rank_pos].rank == 1)
 				score = 2;				//Aces
-			if(suit[rank_pos]<=4 && 2<=suit[rank_pos])
+			if(sortedhand[rank_pos].rank <= 4 && 2 <= sortedhand[rank_pos].rank)
 				score = 3; 				//Has a four ranked between 2-4
-			if(suit[rank_pos]<=13 && 5<=suit[rank_pos])
+			if(sortedhand[rank_pos].rank <= 13 && 5 <= sortedhand[rank_pos].rank)
 				score = 4;				//Has a four ranked between 5-K
 		}
 		if(three!= 0 && pair!=0){
@@ -147,12 +155,12 @@ public class Hand {
 			score = 10;		//Has a two pair in hand
 		
 		if(pair == 1){
-			if(suit[rank_pos]>10)
+			if(sortedhand[rank_pos].rank > 10 || sortedhand[rank_pos].rank == 1)
 				score = 11;	//Has a pair of jacks or higher in hand
 		}
 		
 		if(flush==1 && score<7)
-			score=11;		//Has a flush in hand
+			score=8;		//Has a flush in hand
 		
 		return score;
 	}
