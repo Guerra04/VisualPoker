@@ -42,11 +42,11 @@ public class Hand {
 		return false;
 	}
 	
-	private int[] isSameRank(Hand hand){		//returns the number of times the rank of a card repeats itself in a hand
+	private int[] isSameRank(){		//returns the number of times the rank of a card repeats itself in a hand
 		int[] rankcount={1,1,1,1,1};
 		for(int i=0; i<4; i++){
 			for(int j=i+1; j<5; j++){
-				if(hand.hand[i].rank == hand.hand[j].rank){
+				if(this.hand[i].rank == this.hand[j].rank){
 					rankcount[i] ++;
 					rankcount[j]++;
 				}
@@ -55,12 +55,12 @@ public class Hand {
 		return rankcount;
 	}
 	
-	private int[] isSameSuit(Hand hand){		//returns the number of times there is the same suit
+	private int[] isSameSuit(){		//returns the number of times there is the same suit
 		int[] samesuit = {1,1,1,1,1};
 			
 		for(int i=0; i<4; i++){
 			for(int j=i+1; j<5; j++){
-				if(hand.hand[i].suit == hand.hand[j].suit){
+				if(this.hand[i].suit == this.hand[j].suit){
 					samesuit[i]++;
 					samesuit[j]++;
 				}
@@ -69,11 +69,11 @@ public class Hand {
 		return samesuit;
 	}
 	
-	public int handScore(Hand hand){
+	public int handScore(){
 		
 		int score=0; //Has nothing in hand
 		
-		Card[] sortedhand = hand.hand;
+		Card[] sortedhand = this.hand;
 		
 		java.util.Arrays.sort(sortedhand, new  ComparatorByRank());
 
@@ -96,7 +96,7 @@ public class Hand {
 		/*Checking if hand is flush*/
 		int flush=0;
 		
-		suit = isSameSuit(hand);
+		suit = isSameSuit();
 		if (suit[0]==5)
 			flush=1;
 		
@@ -113,12 +113,8 @@ public class Hand {
 		}
 		/*Checking pairs, three and four of a kind*/
 		
-		int[] ranks= isSameRank(hand);
+		int[] ranks= isSameRank();
 		
-		/**************/
-		for(int i = 0; i < 5; i++)
-			System.out.println(ranks[i]);
-		/**************/
 		int four=0, three=0, pair=0;
 		int rank_pos=0;	//Variable that will save the position of the possible four or three of a kind, so the rank can be determined
 		
@@ -165,8 +161,182 @@ public class Hand {
 		return score;
 	}
 	
- 	private String BestMove(Hand hand){
-		String advise = null;	
-		return advise;
+	//returns -1 if does not exist
+	private int indexOfRank(int rank){
+		int index = -1;
+		for(int i = 0; i < 5; i++){
+			if(this.hand[i].rank == rank){
+				index = i;
+				break;
+			}
+		}
+		return index;
 	}
+	
+	//returns -1 if does not exist
+	private int indexOfCard(int rank, int suit){
+		int index = -1;
+		Card card = new Card(rank, suit);
+		for(int i = 0; i < 5; i++){
+			if(this.hand[i].equals(card)){
+				index = i;
+				break;
+			}
+		}
+		return index;
+	}
+	
+	//return array with 5 positions correponding to each card in the hand
+	//if position = 1 it should be kept
+	//if position = 0 is should be discarded
+ 	private int[] cardsToHold(){
+ 		
+ 		int[] indexes = {0,0,0,0,0};
+ 		
+ 		int score = this.handScore();
+ 		
+ 		int[] suits = this.isSameSuit(); 
+ 		int maxSameSuit = 0;
+ 		int maxSuit = 0;
+ 		for(int i = 0; i < 5; i++){
+ 			if(suits[i] > maxSameSuit){
+ 				maxSameSuit = suits[i];
+ 				maxSuit = this.hand[i].suit;
+ 			}
+ 		}
+ 		
+ 		int[] ranks = this.isSameRank(); 
+ 		int maxSameRank = 0;
+ 		int maxRank = 0;
+ 		for(int i = 0; i < 5; i++){
+ 			if(ranks[i] > maxSameRank){
+ 				maxSameRank = ranks[i];
+ 				maxRank = this.hand[i].rank;
+ 			}
+ 		}
+ 		
+ 		/*****Play (1) - Straight flush, four of a kind, royal flush**********/
+ 		if(score <= 5){ //royal flush, four of a kind or straight flush
+ 			indexes[0] = 1;
+ 			indexes[1] = 1;
+ 			indexes[2] = 1;
+ 			indexes[3] = 1;
+ 			indexes[4] = 1;
+ 			return indexes;
+ 		}
+ 		
+ 		/*****Play (2) - 4 to a royal flush***********************************/
+ 		if(maxSameSuit >= 4 && maxSameRank < 3){
+ 			int cardsToRoyal = 0;
+ 			int[] highCards = new int[5]; //stores the position of each card of a royal flush.
+ 			
+ 			highCards[0] = indexOfCard(10, maxSuit);
+ 			if(highCards[0] != -1)
+ 				cardsToRoyal++;
+ 			
+ 			highCards[1] = indexOfCard(11, maxSuit);
+ 			if(highCards[1] != -1)
+ 				cardsToRoyal++;
+ 			
+ 			highCards[2] = indexOfCard(12, maxSuit);
+ 			if(highCards[2] != -1)
+ 				cardsToRoyal++;
+ 			
+ 			highCards[3] = indexOfCard(13, maxSuit);
+ 			if(highCards[3] != -1)
+ 				cardsToRoyal++;
+ 			
+ 			highCards[4] = indexOfCard(1, maxSuit);
+ 			if(highCards[4] != -1)
+ 				cardsToRoyal++;
+ 			
+ 			if(cardsToRoyal == 4){
+ 				for(int i = 0; i < 5; i++){
+ 					if(highCards[i] != -1)
+ 						indexes[highCards[i]] = 1;
+ 				}
+ 				return indexes;
+ 			}
+ 		}
+ 		
+ 		/*****Play(3) - Three aces********************************************/
+ 		if(maxSameRank == 3 && maxRank == 1){
+ 			for(int i = 0; i < 5; i++){
+ 				if(ranks[i] == 3)
+ 					indexes[i] = 1;
+ 			}
+ 			return indexes;
+ 		}
+ 		
+ 		/*****Play(4) - Straight, flush, full house***************************/
+ 		if(score >= 6 && score <= 8){
+ 			indexes[0] = 1;
+ 			indexes[1] = 1;
+ 			indexes[2] = 1;
+ 			indexes[3] = 1;
+ 			indexes[4] = 1;
+ 			return indexes;
+ 		}
+ 		
+ 		/*****Play(5) - Three of a kind (except aces)*************************/
+ 		if(maxSameRank == 3){
+ 			for(int i = 0; i < 5; i++){
+ 				if(ranks[i] == 3)
+ 					indexes[i] = 1;
+ 			}
+ 			return indexes;
+ 		}
+ 		
+ 		/*****Play(6) - 4 to a straight flush*********************************/
+ 		if(maxSameSuit == 4){
+ 			Card[] sortedhand = this.hand;
+ 			java.util.Arrays.sort(sortedhand, new  ComparatorByRank());
+ 			
+ 			//first card belongs to the straight
+ 			int njumps = 0;
+ 			int jumpindex = -1;
+ 			int first = sortedhand[0].rank;
+ 			for(int i = 1; i < 5; i++){
+ 				if(njumps > 1)
+ 					break;
+ 				else{
+ 					if(sortedhand[i].rank != first+i){
+ 						njumps++;
+ 						jumpindex = 1;
+ 					}
+ 				}
+ 					
+ 			}
+ 			if(njumps < 1){
+ 				for(int i = 0; i < 5; i++){
+ 					if(i != jumpindex)
+ 						indexes[i] = 1;
+ 				}
+ 				return indexes;
+ 			}else{ //check if the first card doesnt belong to the possible straight, but the other 4 do
+ 				njumps = 0;
+ 				first = sortedhand[1].rank;
+ 				for(int i = 2; i < 5; i++){
+ 					if(njumps > 0)
+ 						break;
+ 					else{
+ 						if(sortedhand[i].rank != (first+i-1))
+ 							njumps++;
+ 					}
+ 				}
+ 				if(njumps == 0){
+ 					indexes[1] = 1;
+ 					indexes[2] = 1;
+ 					indexes[3] = 1;
+ 					indexes[4] = 1;
+ 					return indexes;
+ 				}
+ 			}
+ 		}
+ 		
+ 		/*****Play(7) - Two pair**********************************************/
+ 		
+ 		
+ 		return null;
+ 	}//end cardsToHold
 }

@@ -18,13 +18,15 @@ public class Card {
 	public int rank;
 	public int suit;
 	
-	Card(int rank, int suit){
+	public Card(int rank, int suit){
 		this.rank = rank;
 		this.suit = suit;
 	}
 	
 	//Translates rank integer to string
 	private String rankToString(int rank){
+		if(rank == 10)
+			return "T";
 		if(rank == 11)
 			return "J";
 		if(rank == 12)
@@ -56,5 +58,21 @@ public class Card {
 		String rank = rankToString(this.rank);
 		String suit = suitToString(this.suit);
 		return rank + suit;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Card other = (Card) obj;
+		if (rank != other.rank)
+			return false;
+		if (suit != other.suit)
+			return false;
+		return true;
 	}
 }
