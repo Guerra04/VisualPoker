@@ -215,6 +215,20 @@ public class Hand {
  			}
  		}
  		
+ 		Card[] sortedhand = this.hand;
+		java.util.Arrays.sort(sortedhand, new  ComparatorByRank());
+ 		
+		/*****Variables*****/
+		int first = sortedhand[0].rank;
+ 		int nJumps;
+ 		int jumpRank;
+ 		int jumpSuit;
+ 		int nHighCards;
+ 		int cardsToRoyal;
+ 		int lastCard;
+ 		int nGaps;
+		/*******************/
+		
  		/*****Play (1) - Straight flush, four of a kind, royal flush**********/
  		if(score <= 5){ //royal flush, four of a kind or straight flush
  			indexes[0] = 1;
@@ -227,7 +241,7 @@ public class Hand {
  		
  		/*****Play (2) - 4 to a royal flush***********************************/
  		if(maxSameSuit >= 4 && maxSameRank < 3){
- 			int cardsToRoyal = 0;
+ 			cardsToRoyal = 0;
  			int[] highCards = new int[5]; //stores the position of each card of a royal flush.
  			
  			highCards[0] = indexOfCard(10, maxSuit);
@@ -289,42 +303,41 @@ public class Hand {
  		
  		/*****Play(6) - 4 to a straight flush*********************************/
  		if(maxSameSuit == 4){
- 			Card[] sortedhand = this.hand;
- 			java.util.Arrays.sort(sortedhand, new  ComparatorByRank());
- 			
  			//first card belongs to the straight
- 			int njumps = 0;
- 			int jumpRank = -1;
- 			int first = sortedhand[0].rank;
+ 			nJumps = 0;
+ 			jumpRank = 0;
+ 			jumpSuit = 0;
+ 			first = sortedhand[0].rank;
  			for(int i = 1; i < 5; i++){
- 				if(njumps > 1)
+ 				if(nJumps > 1)
  					break;
  				else{
  					if(sortedhand[i].rank != first+i){
- 						njumps++;
+ 						nJumps++;
  						jumpRank = sortedhand[i].rank;
+ 						jumpSuit = sortedhand[i].suit;
  					}
  				}
  					
  			}
- 			if(njumps < 1){
+ 			if(nJumps < 1){
  				for(int i = 0; i < 5; i++)
  						indexes[i] = 1;
  				
- 				indexes[indexOfRank(jumpRank)] = 0;
+ 				indexes[indexOfCard(jumpRank, jumpSuit)] = 0;
  				return indexes;
  			}else{ //check if the first card doesnt belong to the possible straight, but the other 4 do
- 				njumps = 0;
+ 				nJumps = 0;
  				first = sortedhand[1].rank;
  				for(int i = 2; i < 5; i++){
- 					if(njumps > 0)
+ 					if(nJumps > 0)
  						break;
  					else{
  						if(sortedhand[i].rank != (first+i-1))
- 							njumps++;
+ 							nJumps++;
  					}
  				}
- 				if(njumps == 0){
+ 				if(nJumps == 0){
  					for(int i = 0; i < 5; i++)
  						indexes[i] = 1;
  					
@@ -363,7 +376,7 @@ public class Hand {
  		
  		/*****Play(10) - 3 to a royal flush***********************************/
  		if(maxSameSuit >= 3 && maxSameRank < 4){
- 			int cardsToRoyal = 0;
+ 			cardsToRoyal = 0;
  			int[] highCards = new int[5]; //stores the position of each card of a royal flush.
  			
  			highCards[0] = indexOfCard(10, maxSuit);
@@ -397,20 +410,17 @@ public class Hand {
  		
  		/*****Play(11) - 4 to an outside straight*****************************/
  		if(maxSameRank < 3){
- 			//in sorted hand, either the first card or the last card doesnt belong to straight
- 			Card[] sortedhand = this.hand;
- 			java.util.Arrays.sort(sortedhand, new  ComparatorByRank());
- 			
- 			int jump = 0;
- 			int first = sortedhand[0].rank;
+ 			//in sorted hand, either the first card or the last card doesnt belong to straight 			
+ 			nJumps = 0;
+ 			first = sortedhand[0].rank;
  			for(int i = 1; i < 5; i++){
- 				if(jump == 0){
+ 				if(nJumps == 0){
  					if(sortedhand[i].rank != first+i)
- 						jump = 1;
+ 						nJumps = 1;
  				}else
  					break;
  			}
- 			if(jump == 0){
+ 			if(nJumps == 0){
  				for(int i = 0; i < 5; i++)
  					indexes[i] = 1;
  				
@@ -418,15 +428,15 @@ public class Hand {
  				return indexes;
  			}else{
  				first = sortedhand[1].rank;
- 				jump = 0;
+ 				nJumps = 0;
  				for(int i = 2; i < 5; i++){
- 					if(jump == 0){
+ 					if(nJumps == 0){
  						if(sortedhand[i].rank != first+i-1)
- 	 						jump = 1;
+ 	 						nJumps = 1;
  					}else
  						break;
  				}
- 				if(jump == 0){
+ 				if(nJumps == 0){
  					for(int i = 0; i < 5; i++)
  	 					indexes[i] = 1;
  					
@@ -456,16 +466,215 @@ public class Hand {
  		}		
 
  		/*****Play(14) - 3 to a straight flush (type 1)***********************/
+ 		if(maxSameSuit >= 3){
+ 			//first card of the straight can be in the first 3 cards of the sorted hand
+ 			lastCard = 0; //accounts for the number of card between 2 cards that belong to the straight
+ 			nGaps = 0;
+ 			nJumps = 0;
+ 			nHighCards = 0;
+ 			int[] jumpRank14 = {0,0};
+ 			if(sortedhand[0].suit == maxSuit){ //first card of the straight = first card of sortedhand
+ 				first = sortedhand[0].rank;
+ 				for(int i = 1; i < 5; i++){
+ 					if(nJumps > 2)
+ 						break;
+ 					else{
+ 						if(sortedhand[i].rank != first + i){
+ 							jumpRank14[nJumps] = sortedhand[i].rank;
+ 							nJumps++;
+ 							lastCard++;
+ 						}else{
+ 							if(lastCard > 0){
+ 								nGaps++;
+ 								lastCard = 0;
+ 							}
+ 							if(sortedhand[i].rank > 10 || sortedhand[i].rank == 1)
+ 								nHighCards++;
+ 						}
+ 					}
+ 				}
+ 				if(nJumps < 3 && nHighCards > nGaps && first != 1 && !(first == 2 && nGaps == 0)){
+ 					for(int i = 0; i < 5; i++)
+ 						indexes[i] = 1;
+ 					
+ 					for(int i = 0; i < 2; i++)
+ 						indexes[indexOfRank(jumpRank14[i])] = 0;
+ 					
+ 					return indexes;
+ 				}
+ 			}
+ 			
+ 			lastCard = 0;
+ 			nGaps = 0;
+ 			nJumps = 0;
+ 			nHighCards = 0;
+ 			jumpRank14[0] = 0; jumpRank14[1] = 0;
+ 			if(sortedhand[1].suit == maxSuit){ //first card of the straight = second card of sortedhand
+ 				first = sortedhand[1].rank;
+ 				for(int i = 2; i < 5; i++){
+ 					if(nJumps > 2)
+ 						break;
+ 					else{
+ 						if(sortedhand[i].rank != first + i - 1){
+ 							jumpRank14[nJumps] = sortedhand[i].rank;
+ 							nJumps++;
+ 							lastCard++;
+ 						}else{
+ 							if(lastCard > 0){
+ 								nGaps++;
+ 								lastCard = 0;
+ 							}
+ 							if(sortedhand[i].rank > 10 || sortedhand[i].rank == 1)
+ 								nHighCards++;
+ 						}
+ 					}
+ 				}
+ 				if(nJumps < 3 && nHighCards > nGaps && first != 1 && !(first == 2 && nGaps == 0)){
+ 					for(int i = 0; i < 5; i++)
+ 						indexes[i] = 1;
+ 					
+ 					for(int i = 0; i < 2; i++)
+ 						indexes[indexOfRank(jumpRank14[i])] = 0;
+ 					
+ 					return indexes;
+ 				}
+ 			}
+ 			
+ 			lastCard = 0;
+ 			nGaps = 0;
+ 			nJumps = 0;
+ 			nHighCards = 0;
+ 			jumpRank14[0] = 0; jumpRank14[1] = 0;
+ 			if(sortedhand[2].suit == maxSuit){ //first card of the straight = third card of sortedhand
+ 				first = sortedhand[2].rank;
+ 				for(int i = 2; i < 5; i++){
+ 					if(nJumps > 2)
+ 						break;
+ 					else{
+ 						if(sortedhand[i].rank != first + i - 2){
+ 							jumpRank14[nJumps] = sortedhand[i].rank;
+ 							nJumps++;
+ 							lastCard++;
+ 						}else{
+ 							if(lastCard > 0){
+ 								nGaps++;
+ 								lastCard = 0;
+ 							}
+ 							if(sortedhand[i].rank > 10 || sortedhand[i].rank == 1)
+ 								nHighCards++;
+ 						}
+ 					}
+ 				}
+ 				if(nJumps < 3 && nHighCards > nGaps && first != 1 && !(first == 2 && nGaps == 0)){
+ 					for(int i = 0; i < 5; i++)
+ 						indexes[i] = 1;
+ 					
+ 					for(int i = 0; i < 2; i++)
+ 						indexes[indexOfRank(jumpRank14[i])] = 0;
+ 					
+ 					return indexes;
+ 				}
+ 			}
+ 		}
  		
  		/*****Play(15) - 4 to an inside straight with 3 high cards************/
+ 		//card 2, 3 or 4 dont belong to the straight
+ 		first = sortedhand[0].rank;
+ 		nJumps = 0;
+ 		jumpRank = 0;
+ 		nHighCards = 0;
+ 		for(int i = 1; i < 5; i++){
+ 			if(nJumps > 1)
+ 				break;
+ 			else{
+ 				if(sortedhand[i].rank != first+i){
+ 					nJumps++;
+ 					jumpRank = sortedhand[i].rank;
+ 				}else{
+ 					if(sortedhand[i].rank > 10 || sortedhand[i].rank == 1)
+ 						nHighCards++;
+ 				}
+ 			}
+ 		}
+ 		
+ 		if(nJumps <= 1 && nHighCards == 3){
+ 			for(int i = 0; i < 5; i++)
+ 				indexes[i] = 1;
+ 			
+ 			indexes[indexOfRank(jumpRank)] = 0;
+ 			return indexes;
+ 		}
  		
  		/*****Play(16) - QJ suited********************************************/
+ 		//can only have one J and one Q, because if there are more than one, the advise would be to keep the pair
+ 		if(indexOfRank(11) != -1 && indexOfRank(12) != -1){
+	 		if(this.hand[indexOfRank(11)].suit == this.hand[indexOfRank(12)].suit){
+	 			indexes[indexOfRank(11)] = 1;
+	 			indexes[indexOfRank(12)] = 1;
+	 			return indexes;
+	 		}
+ 		}
  		
  		/*****Play(17) - 3 to a flush with 2 high cards***********************/
+ 		if(maxSameSuit == 3){
+ 			nHighCards = 0;
+ 			int[] indexHighCard17 = new int[2];
+ 			
+ 			for(int i = 0; i < 5; i++){
+ 				if(this.hand[i].suit == maxSuit){
+ 					if(this.hand[i].rank > 10 || this.hand[i].rank == 1){
+ 						indexHighCard17[nHighCards] = i;
+ 						nHighCards++;
+ 					}
+ 				}
+ 			}
+ 			if(nHighCards == 2){
+ 				indexes[indexHighCard17[0]] = 1;
+ 				indexes[indexHighCard17[1]] = 1;
+ 				return indexes;
+ 			}
+ 		}
  		
  		/*****Play(18) - 2 suited high cards**********************************/
+ 		for(int i = 0; i < 5; i++){
+ 			if((this.hand[i].rank > 10 || this.hand[i].rank == 1) && suits[i] >= 2){
+ 				for(int j = i+1; j < 5; j++){
+ 					if((this.hand[j].rank > 10 || this.hand[j].rank == 1) && this.hand[i].suit == this.hand[j].suit){
+ 						indexes[i] = 1;
+ 						indexes[j] = 1;
+ 						return indexes;
+ 					}
+ 				}
+ 			}
+ 		}
  		
  		/*****Play(19) - 4 to an inside straight with 2 high cards************/
+ 		//card 2, 3 or 4 dont belong to the straight
+ 		first = sortedhand[0].rank;
+ 		nJumps = 0;
+ 		jumpRank = 0;
+ 		nHighCards = 0;
+ 		for(int i = 1; i < 5; i++){
+ 			if(nJumps > 1)
+ 				break;
+ 			else{
+ 				if(sortedhand[i].rank != first+i){
+ 					nJumps++;
+ 					jumpRank = sortedhand[i].rank;
+ 				}else{
+ 					if(sortedhand[i].rank > 10 || sortedhand[i].rank == 1)
+ 						nHighCards++;
+ 				}
+ 			}
+ 		}
+ 		
+ 		if(nJumps <= 1 && nHighCards == 2){
+ 			for(int i = 0; i < 5; i++)
+ 				indexes[i] = 1;
+ 			
+ 			indexes[indexOfRank(jumpRank)] = 0;
+ 			return indexes;
+ 		}
  		
  		/*****Play(20) - 3 to a straight flush (type 2)***********************/
  		
