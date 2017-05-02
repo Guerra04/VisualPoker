@@ -207,7 +207,7 @@ public class Hand {
  		
  		int[] ranks = this.isSameRank(); 
  		int maxSameRank = 0;
- 		int maxRank = 0;
+ 		int maxRank = 0; //Rank that appears the most time
  		for(int i = 0; i < 5; i++){
  			if(ranks[i] > maxSameRank){
  				maxSameRank = ranks[i];
@@ -294,7 +294,7 @@ public class Hand {
  			
  			//first card belongs to the straight
  			int njumps = 0;
- 			int jumpindex = -1;
+ 			int jumpRank = -1;
  			int first = sortedhand[0].rank;
  			for(int i = 1; i < 5; i++){
  				if(njumps > 1)
@@ -302,16 +302,16 @@ public class Hand {
  				else{
  					if(sortedhand[i].rank != first+i){
  						njumps++;
- 						jumpindex = 1;
+ 						jumpRank = sortedhand[i].rank;
  					}
  				}
  					
  			}
  			if(njumps < 1){
- 				for(int i = 0; i < 5; i++){
- 					if(i != jumpindex)
+ 				for(int i = 0; i < 5; i++)
  						indexes[i] = 1;
- 				}
+ 				
+ 				indexes[indexOfRank(jumpRank)] = 0;
  				return indexes;
  			}else{ //check if the first card doesnt belong to the possible straight, but the other 4 do
  				njumps = 0;
@@ -325,17 +325,117 @@ public class Hand {
  					}
  				}
  				if(njumps == 0){
- 					indexes[1] = 1;
- 					indexes[2] = 1;
- 					indexes[3] = 1;
- 					indexes[4] = 1;
+ 					for(int i = 0; i < 5; i++)
+ 						indexes[i] = 1;
+ 					
+ 					indexes[indexOfRank(sortedhand[0].rank)] = 0;
  					return indexes;
  				}
  			}
  		}
  		
  		/*****Play(7) - Two pair**********************************************/
+ 		if(score == 10){
+ 			for(int i = 0; i < 5; i++){
+ 				if(ranks[i] == 2)
+ 					indexes[i] = 1;
+ 			}
+ 			return indexes;
+ 		}
  		
+ 		/*****Play(8) - High pair*********************************************/
+ 		if(score == 11){
+ 			for(int i = 0; i < 5; i++){
+ 				if(ranks[i] == 2)
+ 					indexes[i] = 1;
+ 			}
+ 			return indexes;
+ 		}
+ 		
+ 		/*****Play(9) - 4 to a flush******************************************/
+ 		if(maxSameSuit == 4){
+ 			for(int i = 0; i < 5; i++){
+ 				if(suits[i] == 4)
+ 					indexes[i] = 1;
+ 			}
+ 			return indexes;
+ 		}
+ 		
+    /*****Play(10) - 3 to a royal flush***********************************/
+ 		if(maxSameSuit >= 3 && maxSameRank < 4){
+ 			int cardsToRoyal = 0;
+ 			int[] highCards = new int[5]; //stores the position of each card of a royal flush.
+ 			
+ 			highCards[0] = indexOfCard(10, maxSuit);
+ 			if(highCards[0] != -1)
+ 				cardsToRoyal++;
+ 			
+ 			highCards[1] = indexOfCard(11, maxSuit);
+ 			if(highCards[1] != -1)
+ 				cardsToRoyal++;
+ 			
+ 			highCards[2] = indexOfCard(12, maxSuit);
+ 			if(highCards[2] != -1)
+ 				cardsToRoyal++;
+ 			
+ 			highCards[3] = indexOfCard(13, maxSuit);
+ 			if(highCards[3] != -1)
+ 				cardsToRoyal++;
+ 			
+ 			highCards[4] = indexOfCard(1, maxSuit);
+ 			if(highCards[4] != -1)
+ 				cardsToRoyal++;
+ 			
+ 			if(cardsToRoyal == 3){
+ 				for(int i = 0; i < 5; i++){
+ 					if(highCards[i] != -1)
+ 						indexes[highCards[i]] = 1;
+ 				}
+ 				return indexes;
+ 			}
+ 		}
+ 		
+ 		/*****Play(11) - 4 to an outside straight*****************************/
+ 		if(maxSameRank < 3){
+ 			//in sorted hand, either the first card or the last card doesnt belong to straight
+ 			Card[] sortedhand = this.hand;
+ 			java.util.Arrays.sort(sortedhand, new  ComparatorByRank());
+ 			
+ 			int jump = 0;
+ 			int first = sortedhand[0].rank;
+ 			for(int i = 1; i < 5; i++){
+ 				if(jump == 0){
+ 					if(sortedhand[i].rank != first+i)
+ 						jump = 1;
+ 				}else
+ 					break;
+ 			}
+ 			if(jump == 0){
+ 				for(int i = 0; i < 5; i++)
+ 					indexes[i] = 1;
+ 				
+ 				indexes[indexOfRank(sortedhand[4].rank)] = 0;
+ 				return indexes;
+ 			}else{
+ 				first = sortedhand[1].rank;
+ 				jump = 0;
+ 				for(int i = 2; i < 5; i++){
+ 					if(jump == 0){
+ 						if(sortedhand[i].rank != first+i-1)
+ 	 						jump = 1;
+ 					}else
+ 						break;
+ 				}
+ 				if(jump == 0){
+ 					for(int i = 0; i < 5; i++)
+ 	 					indexes[i] = 1;
+ 					
+ 					indexes[indexOfRank(sortedhand[0].rank)] = 0;
+ 					return indexes;
+ 				}
+ 			}
+ 		}
+    
  		/**********Play(12) - Low pair ********/
  		
  		if(maxSameRank == 2 && maxRank < 11){
