@@ -361,7 +361,7 @@ public class Hand {
  			return indexes;
  		}
  		
-    /*****Play(10) - 3 to a royal flush***********************************/
+ 		/*****Play(10) - 3 to a royal flush***********************************/
  		if(maxSameSuit >= 3 && maxSameRank < 4){
  			int cardsToRoyal = 0;
  			int[] highCards = new int[5]; //stores the position of each card of a royal flush.
@@ -436,8 +436,7 @@ public class Hand {
  			}
  		}
     
- 		/**********Play(12) - Low pair ********/
- 		
+ 		/*****Play(12) - Low pair ********************************************/
  		if(maxSameRank == 2 && maxRank < 11){
  			for(int i = 0; i < 5; i++){
  				if(ranks[i] == 2)
@@ -446,8 +445,7 @@ public class Hand {
  			return indexes;
  		}
  		
- 		/********Play(13) - AKJQ unsuited ***********/
- 		
+ 		/*****Play(13) - AKJQ unsuited ***************************************/
  		if(indexOfRank(1) != -1 || indexOfRank(11) != -1 || indexOfRank(12) != -1 || indexOfRank(13) != -1){
  			indexes[indexOfRank(1)]=1;
  			indexes[indexOfRank(11)]=1;
@@ -457,8 +455,48 @@ public class Hand {
  			return indexes;
  		}		
 
- 		/******Play (14) - 3 to a straight flush (type 1)*******/
+ 		/*****Play(14) - 3 to a straight flush (type 1)***********************/
  		
- 		return null;
+ 		/*****Play(15) - 4 to an inside straight with 3 high cards************/
+ 		
+ 		/*****Play(16) - QJ suited********************************************/
+ 		
+ 		/*****Play(17) - 3 to a flush with 2 high cards***********************/
+ 		
+ 		/*****Play(18) - 2 suited high cards**********************************/
+ 		
+ 		/*****Play(19) - 4 to an inside straight with 2 high cards************/
+ 		
+ 		/*****Play(20) - 3 to a straight flush (type 2)***********************/
+ 		
+ 		/*****Play(21) - 4 to an inside straight with 1 high card*************/
+ 		
+ 		/*****Play(22) - KQJ unsuited*****************************************/
+ 		
+ 		/*****Play(23) - JT suited********************************************/
+ 		
+ 		/*****Play(24) - QJ unsuited******************************************/
+ 		
+ 		/*****Play(25) - 3 to a flush with 1 high card************************/
+ 		
+ 		/*****Play(26) - QT suited********************************************/
+ 		
+ 		/*****Play(27) - 3 to a straight flush (type 3)***********************/
+ 		
+ 		/*****Play(28) - KQ, KJ unsuited**************************************/
+ 		
+ 		/*****Play(29) - Ace**************************************************/
+ 		
+ 		/*****Play(30) - KT suited********************************************/
+ 		
+ 		/*****Play(31) - Jack, Queen or King**********************************/
+ 		
+ 		/*****Play(32) - 4 to an inside straight with no high cards***********/
+ 		
+ 		/*****Play(33) - 3 to a flush with no high cards**********************/
+ 		
+ 		/*****Play(34) - Discard everything***********************************/
+ 		return indexes;
+ 		
  	}//end cardsToHold
 }
