@@ -191,9 +191,9 @@ public class Hand {
 	//if position = 0 is should be discarded
  	private int[] cardsToHold(){
  		
- 		int[] indexes = {0,0,0,0,0};
+ 		int[] indexes = {0,0,0,0,0};	//vector of cards to hold
  		
- 		int score = this.handScore();
+ 		int score = this.handScore();	//Verifying the score of the hand
  		
  		int[] suits = this.isSameSuit(); 
  		int maxSameSuit = 0;
@@ -336,6 +336,28 @@ public class Hand {
  		
  		/*****Play(7) - Two pair**********************************************/
  		
+ 		/**********Play(12) - Low pair ********/
+ 		
+ 		if(maxSameRank == 2 && maxRank < 11){
+ 			for(int i = 0; i < 5; i++){
+ 				if(ranks[i] == 2)
+ 					indexes[i] = 1;
+ 			}
+ 			return indexes;
+ 		}
+ 		
+ 		/********Play(13) - AKJQ unsuited ***********/
+ 		
+ 		if(indexOfRank(1) != -1 || indexOfRank(11) != -1 || indexOfRank(12) != -1 || indexOfRank(13) != -1){
+ 			indexes[indexOfRank(1)]=1;
+ 			indexes[indexOfRank(11)]=1;
+ 			indexes[indexOfRank(12)]=1;
+ 			indexes[indexOfRank(13)]=1;
+ 			
+ 			return indexes;
+ 		}		
+
+ 		/******Play (14) - 3 to a straight flush (type 1)*******/
  		
  		return null;
  	}//end cardsToHold
