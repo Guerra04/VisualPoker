@@ -78,7 +78,7 @@ public class Main {
 							
 							//--------------------------------ver se ganhou ou perdeu----------------------------------
 							
-							System.out.println(player.hand.handScore(player.hand));
+							System.out.println(player.hand.handScore());
 							
 							end = true;
 							break;
