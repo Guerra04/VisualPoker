@@ -75,4 +75,11 @@ public class Card {
 			return false;
 		return true;
 	}
+	
+	public boolean isHighCard(){
+		if(this.rank > 10 || this.rank == 1)
+			return true;
+		else
+			return false;
+	}
 }
