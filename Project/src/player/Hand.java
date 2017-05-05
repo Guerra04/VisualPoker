@@ -69,7 +69,7 @@ public class Hand {
 		return samesuit;
 	}
 	
-	private Card[] handSort(){
+	protected Card[] handSort(){
 		Card[] sortedhand = new Card[5];
 		
 		for(int i = 0; i < 5; i++){
@@ -167,7 +167,7 @@ public class Hand {
 	}
 	
 	//returns -1 if does not exist
-	private int indexOfRank(int rank){
+	protected int indexOfRank(int rank){
 		int index = -1;
 		for(int i = 0; i < 5; i++){
 			if(this.hand[i].rank == rank){
@@ -179,7 +179,7 @@ public class Hand {
 	}
 	
 	//returns -1 if does not exist
-	private int indexOfCard(int rank, int suit){
+	protected int indexOfCard(int rank, int suit){
 		int index = -1;
 		Card card = new Card(rank, suit);
 		for(int i = 0; i < 5; i++){
