@@ -269,7 +269,6 @@ public class Hand {
  		CardsToStraightFlush straightFlush = new CardsToStraightFlush();
  		straightFlush.compute(maxSameSuit, mostRepSuit, this);
  		
- 		System.out.println(straightFlush.type);
  		if(straightFlush.nCardsTo == 4)
  			return straightFlush.indexes;
  		
@@ -379,10 +378,10 @@ public class Hand {
  		/*****Play(25) - 3 to a flush with 1 high card************************/
  		if(flush.nCardsTo == 3 && flush.nHighCards == 1)
  			return flush.indexes;
- 		
+ 			
  		/*****Play(26) - QT suited********************************************/
  		if(highCards.QTsuited)
- 			return flush.indexes;
+ 			return highCards.indexes;
  		
  		/*****Play(27) - 3 to a straight flush (type 3)***********************/
  		if(straightFlush.type == 3)
@@ -407,6 +406,7 @@ public class Hand {
  		/*****Play(32) - 4 to an inside straight with no high cards***********/
 		if(!straight.outside && straight.nHighCards == 0)
 			return straight.indexes;
+
  		
  		/*****Play(33) - 3 to a flush with no high cards**********************/
  		if(flush.nCardsTo == 3 && flush.nHighCards == 0)
@@ -429,5 +429,34 @@ public class Hand {
  				advise = advise + " " + (i+1); 
  		}
  		return advise;
+ 	}
+ 	
+ 	public String scoreToString(int score){
+ 		switch(score){
+ 		case(1):
+ 			return "ROYAL FLUSH";
+ 		case(2):
+ 			return "FOUR ACES";
+ 		case(3):
+ 			return "FOUR 2-4";
+ 		case(4):
+ 			return "FOUR 5-K";
+ 		case(5):
+ 			return "STRAIGHT FLUSH";
+ 		case(6):
+ 			return "FULL HOUSE";
+ 		case(7):
+ 			return "FLUSH";
+ 		case(8):
+ 			return "STRAIGHT";
+ 		case(9):
+ 			return "THREE OF A KIND";
+ 		case(10):
+ 			return "TWO PAIR";
+ 		case(11):
+ 			return "JACKS OR BETTER";
+ 		default:
+ 			return "INVALID SCORE";
+ 		}
  	}
 }

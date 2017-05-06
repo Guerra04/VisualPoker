@@ -63,7 +63,7 @@ public class CardsToStraight extends CardsTo{
 					}
 					
 				}else{
-					if(!this.outside && nHighCardsAux > this.nHighCards){
+					if(!this.outside && nHighCardsAux >= this.nHighCards){
 						this.nCardsTo = nCardsToAux;
 						this.nHighCards = nHighCardsAux;
 						this.indexes = new int[5]; //clean indexes in case there are 2 candidates to straight

@@ -14,7 +14,10 @@ public class Player {
 	
 	//Setters
 	public void setLastBet(int bet){
-		this.lastBet = 5;
+		if(bet < 5)
+			this.lastBet = 5;
+		else
+			System.out.println("b: illegal amount");
 		return;
 	}
 	
@@ -23,8 +26,46 @@ public class Player {
 		return;
 	}
 	
-	public void incStatistics(int index){
-		this.statistics[index] += 1;
+	public void incStatistics(int score){
+		switch(score){
+		case(1):
+ 			statistics[8]++;
+			break;
+ 		case(2):
+ 			statistics[6]++;
+ 			break;
+ 		case(3):
+ 			statistics[6]++;
+			break;
+ 		case(4):
+ 			statistics[6]++;
+			break;
+ 		case(5):
+ 			statistics[7]++;
+			break;
+ 		case(6):
+ 			statistics[5]++;
+			break;
+ 		case(7):
+ 			statistics[4]++;
+			break;
+ 		case(8):
+ 			statistics[3]++;
+			break;
+ 		case(9):
+ 			statistics[2]++;
+			break;
+ 		case(10):
+ 			statistics[1]++;
+			break;
+ 		case(11):
+ 			statistics[0]++;
+			break;
+ 		default:
+ 			statistics[9]++;
+ 			break;
+ 		}
+		return;
 	}
 	
 	public void incHandsPlayed(){
@@ -57,7 +98,7 @@ public class Player {
 		System.out.printf("---------------------------\n");
 		System.out.printf("%-20s %-5s\n", "Total", String.valueOf(this.handsPlayed));
 		System.out.printf("---------------------------\n");
-		System.out.printf("%-15s %s (%s)\n", "Credit", String.valueOf(this.credit), String.valueOf(this.credit/initialCredit*100));
+		System.out.printf("%-15s %s (%s)\n", "Credit", String.valueOf(this.credit), String.valueOf(((double)this.credit)/initialCredit*100));
 		
 	}
 }

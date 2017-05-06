@@ -95,7 +95,7 @@ public class CardsToHighCards extends CardsTo{
  			}
  		}
  		
- 		if(nHighCards >= 2){
+ 		if(nHighCards >= 1){
  			if(highCards[0] != -1 && highCards[1] != -1){
  				if(hand.hand[highCards[0]].suit == hand.hand[highCards[1]].suit){
  					this.indexes[highCards[0]] = 1;
