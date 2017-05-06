@@ -32,17 +32,17 @@ public class Test {
 		/*Player dani = new Player(1000);
 		dani.statistics(1000);*/
 		
-		//17
+		//40
 		Hand hand = new Hand(deck);
-		Card card1 = new Card(7, 1);
+		Card card1 = new Card(8, 1);
 		hand.hand[0] = card1;
-		Card card2 = new Card(7, 2);
+		Card card2 = new Card(9, 1);
 		hand.hand[1] = card2; 
-		Card card3 = new Card(8, 3);
+		Card card3 = new Card(10, 2);
 		hand.hand[2] = card3; 
-		Card card4 = new Card(9, 4);
+		Card card4 = new Card(12, 1);
 		hand.hand[3] = card4; 
-		Card card5 = new Card(10, 2);
+		Card card5 = new Card(2, 3);
 		hand.hand[4] = card5; 
 		
 		System.out.println(hand.toString());

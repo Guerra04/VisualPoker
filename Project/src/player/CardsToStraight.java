@@ -38,9 +38,10 @@ public class CardsToStraight extends CardsTo{
 					if(j != 4 && first != 10 && first != 11)
 						outsideAux = false;
 				}
-				if(first == 10 || first == 11){ //sequences starting in 10 or J have to take into account if exists an Ace
+				if((first == 10 && j == 4) || (first == 11 && j == 3)){ //sequences starting in 10 or J have to take into account if exists an Ace
 					if(hand.indexOfRank(1) != -1){
 						straightIndexes[nCardsToAux] = hand.indexOfRank(1);
+						nCardsToAux++;
 						nHighCardsAux++;
 						if(first == 10)
 							outsideAux = false;
@@ -49,12 +50,14 @@ public class CardsToStraight extends CardsTo{
 					}
 				}
 			}
+			
 			if(nCardsToAux == 4){ //straight just matter if there are 4 cards
 				if(outsideAux){
 					if(!this.outside || (this.outside && nHighCardsAux > this.nHighCards)){
 						this.outside = true;
 						this.nCardsTo = nCardsToAux;
 						this.nHighCards = nHighCardsAux;
+						this.indexes = new int[5]; //clean indexes in case there are 2 candidates to straight
 						for(int j = 0; j < nCardsToAux; j++)
 							this.indexes[straightIndexes[j]] = 1;
 					}
@@ -63,6 +66,7 @@ public class CardsToStraight extends CardsTo{
 					if(!this.outside && nHighCardsAux > this.nHighCards){
 						this.nCardsTo = nCardsToAux;
 						this.nHighCards = nHighCardsAux;
+						this.indexes = new int[5]; //clean indexes in case there are 2 candidates to straight
 						for(int j = 0; j < nCardsToAux; j++)
 							this.indexes[straightIndexes[j]] = 1;
 					}

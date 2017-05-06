@@ -25,7 +25,7 @@ public class CardsToFlush extends CardsTo{
 						this.nHighCards++;
 				}
 			}
-			this.nCardsTo = 4;
+			this.nCardsTo = 3;
 			return;
 		}
 		return;

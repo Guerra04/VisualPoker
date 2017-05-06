@@ -296,7 +296,7 @@ public class Hand {
  		
  		if(flush.nCardsTo == 4)
  			return flush.indexes;
- 		
+ 			
  		/*****Play(10) - 3 to a royal flush***********************************/
  		if(highCards.royal && highCards.nCardsTo == 3)
  			return highCards.indexes;
@@ -305,7 +305,6 @@ public class Hand {
  		CardsToStraight straight = new CardsToStraight();
  		straight.compute(maxSameSuit, mostRepSuit, this);
  		
- 		System.out.println(straight.outside);
  		if(straight.outside)
  			return straight.indexes;
     
@@ -329,13 +328,14 @@ public class Hand {
  		/*****Play(15) - 4 to an inside straight with 3 high cards************/
  		if(!straight.outside && straight.nHighCards == 3)
  			return straight.indexes;
+ 			
  		
  		/*****Play(16) - QJ suited********************************************/
  		if(highCards.QJsuited)
- 			return straight.indexes;
+ 			return highCards.indexes;
  		
  		/*****Play(17) - 3 to a flush with 2 high cards***********************/
- 		if(flush.nCardsTo == 3 && flush.nHighCards == 3)
+ 		if(flush.nCardsTo == 3 && flush.nHighCards == 2)
  			return flush.indexes;
  		
  		/*****Play(18) - 2 suited high cards**********************************/
@@ -412,6 +412,7 @@ public class Hand {
  			return flush.indexes;
  		
  		/*****Play(34) - Discard everything***********************************/
+ 		indexes[0] = -1; //flag to discard everything
  		return indexes;
  		
  	}//end cardsToHold
@@ -419,6 +420,9 @@ public class Hand {
  	public String advise(){
  		String advise = "player should hold";
  		int[] cardsToHold = this.cardsToHold();
+ 		if(cardsToHold[0] == -1){
+ 			return "player should discard everything";
+ 		}
  		for(int i = 0; i < 5; i++){
  			if(cardsToHold[i] == 1)
  				advise = advise + " " + (i+1); 
