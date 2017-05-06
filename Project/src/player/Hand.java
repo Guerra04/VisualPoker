@@ -269,6 +269,7 @@ public class Hand {
  		CardsToStraightFlush straightFlush = new CardsToStraightFlush();
  		straightFlush.compute(maxSameSuit, mostRepSuit, this);
  		
+ 		System.out.println(straightFlush.type);
  		if(straightFlush.nCardsTo == 4)
  			return straightFlush.indexes;
  		

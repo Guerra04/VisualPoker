@@ -18,6 +18,7 @@ public class CardsToStraightFlush extends CardsTo{
 		int nHighCardsAux;
 		int nCardsToAux;
 		int nGaps;
+		int sinceLast;
 		int[] straightIndexes;
 		int first;
 		
@@ -26,7 +27,7 @@ public class CardsToStraightFlush extends CardsTo{
 			nHighCardsAux = 0;
 			nCardsToAux = 0;
 			straightIndexes = new int[4];
-			
+			sinceLast = 0;
 			if(sortedHand[i].suit == mostRepSuit){
 				first = sortedHand[i].rank;
 				for(int j = 0; j < 5; j++){
@@ -35,8 +36,10 @@ public class CardsToStraightFlush extends CardsTo{
 						if(hand.hand[straightIndexes[nCardsToAux]].isHighCard())
 							nHighCardsAux++;
 						nCardsToAux++;
+						nGaps += sinceLast;
+						sinceLast = 0;
 					}else{
-						nGaps++;
+						sinceLast++;
 					}
 				}
 				if(nCardsToAux == 4){
