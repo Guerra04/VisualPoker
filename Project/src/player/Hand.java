@@ -219,9 +219,6 @@ public class Hand {
  				mostRepRank = this.hand[i].rank;
  			}
  		}
- 		
-		/*****Variables*****/
-		/*******************/
 
  		/*****Play (1) - Straight flush, four of a kind, royal flush**********/
  		if(score > 0 && score <= 5){ //royal flush, four of a kind or straight flush
@@ -308,6 +305,7 @@ public class Hand {
  		CardsToStraight straight = new CardsToStraight();
  		straight.compute(maxSameSuit, mostRepSuit, this);
  		
+ 		System.out.println(straight.outside);
  		if(straight.outside)
  			return straight.indexes;
     
