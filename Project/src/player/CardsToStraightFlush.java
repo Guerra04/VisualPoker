@@ -11,7 +11,7 @@ public class CardsToStraightFlush extends CardsTo{
 		type = 4; //to facilitate conditions
 	}
 	
-	void compute(int maxSameRank, int mostRepRank, int maxSameSuit, int mostRepSuit, int nHighCards, Hand hand){
+	void compute(int maxSameSuit, int mostRepSuit, Hand hand){
 		//in sorted hand, two first cards can start the candidate straight		
 		Card[] sortedHand = hand.handSort();
 		int typeAux;
@@ -21,17 +21,17 @@ public class CardsToStraightFlush extends CardsTo{
 		int[] straightIndexes;
 		int first;
 		
-		if(maxSameRank >= 3){
-			for(int i = 0; i < 3; i++){
-				nGaps = 0;
-				nHighCardsAux = 0;
-				nCardsToAux = 0;
-				straightIndexes = new int[4];
-				
+		for(int i = 0; i < 3; i++){
+			nGaps = 0;
+			nHighCardsAux = 0;
+			nCardsToAux = 0;
+			straightIndexes = new int[4];
+			
+			if(sortedHand[i].suit == mostRepSuit){
 				first = sortedHand[i].rank;
 				for(int j = 0; j < 5; j++){
-					if(hand.indexOfRank(first + j) != -1){
-						straightIndexes[nCardsToAux] = hand.indexOfRank(first + j);
+					if(hand.indexOfCard(first + j, mostRepSuit) != -1){
+						straightIndexes[nCardsToAux] = hand.indexOfCard(first + j, mostRepSuit);
 						if(hand.hand[straightIndexes[nCardsToAux]].isHighCard())
 							nHighCardsAux++;
 						nCardsToAux++;
@@ -39,7 +39,6 @@ public class CardsToStraightFlush extends CardsTo{
 						nGaps++;
 					}
 				}
-				
 				if(nCardsToAux == 4){
 					if(this.type != 0 || nHighCardsAux > this.nHighCards)
 					this.type = 0;

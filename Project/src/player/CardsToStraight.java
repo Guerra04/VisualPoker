@@ -12,7 +12,7 @@ public class CardsToStraight extends CardsTo{
 		outside = false;
 	}
 	
-	void compute(int maxSameRank, int mostRepRank, int maxSameSuit, int mostRepSuit, int nHighCards, Hand hand){
+	void compute(int maxSameSuit, int mostRepSuit, Hand hand){
 		//in sorted hand, three first cards can start the candidate straight		
 		Card[] sortedHand = hand.handSort();
 		boolean outsideAux;

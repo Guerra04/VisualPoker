@@ -5,8 +5,8 @@ public abstract class CardsTo {
 	int nCardsTo;
 	
 	public CardsTo(){
-		indexes = new int[4];
+		indexes = new int[5];
 		nCardsTo = 0;
 	}
-	abstract void compute(int maxSameRank, int mostRepRank, int maxSameSuit, int mostRepSuit, int nHighCards, Hand hand);
+	abstract void compute(int maxSameSuit, int mostRepSuit, Hand hand);
 }
