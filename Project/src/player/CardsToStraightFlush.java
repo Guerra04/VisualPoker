@@ -3,15 +3,15 @@ package player;
 import cards.Card;
 
 public class CardsToStraightFlush extends CardsTo{
-	int type;
-	int nHighCards;
+	public int type;
+	public int nHighCards;
 	
-	CardsToStraightFlush(){
+	public CardsToStraightFlush(){
 		super();
 		type = 4; //to facilitate conditions
 	}
 	
-	void compute(int maxSameSuit, int mostRepSuit, Hand hand){
+	public void compute(int maxSameSuit, int mostRepSuit, Hand hand){
 		//in sorted hand, two first cards can start the candidate straight		
 		Card[] sortedHand = hand.handSort();
 		int typeAux;

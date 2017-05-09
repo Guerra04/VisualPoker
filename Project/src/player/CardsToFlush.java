@@ -1,14 +1,14 @@
 package player;
 
 public class CardsToFlush extends CardsTo{
-	int nHighCards;
+	public int nHighCards;
 	
-	CardsToFlush(){
+	public CardsToFlush(){
 		super();
 		nHighCards = 0;
 	}
 	
-	void compute(int maxSameSuit, int mostRepSuit, Hand hand){
+	public void compute(int maxSameSuit, int mostRepSuit, Hand hand){
 		if(maxSameSuit == 4){
 			for(int i = 0; i < 5; i++){
 				if(hand.hand[i].suit == mostRepSuit)

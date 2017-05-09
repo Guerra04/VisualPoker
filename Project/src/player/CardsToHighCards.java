@@ -1,19 +1,19 @@
 package player;
 
 public class CardsToHighCards extends CardsTo{
-	boolean royal;
-	boolean AKQJunsuited;
-	boolean QJsuited;
-	boolean KQJunsuited;
-	boolean JTsuited;
-	boolean QJunsuited;
-	boolean QTsuited;
-	boolean KQ_KJunsuited;
-	boolean Ace;
-	boolean KTsuited;
-	boolean K_Q_J;
+	public boolean royal;
+	public boolean AKQJunsuited;
+	public boolean QJsuited;
+	public boolean KQJunsuited;
+	public boolean JTsuited;
+	public boolean QJunsuited;
+	public boolean QTsuited;
+	public boolean KQ_KJunsuited;
+	public boolean Ace;
+	public boolean KTsuited;
+	public boolean K_Q_J;
 	
-	CardsToHighCards(){
+	public CardsToHighCards(){
 		royal = false;
 		AKQJunsuited = false;
 		QJsuited = false;
@@ -27,7 +27,7 @@ public class CardsToHighCards extends CardsTo{
 		K_Q_J = false;
 	}
 	
-	void compute(int maxSameSuit, int mostRepSuit, Hand hand){
+	public void compute(int maxSameSuit, int mostRepSuit, Hand hand){
 		int[] highCards = new int[5]; //stores the position of each card of a royal flush.
 		int nHighCards = 0;
 		

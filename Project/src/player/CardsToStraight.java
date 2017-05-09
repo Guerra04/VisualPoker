@@ -3,16 +3,16 @@ package player;
 import cards.Card;
 
 public class CardsToStraight extends CardsTo{
-	int nHighCards;
-	boolean outside;
+	public int nHighCards;
+	public boolean outside;
 	
-	CardsToStraight(){
+	public CardsToStraight(){
 		super();
 		nHighCards = 0;
 		outside = false;
 	}
 	
-	void compute(int maxSameSuit, int mostRepSuit, Hand hand){
+	public void compute(int maxSameSuit, int mostRepSuit, Hand hand){
 		//in sorted hand, three first cards can start the candidate straight		
 		Card[] sortedHand = hand.handSort();
 		boolean outsideAux;
