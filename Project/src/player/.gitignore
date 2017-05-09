@@ -1,2 +1,7 @@
 /Hand.class
 /Player.class
+/CardsTo.class
+/CardsToFlush.class
+/CardsToHighCards.class
+/CardsToStraight.class
+/CardsToStraightFlush.class
