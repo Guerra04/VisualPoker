@@ -54,7 +54,7 @@ public class DoubleBonus10_7 extends VideoPoker{
 	}
 	
 	public void statistics(Player player){
-		System.out.printf("%-20s %-5s\n", "Hand", "Nb");
+		System.out.printf("\n%-20s %-5s\n", "Hand", "Nb");
 		System.out.printf("---------------------------\n");
 		System.out.printf("%-20s %-5s\n", "Jacks or Better", String.valueOf(player.statistics[JACKS_OR_BETTER]));
 		System.out.printf("%-20s %-5s\n", "Two Pair", String.valueOf(player.statistics[TWO_PAIR]));
@@ -70,7 +70,7 @@ public class DoubleBonus10_7 extends VideoPoker{
 		System.out.printf("---------------------------\n");
 		System.out.printf("%-20s %-5s\n", "Total", String.valueOf(player.handsPlayed));
 		System.out.printf("---------------------------\n");
-		System.out.printf("%-15s %s (%s)\n", "Credit", String.valueOf(player.getCredit()), 
+		System.out.printf("%-15s %s (%s)\n\n", "Credit", String.valueOf(player.getCredit()), 
 				String.valueOf(((double)player.getCredit())/player.getInitialCredit()*100));
 	}
 	
@@ -78,7 +78,7 @@ public class DoubleBonus10_7 extends VideoPoker{
  		String adviseString = "player should hold cards";
  		int[] cardsToHold = AdviseDoubleBonus10_7.cardsToHold(player, this);
  		if(cardsToHold[0] == -1){
- 			return "player should discard everything";
+ 			return "player should discard everything\n";
  		}
  		for(int i = 0; i < 5; i++){
  			if(cardsToHold[i] == 1)
@@ -90,7 +90,6 @@ public class DoubleBonus10_7 extends VideoPoker{
 	
 	public void interactiveMode(int initialCredit){
 		Player player = new Player(initialCredit, nWinningHands);
-		deck = new Deck();
 		Scanner scan = null;
 
 		this.state = INITIATING;
@@ -121,6 +120,7 @@ public class DoubleBonus10_7 extends VideoPoker{
 				break;
 			
 			case 'd':
+				this.shuffle();
 				this.deal(player);
 				break;
 			
@@ -158,11 +158,9 @@ public class DoubleBonus10_7 extends VideoPoker{
 		deck = new Deck(card_file);
 		
 		BufferedReader br = null;
-		FileReader fr = null;
 		
 		try{
-			fr = new FileReader(cmd_file);
-			br = new BufferedReader(fr);
+			br = new BufferedReader(new FileReader(cmd_file));
 
 			String line;
 			
@@ -173,10 +171,12 @@ public class DoubleBonus10_7 extends VideoPoker{
 			while(index < line.length()){
 				if(Character.isLetter(line.charAt(index)) || line.charAt(index) == '$'){
 					char command = line.charAt(index);
+					String cmd = "";
+					cmd += command;
 					switch(command){
 					case 'b':
 						int bet;
-						if(Character.isDigit(line.charAt(index+2))){
+						if(index+2 < line.length() && Character.isDigit(line.charAt(index+2))){
 							int i = 2;
 							//bet value can have more than one digit
 							String betString = "";
@@ -186,19 +186,24 @@ public class DoubleBonus10_7 extends VideoPoker{
 							}
 							bet = Integer.parseInt(betString);
 							index += i;
+							cmd += (" " + bet);
 						}else{
 							bet = player.getLastBet();
 							index += 2;
 						}
+
+						this.printCommand(cmd);
 						this.bet(player, bet);
 						break;
 					
 					case '$':
+						this.printCommand(cmd);
 						this.credit(player);
 						index += 2;
 						break;
 					
 					case 'd':
+						this.printCommand(cmd);
 						this.deal(player);
 						index += 2;
 						break;
@@ -210,28 +215,33 @@ public class DoubleBonus10_7 extends VideoPoker{
 						while(index+i < line.length() && Character.isDigit(line.charAt(index + i))){
 							indexes[n] = Character.getNumericValue(line.charAt(index + i));
 							n++;
+							cmd += (" " + line.charAt(index + i));
 							i += 2;
 						}
-						
+						this.printCommand(cmd);
 						this.holdAndResults(player, indexes, deck);
 						index += 2*(n+1);
 						break;
 						
 					case 'a':
+						this.printCommand(cmd);
 						this.getAdvise(player);
 						index += 2;
 						break;
 						
 					case 's':
+						this.printCommand(cmd);
 						this.getStatistics(player);
 						index += 2;
 						break;
 					
 					case 'q':
+						this.printCommand(cmd);
 						this.quit(player);
 						break;
 					
 					default:
+						this.printCommand(cmd);
 						System.out.println(command + ": illegal command");
 						index++;
 						break;
@@ -247,12 +257,17 @@ public class DoubleBonus10_7 extends VideoPoker{
 	}
 	
 	public void simulationMode(int initialCredit, int bet, int nbdeals){
+		if(bet > 5){
+			System.out.println("b: illegal amount");
+			System.exit(2);
+		}
+		
 		Player player = new Player(initialCredit, nWinningHands);
 		player.setLastBet(bet);
 		
 		for(int deal = 0; deal < nbdeals && player.getCredit() - bet >= 0; deal++){
 			player.setCredit(player.getCredit() - bet);
-			deck = new Deck();
+			this.shuffle();
 			player.hand = new Hand(deck);
 			int[] cardsToHold = AdviseDoubleBonus10_7.cardsToHold(player, this);
 			int[] indexes = new int[5];
@@ -375,6 +390,10 @@ public class DoubleBonus10_7 extends VideoPoker{
 		return;
 	}
 	
+	void shuffle(){
+		this.deck = new Deck();
+	}
+	
 	void deal(Player player){
 		if(state == BETTING){
 			player.setCredit(player.getCredit()-player.getLastBet());
@@ -439,6 +458,10 @@ public class DoubleBonus10_7 extends VideoPoker{
 	void illegalCommand(char command){
 		System.out.println(command + ": illegal command");
 		return;
+	}
+	
+	void printCommand(String cmd){
+		System.out.println("-cmd " + cmd);
 	}
 	
 	public String scoreToString(int score){

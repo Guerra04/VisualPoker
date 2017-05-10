@@ -43,10 +43,6 @@ public class Main {
 			int initialCredit = Integer.parseInt(args[1]);
 			
 			int bet = Integer.parseInt(args[2]);
-			if(bet > 5){
-				System.out.println("b: illegal amount");
-				System.exit(2);
-			}
 
 			int nbdeals = Integer.parseInt(args[3]);
 			
