@@ -28,7 +28,11 @@ public class Main {
 		
 		/**********************************DEBUG MODE*************************************/
 		else if(args[0].equals("-d")){
+			if(args.length != 4)
+				usage();
 			
+			int initialCredit = Integer.parseInt(args[1]);
+			game.debugMode(initialCredit, args[2], args[3]);
 		}//END DEBUG MODE
 		
 		/*******************************SIMULATION MODE***********************************/

@@ -25,7 +25,10 @@ public abstract class VideoPoker {
 	}
 	
 	public abstract void statistics(Player player);
+	public abstract int handScore(Player player);
+	
 	public abstract void interactiveMode(int initialCredit);
-	//public abstract void debugMode(int initialCredit);
+	public abstract void debugMode(int initialCredit, String cmd_file, String card_file);
 	public abstract void simulationMode(int initialCredit, int bet, int nbdeals);
+	
 }

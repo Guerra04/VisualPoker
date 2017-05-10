@@ -1,4 +1,4 @@
-package videoPoker;
+package doublebonus10_7;
 
 import java.awt.EventQueue;
 

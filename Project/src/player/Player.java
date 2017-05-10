@@ -2,7 +2,7 @@ package player;
 
 public class Player {
 	private int credit;
-	private int initialCredit;
+	private final int initialCredit;
 	private int lastBet = 5;
 	public Hand hand;
 	public int statistics[];
@@ -11,7 +11,8 @@ public class Player {
 	//Contructor
 	public Player(int credit, int nWinningHands){
 		this.credit = credit;
-		statistics = new int[nWinningHands+1];
+		this.initialCredit = credit;
+		this.statistics = new int[nWinningHands+1];
 	}
 	
 	//Setters
@@ -22,11 +23,6 @@ public class Player {
 	
 	public void setCredit(int credit){
 		this.credit = credit;
-		return;
-	}
-	
-	public void setInitialCredit(int initialCredit){
-		this.initialCredit = initialCredit;
 		return;
 	}
 	

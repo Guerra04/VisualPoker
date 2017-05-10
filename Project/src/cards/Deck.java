@@ -2,12 +2,15 @@ package cards;
 
 import java.util.LinkedList;
 import java.util.Random;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Deck {								
 	private LinkedList<Card> cards = new LinkedList<Card>();   //Linked list that will contain the shuffled deck
 	
 	public Deck(){
-		int total;
+		int total = 0;
 		Random random = new Random();
 		int index; //Position variable to initialize deck;
 		
@@ -20,6 +23,40 @@ public class Deck {
 				
 				cards.add(index,card);	//Adding cards to the deck 		
 			}
+		}
+	}
+	
+	//contructor for debugging mode
+	public Deck(String card_file){
+		BufferedReader br = null;
+		FileReader fr = null;
+		
+		try{
+			fr = new FileReader(card_file);
+			br = new BufferedReader(fr);
+
+			String line;
+
+			br = new BufferedReader(new FileReader(card_file));
+			
+			line = br.readLine(); //file has only one line
+
+			int i = 0;
+			while(i < line.length()){
+				if(line.charAt(i) == ' '){
+					i++;
+					continue;
+				}
+				
+				int rank = Card.stringToRank(line.charAt(i));
+				i++;
+				int suit = Card.stringToSuit(line.charAt(i));
+				i++;
+				Card card = new Card(rank, suit);
+				this.cards.addLast(card);
+			}
+		}catch(IOException e){
+			e.printStackTrace();
 		}
 	}
 	

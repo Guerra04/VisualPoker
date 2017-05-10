@@ -39,6 +39,22 @@ public class Card {
 			return String.valueOf(rank);
 	}
 	
+	//Translates string to rank integer
+	static int stringToRank(char rank){
+		if(rank == 'T')
+			return 10;
+		if(rank == 'J')
+			return 11;
+		if(rank == 'Q')
+			return 12;
+		if(rank == 'K')
+			return 13;
+		if(rank == 'A')
+			return 1;
+		else
+			return Character.getNumericValue(rank);
+	}
+	
 	//Translates suit integer to string
 	private String suitToString(int suit){
 		if(suit == 1)
@@ -49,7 +65,22 @@ public class Card {
 			return "C";
 		if(suit == 4)
 			return "S";
+		
 		return String.valueOf(suit);
+	}
+	
+	//Translates string to rank integer
+	static int stringToSuit(char suit){
+		if(suit == 'H')
+			return 1;
+		if(suit == 'D')
+			return 2;
+		if(suit == 'C')
+			return 3;
+		if(suit == 'S')
+			return 4;
+		
+		return Character.getNumericValue(suit);
 	}
 
 	//toString method for card object

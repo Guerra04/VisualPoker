@@ -1,5 +1,8 @@
 package doublebonus10_7;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 import cards.Card;
@@ -73,7 +76,7 @@ public class DoubleBonus10_7 extends VideoPoker{
 	}
 	
 	public String advise(Player player){
- 		String adviseString = "player should hold";
+ 		String adviseString = "player should hold cards";
  		int[] cardsToHold = AdviseDoubleBonus10_7.cardsToHold(player, this);
  		if(cardsToHold[0] == -1){
  			return "player should discard everything";
@@ -88,7 +91,7 @@ public class DoubleBonus10_7 extends VideoPoker{
 	
 	public void interactiveMode(int initialCredit){
 		Player player = new Player(initialCredit, nWinningHands);
-		player.setInitialCredit(initialCredit);
+		deck = new Deck();
 		Scanner scan = null;
 
 		this.state = INITIATING;
@@ -110,7 +113,7 @@ public class DoubleBonus10_7 extends VideoPoker{
 				if(line.length() > 1)
 					bet = Character.getNumericValue(line.charAt(2));
 				else
-					bet = 5;
+					bet = player.getLastBet();
 				this.bet(player, bet);
 				break;
 			
@@ -127,7 +130,7 @@ public class DoubleBonus10_7 extends VideoPoker{
 				for(int i = 2; i < line.length(); i += 2)
 					indexes[i/2 - 1] = Character.getNumericValue(line.charAt(i));
 				
-				this.hold(player, indexes, deck);
+				this.holdAndResults(player, indexes, deck);
 				break;
 				
 			case 'a':
@@ -150,13 +153,106 @@ public class DoubleBonus10_7 extends VideoPoker{
 		scan.close();
 		return;
 	}
+	
+	public void debugMode(int initialCredit, String cmd_file, String card_file){
+		Player player = new Player(initialCredit, nWinningHands);
+		deck = new Deck(card_file);
+		
+		BufferedReader br = null;
+		FileReader fr = null;
+		
+		try{
+			fr = new FileReader(card_file);
+			br = new BufferedReader(fr);
 
+			String line;
+
+			br = new BufferedReader(new FileReader(cmd_file));
+			
+			line = br.readLine(); //file has only one line
+			this.state = INITIATING;
+			int index = 0;
+			while(index < line.length()){
+				if(Character.isLetter(line.charAt(index)) || line.charAt(index) == '$'){
+					char command = line.charAt(index);
+					switch(command){
+					case 'b':
+						int bet;
+						if(Character.isDigit(line.charAt(index+2))){
+							int i = 2;
+							//bet value can have more than one digit
+							String betString = "";
+							while(Character.isDigit(line.charAt(index+i)) && index+1 < line.length()){
+								betString += line.charAt(index+2);
+								i ++;
+							}
+							bet = Integer.parseInt(betString);
+							index += i;
+						}else{
+							bet = player.getLastBet();
+							index += 2;
+						}
+						this.bet(player, bet);
+						break;
+					
+					case '$':
+						this.credit(player);
+						index += 2;
+						break;
+					
+					case 'd':
+						this.deal(player);
+						index += 2;
+						break;
+					
+					case 'h':
+						int[] indexes= new int[5];
+						int n = 0;
+						int i = 2;
+						while(index+i < line.length() && Character.isDigit(line.charAt(index + i))){
+							indexes[n] = Character.getNumericValue(line.charAt(index + i));
+							n++;
+							i += 2;
+						}
+						
+						this.holdAndResults(player, indexes, deck);
+						index += 2*(n+1);
+						break;
+						
+					case 'a':
+						this.getAdvise(player);
+						index += 2;
+						break;
+						
+					case 's':
+						this.getStatistics(player);
+						index += 2;
+						break;
+					
+					case 'q':
+						this.quit(player);
+						break;
+					
+					default:
+						System.out.println(command + ": illegal command");
+						index++;
+						break;
+					}
+				}else
+					index++;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return;
+	}
+	
 	public void simulationMode(int initialCredit, int bet, int nbdeals){
 		Player player = new Player(initialCredit, nWinningHands);
-		player.setInitialCredit(initialCredit);
 		player.setLastBet(bet);
 		
-		for(int deal = 0; deal < nbdeals; deal++){
+		for(int deal = 0; deal < nbdeals && player.getCredit() - bet >= 0; deal++){
 			player.setCredit(player.getCredit() - bet);
 			deck = new Deck();
 			player.hand = new Hand(deck);
@@ -264,11 +360,10 @@ public class DoubleBonus10_7 extends VideoPoker{
 	}
 	
 	void bet(Player player, int bet){
-		if(state == INITIATING){
-			if(bet <= 5){
+		if(state == INITIATING || state == BETTING){
+			if(bet <= 5 && player.getCredit() - bet >= 0){
 				player.setLastBet(bet);
 				System.out.println("player is betting " + player.getLastBet());
-				player.setCredit(player.getCredit()-5);
 				state = BETTING;
 			}else
 				System.out.println("b: illegal amount");
@@ -284,7 +379,7 @@ public class DoubleBonus10_7 extends VideoPoker{
 	
 	void deal(Player player){
 		if(state == BETTING){
-			deck = new Deck();
+			player.setCredit(player.getCredit()-player.getLastBet());
 			player.hand = new Hand(deck);
 			System.out.println(player.hand);
 			state = DEALING;
@@ -294,27 +389,29 @@ public class DoubleBonus10_7 extends VideoPoker{
 		return;
 	}
 	
-	void hold(Player player, int[] indexes, Deck deck){
+	void holdAndResults(Player player, int[] indexes, Deck deck){
 		if(state == DEALING){
 			player.hand.hold(indexes, deck);
 			System.out.println(player.hand);
 			
 			int score = this.handScore(player);
-			
-			if(score == 0){
+			player.setCredit(player.getCredit() + reward(score, player.getLastBet()));
+			if(score == 0)
 				System.out.println("Player lost and his credit is " + player.getCredit());
-			}else{
-				player.setCredit(player.getCredit() + reward(score, player.getLastBet()));
+			else
 				System.out.println("Player wins with a " + this.scoreToString(score) 
 					+ " and his credit is " + player.getCredit());
-			}
 			
 			player.incStatistics(score);
 			player.incHandsPlayed();
-			state = INITIATING;
+			state = BETTING;
 		}else
 			this.illegalCommand('h');
 		
+		if(player.getCredit() == 0){
+			System.out.println("GAME OVER");
+			System.exit(3);
+		}
 		return;
 	}
 	
