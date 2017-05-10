@@ -26,6 +26,9 @@ import javax.swing.border.BevelBorder;
 public class GUI {
 	
 	int[] cardsclicked = {0,0,0,0,0};
+	int dealpressed = 0;
+	int credits = 0;
+	String input;
 	
 	private JFrame frame;
 
@@ -38,28 +41,40 @@ public class GUI {
 				try {
 					GUI window = new GUI();
 					window.frame.setVisible(true);
+					DoubleBonus10_7 game = new DoubleBonus10_7();
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
+	}//End of main
 
 	/**
 	 * Create the application.
 	 */
 	public GUI() {
+		while(credits<5){	
+			 input = JOptionPane.showInputDialog(null, "Input amount of credits to be used:");
+			credits = Integer.parseInt(input);
+			if(credits < 5){
+				JOptionPane.showMessageDialog(null, "The credits inserted must be more than 5!");
+			}	
+		}
 		initialize();
-	}
+	}//End of GUI function
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		//Creating the frame/window of the GUI(the place where all the interface will be located)
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(0, 128, 0));
 		frame.getContentPane().setForeground(new Color(0, 0, 0));
-		frame.setBounds(100, 100, 644, 500);
+		frame.setBounds(100, 100, 644, 356);
+		frame.setLocationRelativeTo ( null );
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -68,7 +83,7 @@ public class GUI {
 		JButton card1 = new JButton();
 		//Action that ocures when button is clicked
 		card1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {	//Action to be performed by pressing of the button
 				if(cardsclicked[0] == 0){
 					cardsclicked[0]=1;
 				}else{
@@ -134,39 +149,48 @@ public class GUI {
 		
 		//Button that represents the deck
 		JButton deck = new JButton();
-		deck.setBounds(515, 11, 89, 119);
+		deck.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(dealpressed==0){
+					dealpressed = 1;
+				}else{
+					dealpressed = 0;
+					
+				}
+			}
+		});
+		deck.setBounds(515, 33, 89, 119);
 		frame.getContentPane().add(deck);
 		
 		//Buttons that represent the different types of commands the user can do
 		JButton btnHold = new JButton("Hold");
 		btnHold.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(Arrays.toString(cardsclicked));
-				for(int i=0; i<5; i++)
+				for(int i=0; i<5; i++)	//Resetting the cards held vector
 					cardsclicked[i]=0;
 			}
 		});
 		btnHold.setFont(new Font("Cambria Math", Font.PLAIN, 17));
-		btnHold.setBounds(21, 348, 89, 23);
+		btnHold.setBounds(21, 107, 89, 23);
 		frame.getContentPane().add(btnHold);
 		
 		//Bet action button with slider that represents the amount the player will bet.
-		//After the slider is set, if the user preses bet, he will bet that amount 
+		//After the slider is set, if the user presses bet, he will bet that amount 
 		JButton btnBet = new JButton("Bet");
 		btnBet.setFont(new Font("Cambria Math", Font.PLAIN, 17));
-		btnBet.setBounds(141, 348, 89, 23);
+		btnBet.setBounds(141, 107, 89, 23);
 		frame.getContentPane().add(btnBet);
 		
 		JSlider Betslider = new JSlider();
 		Betslider.setBackground(new Color(0, 128, 0));
-		Betslider.setBounds(141, 389, 89, 26);
+		Betslider.setBounds(141, 141, 89, 26);
 		frame.getContentPane().add(Betslider);
 		
-		//Deal action button
-		JButton btnDeal = new JButton("Deal");
-		btnDeal.setFont(new Font("Cambria Math", Font.PLAIN, 17));
-		btnDeal.setBounds(515, 141, 89, 23);
-		frame.getContentPane().add(btnDeal);
+		//Advice action button
+		JButton btnAdvise = new JButton("Advise");
+		btnAdvise.setFont(new Font("Cambria Math", Font.PLAIN, 17));
+		btnAdvise.setBounds(268, 107, 89, 23);
+		frame.getContentPane().add(btnAdvise);
 
 	}
 }
