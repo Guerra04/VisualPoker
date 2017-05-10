@@ -36,10 +36,9 @@ public class Deck {
 			br = new BufferedReader(fr);
 
 			String line;
-
-			br = new BufferedReader(new FileReader(card_file));
 			
 			line = br.readLine(); //file has only one line
+			br.close();
 
 			int i = 0;
 			while(i < line.length()){

@@ -2,7 +2,6 @@ package doublebonus10_7;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.Scanner;
 
 import cards.Card;
@@ -162,14 +161,13 @@ public class DoubleBonus10_7 extends VideoPoker{
 		FileReader fr = null;
 		
 		try{
-			fr = new FileReader(card_file);
+			fr = new FileReader(cmd_file);
 			br = new BufferedReader(fr);
 
 			String line;
-
-			br = new BufferedReader(new FileReader(cmd_file));
 			
 			line = br.readLine(); //file has only one line
+			br.close();
 			this.state = INITIATING;
 			int index = 0;
 			while(index < line.length()){
