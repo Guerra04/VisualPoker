@@ -12,13 +12,14 @@ import java.io.IOException;
 public class Deck {								
 	private LinkedList<Card> cards = new LinkedList<Card>();   //Linked list that will contain the shuffled deck
 	
+	//Insert card by card in a random position among the other cards
 	public Deck(){
 		int total = 0;
 		Random random = new Random();
 		int index; //Position variable to initialize deck;
 		
 		for(int s=1; s<=4; s++){ 		//Defining a cards suit: 1=H, 2=D, 3=C, 4=S .
-			for(int r=1; r<14 ;r++){   //Defining the value of the card: 2-10, 11=J, 12=Q, 13=K, 1=A
+			for(int r=1; r<14 ;r++){   //Defining the value of the card: 2-9, 10=T, 11=J, 12=Q, 13=K, 1=A
 				Card card = new Card(r, s);
 				
 				total = cards.size();	//Verification of the total size of the deck
@@ -29,7 +30,7 @@ public class Deck {
 		}
 	}
 	
-	//contructor for debugging mode
+	//Constructor for debugging mode
 	public Deck(String card_file){
 		BufferedReader br = null;
 		FileReader fr = null;
