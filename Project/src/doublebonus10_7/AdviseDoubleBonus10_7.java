@@ -5,7 +5,6 @@ import player.CardsToHighCards;
 import player.CardsToStraight;
 import player.CardsToStraightFlush;
 import player.Player;
-import player.Hand;
 
 /**
  * The Class AdviseDoubleBonus10_7.

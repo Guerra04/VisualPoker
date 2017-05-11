@@ -1,4 +1,6 @@
-package doublebonus10_7;
+package Main;
+
+import doublebonus10_7.DoubleBonus10_7;
 
 /**
  * The Class Main.

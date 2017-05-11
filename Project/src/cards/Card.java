@@ -15,13 +15,12 @@ package cards;
  ------------------------------------------------------------------------------*/
 
 /**
- * The Class Card.
+ * Class to represent each card.
  */
 public class Card {
 	public int rank;
 	public int suit;
 	
-	//Ranks
 	private final static int T = 10;
 	private final static int J = 11;
 	private final static int Q = 12;
