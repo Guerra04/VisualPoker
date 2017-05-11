@@ -5,6 +5,9 @@ import cards.*;
 import videoPoker.*;
 
 
+/**
+ * The Class Hand.
+ */
 public class Hand {
 	public Card[] hand = new Card[5];
 	

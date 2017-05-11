@@ -1,5 +1,8 @@
 package doublebonus10_7;
 
+/**
+ * The Class Main.
+ */
 public class Main {
 
 	public static void usage(){

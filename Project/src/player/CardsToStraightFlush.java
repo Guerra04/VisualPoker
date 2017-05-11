@@ -2,6 +2,9 @@ package player;
 
 import cards.Card;
 
+/**
+ * The Class CardsToStraightFlush.
+ */
 public class CardsToStraightFlush extends CardsTo{
 	public int type;
 	public int nHighCards;

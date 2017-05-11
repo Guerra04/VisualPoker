@@ -6,6 +6,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * The Class Deck.
+ */
 public class Deck {								
 	private LinkedList<Card> cards = new LinkedList<Card>();   //Linked list that will contain the shuffled deck
 	

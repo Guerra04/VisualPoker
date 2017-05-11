@@ -14,6 +14,9 @@ package cards;
  *	4 = S
  ------------------------------------------------------------------------------*/
 
+/**
+ * The Class Card.
+ */
 public class Card {
 	public int rank;
 	public int suit;

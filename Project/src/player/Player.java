@@ -1,5 +1,8 @@
 package player;
 
+/**
+ * The Class Player.
+ */
 public class Player {
 	private int credit;
 	private final int initialCredit;

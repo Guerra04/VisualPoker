@@ -7,6 +7,9 @@ import cards.Deck;
 import player.Hand;
 import player.Player;
 
+/**
+ * The Class VideoPoker.
+ */
 public abstract class VideoPoker {
 	
 	protected int[][] rewardTable;

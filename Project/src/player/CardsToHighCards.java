@@ -1,5 +1,8 @@
 package player;
 
+/**
+ * The Class CardsToHighCards.
+ */
 public class CardsToHighCards extends CardsTo{
 	public boolean royal;
 	public boolean AKQJunsuited;

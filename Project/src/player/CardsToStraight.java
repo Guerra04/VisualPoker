@@ -2,6 +2,9 @@ package player;
 
 import cards.Card;
 
+/**
+ * The Class CardsToStraight.
+ */
 public class CardsToStraight extends CardsTo{
 	public int nHighCards;
 	public boolean outside;

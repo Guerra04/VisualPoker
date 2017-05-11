@@ -10,6 +10,9 @@ import player.Hand;
 import player.Player;
 import videoPoker.VideoPoker;
 
+/**
+ * The Class DoubleBonus10_7.
+ */
 public class DoubleBonus10_7 extends VideoPoker{
 
 	public static final int nWinningHands = 11;

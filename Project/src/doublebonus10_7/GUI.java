@@ -23,6 +23,9 @@ import javax.swing.JTextArea;
 import javax.swing.JLayeredPane;
 import javax.swing.border.BevelBorder;
 
+/**
+ * The Class GUI.
+ */
 public class GUI {
 	
 	int[] cardsclicked = {0,0,0,0,0};

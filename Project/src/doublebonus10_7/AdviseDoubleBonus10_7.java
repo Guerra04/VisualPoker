@@ -7,6 +7,9 @@ import player.CardsToStraightFlush;
 import player.Player;
 import player.Hand;
 
+/**
+ * The Class AdviseDoubleBonus10_7.
+ */
 public class AdviseDoubleBonus10_7 {
 
 	//return array with 5 positions correponding to each card in the hand
