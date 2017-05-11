@@ -220,11 +220,10 @@ public class AdviseDoubleBonus10_7 {
 	 		/*****Play(31) - Jack, Queen or King**********************************/
 	 		if(highCards.K_Q_J)
 	 			return highCards.indexes;
-	 		
+	 			
 	 		/*****Play(32) - 4 to an inside straight with no high cards***********/
 			if(!straight.outside && straight.nHighCards == 0)
 				return straight.indexes;
-
 	 		
 	 		/*****Play(33) - 3 to a flush with no high cards**********************/
 	 		if(flush.nCardsTo == 3 && flush.nHighCards == 0)

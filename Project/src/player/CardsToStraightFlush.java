@@ -57,7 +57,7 @@ public class CardsToStraightFlush extends CardsTo{
 						typeAux = 2;
 					else
 						typeAux = 3;
-					
+
 					if(typeAux < this.type){
 						this.type = typeAux;
 						this.nCardsTo = nCardsToAux;
