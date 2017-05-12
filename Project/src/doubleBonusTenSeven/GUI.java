@@ -102,7 +102,7 @@ public class GUI extends DoubleBonusTenSeven {
 		statsFrame.getContentPane().setForeground(new Color(255, 255, 224));
 		statsFrame.setLocationRelativeTo ( null );
 		statsFrame.setResizable(false);
-		statsFrame.setBounds(100, 100, 644, 450);
+		statsFrame.setBounds(100, 100, 275, 425);
 		statsFrame.addWindowListener(new WindowAdapter() {
 		    public void windowClosing(WindowEvent evt) {
 		    	statVisibility = 0;
