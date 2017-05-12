@@ -355,7 +355,7 @@ public class GUI extends DoubleBonusTenSeven {
 					}
 					
 				}else
-					JOptionPane.showMessageDialog(null, "You can only deal after betting!");
+					JOptionPane.showMessageDialog(null, "You can only deal after you bet or after this turned is resolved!");
 			}
 		});
 		
