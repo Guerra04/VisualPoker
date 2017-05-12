@@ -1,37 +1,32 @@
-package doublebonus10_7;
+package doubleBonusTenSeven;
 
 import java.awt.EventQueue;
 
 import javax.swing.*;
 
-import java.awt.FlowLayout;
 import javax.imageio.ImageIO;
-import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
-import java.util.Arrays;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
 import player.Player;
-import videoPoker.VideoPoker;
 import java.awt.Image;
-import javax.swing.event.AncestorListener;
 
 import com.sun.glass.events.WindowEvent;
 
-import javax.swing.event.AncestorEvent;
+import doubleBonus.DoubleBonus;
 
-public class GUI extends DoubleBonus10_7 {
+//import javax.swing.event.AncestorEvent;
+
+public class GUI extends DoubleBonusTenSeven {
 	
 	String print = "";
 	int[] cardsclicked = new int[5];
 	int dealpressed = 0;
 	static int credits = 0;
 	String input;
-	DoubleBonus10_7 game = new DoubleBonus10_7();
+	DoubleBonusTenSeven game = new DoubleBonusTenSeven();
 	Player player;
 	int ValueBet = 5;
 	int c;
@@ -77,7 +72,7 @@ public class GUI extends DoubleBonus10_7 {
 				if(credits >= 1000000){
 					JOptionPane.showMessageDialog(null, "Please insert an amount inferior to 99999999.");
 				}
-				player = new Player(credits, DoubleBonus10_7.nWinningHands);
+				player = new Player(credits, DoubleBonus.nWinningHands);
 			}catch(NumberFormatException e){
 				JOptionPane.showMessageDialog(null, "Credits must be a numeric value!");
 				
@@ -296,7 +291,7 @@ public class GUI extends DoubleBonus10_7 {
 			public void actionPerformed(ActionEvent e) {
 				if(game.getState()==DEALING){
 					int[] shouldhold = new int[5];
-					shouldhold = AdviseDoubleBonus10_7.cardsToHold(player, game);
+					shouldhold = AdviseDoubleBonusTenSeven.cardsToHold(player, game);
 					adviseHighlight(shouldhold, card);
 					cardsclicked=shouldhold;
 					for(int i=0;i<5;i++){

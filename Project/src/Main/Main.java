@@ -1,6 +1,6 @@
 package Main;
 
-import doublebonus10_7.DoubleBonus10_7;
+import doubleBonusTenSeven.DoubleBonusTenSeven;
 
 /**
  * The Class Main.
@@ -21,7 +21,7 @@ public class Main {
 			usage();
 		}
 		
-		DoubleBonus10_7 game = new DoubleBonus10_7();
+		DoubleBonusTenSeven game = new DoubleBonusTenSeven();
 		/*******************************INTERACTIVE MODE**********************************/
 		if(args[0].equals("-i")){
 			if(args.length != 2)
