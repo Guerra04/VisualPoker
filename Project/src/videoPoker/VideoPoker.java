@@ -28,7 +28,7 @@ public abstract class VideoPoker {
 	protected abstract void statistics(Player player);
 	protected abstract int handScore(Player player);
 	protected abstract String scoreToString(int score);
-	protected abstract String advise(Player player);
+	protected abstract int[] cardsToHold(Player player);
 	
 	public abstract void interactiveMode(int initialCredit);
 	public abstract void debugMode(int initialCredit, String cmd_file, String card_file);
@@ -111,6 +111,20 @@ public abstract class VideoPoker {
 			this.illegalCommand('a');
 		return;
 	}
+	
+	public String advise(Player player){
+ 		String adviseString = "player should hold cards";
+ 		int[] cardsToHold = this.cardsToHold(player);
+ 		if(cardsToHold[0] == -1){
+ 			return "player should discard everything\n";
+ 		}
+ 		for(int i = 0; i < 5; i++){
+ 			if(cardsToHold[i] == 1)
+ 				adviseString = adviseString + " " + (i+1); 
+ 		}
+
+ 		return adviseString;
+ 	}
 	
 	protected void getStatistics(Player player){
 		this.statistics(player);
