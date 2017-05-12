@@ -234,8 +234,7 @@ public class GUI extends DoubleBonus10_7 {
 					player.incStatistics(score);
 					player.incHandsPlayed();
 					game.setState(BETTING);
-					
-					/**IF the statistics frame is visible, the stats will refresh upon holding**/
+					/**If the statistics frame is visible, the sats will be updated**/
 					if(statsFrame.isVisible()){
 						framestatistics(player);
 					}
@@ -277,8 +276,11 @@ public class GUI extends DoubleBonus10_7 {
 				if(game.getState() == BETTING||game.getState()==INITIATING)
 					if(ValueBet > player.getCredit())
 						JOptionPane.showMessageDialog(null, "You can't bet more that the amount of credits you have!");
-					else
+					else{
+						textField.setText("Player bet: "+ ValueBet);
 						game.bet(player, ValueBet);
+						
+					}
 				else
 					JOptionPane.showMessageDialog(null, "You can only bet before dealing!");
 			}
@@ -346,12 +348,17 @@ public class GUI extends DoubleBonus10_7 {
 		deck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(game.getState()== BETTING){
-					resetallbtn(card);
-					game.shuffle();
-					game.deal(player);
-					paintHand(card, player);
-					game.setState(DEALING);
-					textField.setText("");
+					if(ValueBet > player.getCredit())
+						JOptionPane.showMessageDialog(null, "You can't bet more that the amount of credits you have!");
+					else{
+						resetallbtn(card);
+						game.shuffle();
+						game.deal(player);
+						paintHand(card, player);
+						game.setState(DEALING);
+						textField.setText("");
+					}
+					
 				}else
 					JOptionPane.showMessageDialog(null, "You can only deal after betting!");
 			}
