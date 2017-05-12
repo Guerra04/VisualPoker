@@ -1,5 +1,8 @@
 package player;
 
+/**
+ * The Class CardsToHighCards.
+ */
 public class CardsToHighCards extends CardsTo{
 	public boolean royal;
 	public boolean AKQJunsuited;
@@ -153,8 +156,8 @@ public class CardsToHighCards extends CardsTo{
  		}
  		
  		if(nHighCards >= 1){
- 			if(highCards[3] != -1){
- 				this.indexes[highCards[3]] = 1;
+ 			if(highCards[1] != -1){
+ 				this.indexes[highCards[1]] = 1;
  				this.K_Q_J = true;
  				return;
  			}
@@ -164,7 +167,7 @@ public class CardsToHighCards extends CardsTo{
  				return;
  			}
  			if(highCards[3] != -1){
- 				this.indexes[highCards[1]] = 1;
+ 				this.indexes[highCards[3]] = 1;
  				this.K_Q_J = true;
  				return;
  			}

@@ -1,5 +1,8 @@
 package player;
 
+/**
+ * The Class CardsTo.
+ */
 public abstract class CardsTo {
 	public int[] indexes; //1 belongs; 0 dont belong
 	public int nCardsTo;

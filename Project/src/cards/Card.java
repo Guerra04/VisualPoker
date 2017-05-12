@@ -14,9 +14,24 @@ package cards;
  *	4 = S
  ------------------------------------------------------------------------------*/
 
+/**
+ * Class to represent each card.
+ */
 public class Card {
 	public int rank;
 	public int suit;
+	
+	private final static int T = 10;
+	private final static int J = 11;
+	private final static int Q = 12;
+	private final static int K = 13;
+	private final static int A = 1;
+	
+	//Suits
+	private final static int H = 1;
+	private final static int D = 2;
+	private final static int C = 3;
+	private final static int S = 4;
 	
 	public Card(int rank, int suit){
 		this.rank = rank;
@@ -25,60 +40,60 @@ public class Card {
 	
 	//Translates rank integer to string
 	private String rankToString(int rank){
-		if(rank == 10)
+		if(rank == T)
 			return "T";
-		if(rank == 11)
+		if(rank == J)
 			return "J";
-		if(rank == 12)
+		if(rank == Q)
 			return "Q";
-		if(rank == 13)
+		if(rank == K)
 			return "K";
-		if(rank == 1)
+		if(rank == A)
 			return "A";
 		else
 			return String.valueOf(rank);
 	}
 	
 	//Translates string to rank integer
-	static int stringToRank(char rank){
+	public static int stringToRank(char rank){
 		if(rank == 'T')
-			return 10;
+			return T;
 		if(rank == 'J')
-			return 11;
+			return J;
 		if(rank == 'Q')
-			return 12;
+			return Q;
 		if(rank == 'K')
-			return 13;
+			return K;
 		if(rank == 'A')
-			return 1;
+			return A;
 		else
 			return Character.getNumericValue(rank);
 	}
 	
 	//Translates suit integer to string
 	private String suitToString(int suit){
-		if(suit == 1)
+		if(suit == H)
 			return "H";
-		if(suit == 2)
+		if(suit == D)
 			return "D";
-		if(suit == 3)
+		if(suit == C)
 			return "C";
-		if(suit == 4)
+		if(suit == S)
 			return "S";
 		
 		return String.valueOf(suit);
 	}
 	
 	//Translates string to rank integer
-	static int stringToSuit(char suit){
+	public static int stringToSuit(char suit){
 		if(suit == 'H')
-			return 1;
+			return H;
 		if(suit == 'D')
-			return 2;
+			return D;
 		if(suit == 'C')
-			return 3;
+			return C;
 		if(suit == 'S')
-			return 4;
+			return S;
 		
 		return Character.getNumericValue(suit);
 	}
@@ -107,8 +122,9 @@ public class Card {
 		return true;
 	}
 	
+	//Check if a card is a high card
 	public boolean isHighCard(){
-		if(this.rank > 10 || this.rank == 1)
+		if(this.rank > T || this.rank == A)
 			return true;
 		else
 			return false;

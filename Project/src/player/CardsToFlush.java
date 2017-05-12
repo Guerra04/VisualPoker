@@ -1,5 +1,8 @@
 package player;
 
+/**
+ * The Class CardsToFlush.
+ */
 public class CardsToFlush extends CardsTo{
 	public int nHighCards;
 	

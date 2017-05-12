@@ -10,6 +10,9 @@ import player.Hand;
 import player.Player;
 import videoPoker.VideoPoker;
 
+/**
+ * The Class DoubleBonus10_7.
+ */
 public class DoubleBonus10_7 extends VideoPoker{
 
 	public static final int nWinningHands = 11;
@@ -33,7 +36,7 @@ public class DoubleBonus10_7 extends VideoPoker{
 		this.rewardTable = fillRewardTable();
 	}
 	
-	private int[][] fillRewardTable(){
+	protected int[][] fillRewardTable(){
 		int[][] rewardTable = new int[nWinningHands+1][nBets+1];
 		for(int bet = 1; bet <= nBets; bet++){
 			rewardTable[OTHER][bet] = 0;
@@ -88,6 +91,35 @@ public class DoubleBonus10_7 extends VideoPoker{
  		return adviseString;
  	}
 	
+	public String scoreToString(int score){
+ 		switch(score){
+ 		case(ROYAL_FLUSH):
+ 			return "ROYAL FLUSH";
+ 		case(FOUR_ACES):
+ 			return "FOUR ACES";
+ 		case(FOUR_2_4):
+ 			return "FOUR 2-4";
+ 		case(FOUR_5_K):
+ 			return "FOUR 5-K";
+ 		case(STRAIGHT_FLUSH):
+ 			return "STRAIGHT FLUSH";
+ 		case(FULL_HOUSE):
+ 			return "FULL HOUSE";
+ 		case(FLUSH):
+ 			return "FLUSH";
+ 		case(STRAIGHT):
+ 			return "STRAIGHT";
+ 		case(THREE_OF_A_KIND):
+ 			return "THREE OF A KIND";
+ 		case(TWO_PAIR):
+ 			return "TWO PAIR";
+ 		case(JACKS_OR_BETTER):
+ 			return "JACKS OR BETTER";
+ 		default:
+ 			return "INVALID SCORE";
+ 		}
+ 	}
+	
 	public void interactiveMode(int initialCredit){
 		Player player = new Player(initialCredit, nWinningHands);
 		Scanner scan = null;
@@ -108,9 +140,13 @@ public class DoubleBonus10_7 extends VideoPoker{
 			switch(command){
 			case 'b':
 				int bet;
-				if(line.length() > 1)
-					bet = Character.getNumericValue(line.charAt(2));
-				else
+				if(line.length() > 1){
+					String betString = "";
+					for(int i = 2; i < line.length(); i++){
+						betString += line.charAt(i);
+					}
+					bet = Integer.parseInt(betString);
+				}else
 					bet = player.getLastBet();
 				this.bet(player, bet);
 				break;
@@ -372,125 +408,8 @@ public class DoubleBonus10_7 extends VideoPoker{
 		return OTHER;
 	}
 	
-	void bet(Player player, int bet){
-		if(state == INITIATING || state == BETTING){
-			if(bet <= 5 && player.getCredit() - bet >= 0){
-				player.setLastBet(bet);
-				System.out.println("player is betting " + player.getLastBet());
-				state = BETTING;
-			}else
-				System.out.println("b: illegal amount");
-		}else
-			this.illegalCommand('b');
-		return;
-	}
-	
-	void credit(Player player){
-		System.out.println("player's credit is " + player.getCredit());
-		return;
-	}
-	
-	void shuffle(){
-		this.deck = new Deck();
-	}
-	
-	void deal(Player player){
-		if(state == BETTING){
-			player.setCredit(player.getCredit()-player.getLastBet());
-			player.hand = new Hand(deck);
-			System.out.println(player.hand);
-			state = DEALING;
-		}else{
-			this.illegalCommand('d');
-		}
-		return;
-	}
-	
-	void holdAndResults(Player player, int[] indexes, Deck deck){
-		if(state == DEALING){
-			player.hand.hold(indexes, deck);
-			System.out.println(player.hand);
-			
-			int score = this.handScore(player);
-			player.setCredit(player.getCredit() + reward(score, player.getLastBet()));
-			if(score == 0)
-				System.out.println("Player lost and his credit is " + player.getCredit());
-			else
-				System.out.println("Player wins with a " + this.scoreToString(score) 
-					+ " and his credit is " + player.getCredit());
-			
-			player.incStatistics(score);
-			player.incHandsPlayed();
-			state = BETTING;
-		}else
-			this.illegalCommand('h');
-		
-		if(player.getCredit() == 0){
-			System.out.println("GAME OVER");
-			System.exit(3);
-		}
-		return;
-	}
-	
-	void getAdvise(Player player){
-		if(state == DEALING){
-			System.out.println(this.advise(player));
-		}else
-			this.illegalCommand('a');
-		return;
-	}
-	
-	void getStatistics(Player player){
-		this.statistics(player);
-		return;
-	}
-	
-	void quit(Player player){
-		if(state == INITIATING || state == BETTING){
-			System.out.println("Exiting the game");
-			this.statistics(player);
-			state = QUITTING;
-		}else
-			this.illegalCommand('q');
-		return;
-	}
-	
-	void illegalCommand(char command){
-		System.out.println(command + ": illegal command");
-		return;
-	}
-	
-	void printCommand(String cmd){
+	private void printCommand(String cmd){
 		System.out.println("-cmd " + cmd);
 	}
-	
-	public String scoreToString(int score){
- 		switch(score){
- 		case(ROYAL_FLUSH):
- 			return "ROYAL FLUSH";
- 		case(FOUR_ACES):
- 			return "FOUR ACES";
- 		case(FOUR_2_4):
- 			return "FOUR 2-4";
- 		case(FOUR_5_K):
- 			return "FOUR 5-K";
- 		case(STRAIGHT_FLUSH):
- 			return "STRAIGHT FLUSH";
- 		case(FULL_HOUSE):
- 			return "FULL HOUSE";
- 		case(FLUSH):
- 			return "FLUSH";
- 		case(STRAIGHT):
- 			return "STRAIGHT";
- 		case(THREE_OF_A_KIND):
- 			return "THREE OF A KIND";
- 		case(TWO_PAIR):
- 			return "TWO PAIR";
- 		case(JACKS_OR_BETTER):
- 			return "JACKS OR BETTER";
- 		default:
- 			return "INVALID SCORE";
- 		}
- 	}
 }
 

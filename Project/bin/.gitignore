@@ -1,5 +1,12 @@
-/doublebonus10_7/
-/player/
-/videoPoker/
+/.classpath
+/.project
 /cards/
-/bin/
+/cardsPNG/
+/doublebonus10_7/
+/videoPoker/
+<<<<<<< HEAD
+=======
+/cards/
+/player/
+>>>>>>> c3cfde1dd44afd57c9389240446d96d59940c8a2
+/Main/
