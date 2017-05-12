@@ -90,6 +90,7 @@ public class GUI extends DoubleBonusTenSeven {
 		frame.getContentPane().setBackground(new Color(0, 128, 0));
 		frame.getContentPane().setForeground(new Color(255, 255, 224));
 		frame.setBounds(100, 100, 644, 356);
+		frame.setTitle("Video Poker");
 		frame.setLocationRelativeTo ( null );
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -103,6 +104,7 @@ public class GUI extends DoubleBonusTenSeven {
 		statsFrame.setLocationRelativeTo ( null );
 		statsFrame.setResizable(false);
 		statsFrame.setBounds(100, 100, 275, 425);
+		statsFrame.setTitle("Statitics");
 		statsFrame.addWindowListener(new WindowAdapter() {
 		    public void windowClosing(WindowEvent evt) {
 		    	statVisibility = 0;
