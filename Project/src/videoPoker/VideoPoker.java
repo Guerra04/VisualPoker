@@ -18,8 +18,8 @@ public abstract class VideoPoker {
 	protected final static int BETTING = 1;
 	protected final static int DEALING = 2;
 	protected final static int QUITTING = 3;
-	protected int state;
-	
+	protected int state = INITIATING ;
+
 	protected int reward(int score, int bet){
 		return rewardTable[score][bet];
 	}
@@ -33,7 +33,20 @@ public abstract class VideoPoker {
 	public abstract void interactiveMode(int initialCredit);
 	public abstract void debugMode(int initialCredit, String cmd_file, String card_file);
 	public abstract void simulationMode(int initialCredit, int bet, int nbdeals);
+
+	//Deck Getter
+	public Deck getDeck() {
+		return deck;
+	}
 	
+	//State getter and setter
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
+
 	protected void bet(Player player, int bet){
 		if(state == INITIATING || state == BETTING){
 			if(bet <= 5 && player.getCredit() - bet >= 0){
@@ -121,5 +134,4 @@ public abstract class VideoPoker {
 		System.out.println(command + ": illegal command");
 		return;
 	}
-	
 }

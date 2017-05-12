@@ -11,7 +11,7 @@ import player.Player;
  */
 public class AdviseDoubleBonus10_7 {
 
-	//return array with 5 positions correponding to each card in the hand
+	//return array with 5 positions corresponding to each card in the hand
 		//if position = 1 it should be kept
 		//if position = 0 is should be discarded
 	 	static int[] cardsToHold(Player player, DoubleBonus10_7 game){
