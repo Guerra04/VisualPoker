@@ -201,7 +201,7 @@ public class DoubleBonusTenSeven extends DoubleBonus{
 	}
 	
 	public void simulationMode(int initialCredit, int bet, int nbdeals){
-		if(bet > 5){
+		if(bet > 5 || bet < 1){
 			System.out.println("b: illegal amount");
 			System.exit(2);
 		}
