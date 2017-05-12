@@ -1,5 +1,9 @@
+/*
+ * 
+ */
 package cards;
 
+// TODO: Auto-generated Javadoc
 /*-----------------------------------------------------------------------------
  *Ranks:
  *	11 = J
@@ -18,27 +22,59 @@ package cards;
  * The Class Card.
  */
 public class Card {
+	
+	/** The rank. */
 	public int rank;
+	
+	/** The suit. */
 	public int suit;
 	
+	/** The Constant T. */
 	//Ranks
 	private final static int T = 10;
+	
+	/** The Constant J. */
 	private final static int J = 11;
+	
+	/** The Constant Q. */
 	private final static int Q = 12;
+	
+	/** The Constant K. */
 	private final static int K = 13;
+	
+	/** The Constant A. */
 	private final static int A = 1;
 	
+	/** The Constant H. */
 	//Suits
 	private final static int H = 1;
+	
+	/** The Constant D. */
 	private final static int D = 2;
+	
+	/** The Constant C. */
 	private final static int C = 3;
+	
+	/** The Constant S. */
 	private final static int S = 4;
 	
+	/**
+	 * Instantiates a new card.
+	 *
+	 * @param rank the rank
+	 * @param suit the suit
+	 */
 	public Card(int rank, int suit){
 		this.rank = rank;
 		this.suit = suit;
 	}
 	
+	/**
+	 * Rank to string.
+	 *
+	 * @param rank the rank
+	 * @return the string
+	 */
 	//Translates rank integer to string
 	private String rankToString(int rank){
 		if(rank == T)
@@ -55,6 +91,12 @@ public class Card {
 			return String.valueOf(rank);
 	}
 	
+	/**
+	 * String to rank.
+	 *
+	 * @param rank the rank
+	 * @return the int
+	 */
 	//Translates string to rank integer
 	public static int stringToRank(char rank){
 		if(rank == 'T')
@@ -71,6 +113,12 @@ public class Card {
 			return Character.getNumericValue(rank);
 	}
 	
+	/**
+	 * Suit to string.
+	 *
+	 * @param suit the suit
+	 * @return the string
+	 */
 	//Translates suit integer to string
 	private String suitToString(int suit){
 		if(suit == H)
@@ -85,6 +133,12 @@ public class Card {
 		return String.valueOf(suit);
 	}
 	
+	/**
+	 * String to suit.
+	 *
+	 * @param suit the suit
+	 * @return the int
+	 */
 	//Translates string to rank integer
 	public static int stringToSuit(char suit){
 		if(suit == 'H')
@@ -99,6 +153,9 @@ public class Card {
 		return Character.getNumericValue(suit);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	//toString method for card object
 	@Override
 	public String toString() {
@@ -107,6 +164,9 @@ public class Card {
 		return rank + suit;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -123,6 +183,11 @@ public class Card {
 		return true;
 	}
 	
+	/**
+	 * Checks if is high card.
+	 *
+	 * @return true, if is high card
+	 */
 	//Check if a card is a high card
 	public boolean isHighCard(){
 		if(this.rank > T || this.rank == A)
