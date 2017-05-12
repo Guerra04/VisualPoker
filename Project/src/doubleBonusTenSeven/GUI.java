@@ -428,6 +428,14 @@ public class GUI extends DoubleBonusTenSeven {
 			statArea.setBackground(Color.BLACK);
 			statsFrame.getContentPane().add(statArea);
 			
+			double percentage = ((double)player.getCredit())/player.getInitialCredit()*100;
+			String percentageStr = String.valueOf(percentage);
+			int maxLength = 5;
+			if(percentageStr.length() < 5)
+				maxLength = percentageStr.length();
+			
+			percentageStr = percentageStr.substring(0, maxLength);
+			
 			statArea.append("\n   Hand\t\tNb\n");
 			statArea.append("   ---------------------------------\n");
 			statArea.append("   Jacks or Better"+"\t" + String.valueOf(player.statistics[JACKS_OR_BETTER])+ "\n");
@@ -444,7 +452,6 @@ public class GUI extends DoubleBonusTenSeven {
 			statArea.append("   ---------------------------------\n");
 			statArea.append("   Total" +"\t\t"+ String.valueOf(player.handsPlayed)+ "\n");
 			statArea.append("   ---------------------------------\n");
-			statArea.append("   Credit" +"\t\t"+ String.valueOf(player.getCredit())+"(" +
-					String.valueOf(((double)player.getCredit())/player.getInitialCredit()*100)+")");
+			statArea.append("   Credit" +"                 "+ String.valueOf(player.getCredit())+" (" + percentageStr +")");
 	}
 }
