@@ -97,7 +97,7 @@ public class GUI extends DoubleBonusTenSeven {
 		frame.getContentPane().setLayout(null);	
 		
 		
-		//Setting a statistics window frame setiings
+		//Setting a statistics window frame settings
 		statsFrame.setResizable(false);
 		statsFrame.getContentPane().setBackground(Color.BLACK);
 		statsFrame.getContentPane().setForeground(new Color(255, 255, 224));
