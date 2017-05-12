@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.2.0" icons="true" automaticImage="JPEG" always-add-relationships="false" 
-  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
-  router="FAN">  
+<class-diagram version="1.2.0" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="cards.Deck" project="VisualPoker" file="/VisualPoker/Project/src/cards/Deck.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="104" x="1636" y="580"/>    
+    <position height="124" width="104" x="1738" y="869"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -13,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="cards.ComparatorByRank" project="VisualPoker" 
     file="/VisualPoker/Project/src/cards/ComparatorByRank.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="161" x="343" y="-33"/>    
+    <position height="106" width="161" x="659" y="238"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -22,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="doubleBonusTenSeven.DoubleBonusTenSeven" project="VisualPoker" 
     file="/VisualPoker/Project/src/doubleBonusTenSeven/DoubleBonusTenSeven.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="178" width="217" x="1741" y="1031"/>    
+    <position height="178" width="217" x="1843" y="1320"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -31,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="Main.Main" project="VisualPoker" file="/VisualPoker/Project/src/Main/Main.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="130" x="544" y="-33"/>    
+    <position height="124" width="130" x="860" y="238"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -40,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="cards.Card" project="VisualPoker" file="/VisualPoker/Project/src/cards/Card.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="412" width="159" x="1530" y="1031"/>    
+    <position height="412" width="159" x="1632" y="1320"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -49,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="doubleBonus.DoubleBonus" project="VisualPoker" 
     file="/VisualPoker/Project/src/doubleBonus/DoubleBonus.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="411" width="178" x="1780" y="580"/>    
+    <position height="411" width="178" x="1882" y="869"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -58,150 +57,131 @@
   </class>  
   <class id="7" language="java" name="player.CardsToFlush" project="VisualPoker" 
     file="/VisualPoker/Project/src/player/CardsToFlush.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="176" x="557" y="580"/>    
+    <position height="124" width="176" x="659" y="869"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="8" language="java" name="videoPoker.Advise" project="VisualPoker" 
-    file="/VisualPoker/Project/src/videoPoker/Advise.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="88" width="238" x="714" y="-33"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="9" language="java" name="player.CardsToStraightFlush" project="VisualPoker" 
+  <class id="8" language="java" name="player.CardsToStraightFlush" project="VisualPoker" 
     file="/VisualPoker/Project/src/player/CardsToStraightFlush.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="142" width="179" x="773" y="580"/>    
+    <position height="142" width="179" x="875" y="869"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="doubleBonusTenSeven.AdviseDoubleBonusTenSeven" project="VisualPoker" 
-    file="/VisualPoker/Project/src/doubleBonusTenSeven/AdviseDoubleBonusTenSeven.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="106" width="248" x="1209" y="-33"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="11" language="java" name="player.Hand" project="VisualPoker" 
+  <class id="9" language="java" name="player.Hand" project="VisualPoker" 
     file="/VisualPoker/Project/src/player/Hand.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="232" width="172" x="1424" y="580"/>    
+    <position height="232" width="172" x="1526" y="869"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="player.CardsToHighCards" project="VisualPoker" 
+  <class id="10" language="java" name="player.CardsToHighCards" project="VisualPoker" 
     file="/VisualPoker/Project/src/player/CardsToHighCards.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="304" width="176" x="992" y="580"/>    
+    <position height="304" width="176" x="1094" y="869"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="player.CardsTo" project="VisualPoker" 
+  <class id="11" language="java" name="player.CardsTo" project="VisualPoker" 
     file="/VisualPoker/Project/src/player/CardsTo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="141" width="177" x="992" y="-33"/>    
+    <position height="141" width="177" x="1030" y="238"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="player.CardsToStraight" project="VisualPoker" 
+  <class id="12" language="java" name="player.CardsToStraight" project="VisualPoker" 
     file="/VisualPoker/Project/src/player/CardsToStraight.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="142" width="176" x="1208" y="580"/>    
+    <position height="142" width="176" x="1310" y="869"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="player.Player" project="VisualPoker" 
+  <class id="13" language="java" name="player.Player" project="VisualPoker" 
     file="/VisualPoker/Project/src/player/Player.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="304" width="154" x="1497" y="-33"/>    
+    <position height="304" width="154" x="1526" y="238"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="videoPoker.VideoPoker" project="VisualPoker" 
+  <class id="14" language="java" name="videoPoker.VideoPoker" project="VisualPoker" 
     file="/VisualPoker/Project/src/videoPoker/VideoPoker.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="573" width="247" x="1708" y="-33"/>    
+    <position height="591" width="247" x="1810" y="238"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+  <generalization id="15">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <generalization id="16">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
   <association id="17">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="18" name="hand"/>      
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="18" name="cards"/>      
       <multiplicity id="19" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="20">    
-    <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="21" name="hand"/>      
-      <multiplicity id="22" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="23">    
+  <generalization id="20">    
     <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="13"/>  
+    <end type="TARGET" refId="11"/>  
   </generalization>  
-  <generalization id="24">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <generalization id="25">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <generalization id="26">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="13"/>  
-  </generalization>  
-  <generalization id="27">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="13"/>  
-  </generalization>  
-  <association id="28">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="29" name="deck"/>      
-      <multiplicity id="30" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="31">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="32" name="cards"/>      
-      <multiplicity id="33" minimum="0" maximum="2147483647"/>    
+  <association id="21">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="22" name="hand"/>      
+      <multiplicity id="23" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="34">    
+  <generalization id="24">    
     <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="13"/>  
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <association id="25">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="26" name="hand"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <association id="29">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="30" name="deck"/>      
+      <multiplicity id="31" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="32">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="14"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
