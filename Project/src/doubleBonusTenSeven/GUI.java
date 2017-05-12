@@ -293,7 +293,7 @@ public class GUI extends DoubleBonusTenSeven {
 			public void actionPerformed(ActionEvent e) {
 				if(game.getState()==DEALING){
 					int[] shouldhold = new int[5];
-					shouldhold = AdviseDoubleBonusTenSeven.cardsToHold(player, game);
+					shouldhold = game.cardsToHold(player);
 					adviseHighlight(shouldhold, card);
 					cardsclicked=shouldhold;
 					for(int i=0;i<5;i++){
