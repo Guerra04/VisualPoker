@@ -16,6 +16,8 @@ import java.awt.Image;
 import com.sun.glass.events.WindowEvent;
 
 import doubleBonus.DoubleBonus;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 //import javax.swing.event.AncestorEvent;
 
@@ -102,7 +104,7 @@ public class GUI extends DoubleBonusTenSeven {
 		statsFrame.getContentPane().setForeground(new Color(255, 255, 224));
 		statsFrame.setLocationRelativeTo ( null );
 		statsFrame.setResizable(false);
-		statsFrame.setBounds(100, 100, 644, 450);
+		statsFrame.setBounds(100, 100, 425, 425);
 		statsFrame.addWindowListener(new WindowAdapter() {
 		    public void windowClosing(WindowEvent evt) {
 		    	statVisibility = 0;
@@ -272,9 +274,9 @@ public class GUI extends DoubleBonusTenSeven {
 					if(ValueBet > player.getCredit())
 						JOptionPane.showMessageDialog(null, "You can't bet more that the amount of credits you have!");
 					else{
+						lblCredits.setText(Integer.toString(player.getCredit()-ValueBet));
 						textField.setText("Player bet: "+ ValueBet);
 						game.bet(player, ValueBet);
-						
 					}
 				else
 					JOptionPane.showMessageDialog(null, "You can only bet before dealing!");
@@ -316,7 +318,7 @@ public class GUI extends DoubleBonusTenSeven {
 		
 		//Button that represents the deck
 		JButton deck = new JButton();
-		deck.setToolTipText("Press this button to deal the cards");
+		deck.setToolTipText("Press this button to deal(bets last bet value, if Bet isn't pressed) the cards");
 		try{
 			Image back= ImageIO.read((GUI.class.getResource("/cardsPNG/403px-Card_back-Overwatch.png")));
 			back = back.getScaledInstance(89, 119, Image.SCALE_SMOOTH);
@@ -324,6 +326,24 @@ public class GUI extends DoubleBonusTenSeven {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		deck.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(game.getState()== BETTING){
+					if(ValueBet > player.getCredit())
+						JOptionPane.showMessageDialog(null, "You can't bet more that the amount of credits you have!");
+					else{
+						resetallbtn(card);
+						game.shuffle();
+						game.deal(player);
+						paintHand(card, player);
+						game.setState(DEALING);
+						textField.setText("Player bet: "+ ValueBet);
+					}
+					
+				}else
+					JOptionPane.showMessageDialog(null, "You can only deal after you bet or after this turned is resolved!");
+			}
+		});
 		deck.setIcon(cardBack);
 		deck.setBounds(517, 19, 89, 119);
 		frame.getContentPane().add(deck);
@@ -338,27 +358,7 @@ public class GUI extends DoubleBonusTenSeven {
 		statisticsBtn.setFont(new Font("Cambria Math", Font.PLAIN, 17));
 		statisticsBtn.setBounds(383, 96, 105, 23);
 		frame.getContentPane().add(statisticsBtn);
-		
-
-		deck.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(game.getState()== BETTING){
-					if(ValueBet > player.getCredit())
-						JOptionPane.showMessageDialog(null, "You can't bet more that the amount of credits you have!");
-					else{
-						resetallbtn(card);
-						game.shuffle();
-						game.deal(player);
-						paintHand(card, player);
-						game.setState(DEALING);
-						textField.setText("");
-					}
-					
-				}else
-					JOptionPane.showMessageDialog(null, "You can only deal after you bet or after this turned is resolved!");
-			}
-		});
-		
+				
 		//Highlighting buttons
 		for(int i=0; i<5; i++){
 			base[i] = new JButton();
@@ -429,7 +429,7 @@ public class GUI extends DoubleBonusTenSeven {
 			statsFrame.getContentPane().add(statArea);
 			
 			statArea.append("\n   Hand\t\tNb\n");
-			statArea.append("   ---------------------------------\n");
+			statArea.append("   --------------------------------------------\n");
 			statArea.append("   Jacks or Better"+"\t" + String.valueOf(player.statistics[JACKS_OR_BETTER])+ "\n");
 			statArea.append("   Two Pair" +"\t\t" + String.valueOf(player.statistics[TWO_PAIR]+ "\n"));
 			statArea.append("   Three of a Kind" +"\t" + String.valueOf(player.statistics[THREE_OF_A_KIND]+ "\n"));
@@ -441,9 +441,9 @@ public class GUI extends DoubleBonusTenSeven {
 			statArea.append("   Straight Flush" +"\t"+ String.valueOf(player.statistics[STRAIGHT_FLUSH])+ "\n");
 			statArea.append("   Royal Flush" +"\t\t"+ String.valueOf(player.statistics[ROYAL_FLUSH])+ "\n");
 			statArea.append("   Other" +"\t\t"+ String.valueOf(player.statistics[OTHER])+ "\n");
-			statArea.append("   ---------------------------------\n");
+			statArea.append("   --------------------------------------------\n");
 			statArea.append("   Total" +"\t\t"+ String.valueOf(player.handsPlayed)+ "\n");
-			statArea.append("   ---------------------------------\n");
+			statArea.append("   --------------------------------------------\n");
 			statArea.append("   Credit" +"\t\t"+ String.valueOf(player.getCredit())+"(" +
 					String.valueOf(((double)player.getCredit())/player.getInitialCredit()*100)+")");
 	}
