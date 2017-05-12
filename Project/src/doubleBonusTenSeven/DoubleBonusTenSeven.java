@@ -123,6 +123,7 @@ public class DoubleBonusTenSeven extends DoubleBonus{
 								betString += line.charAt(index+2);
 								i ++;
 							}
+							
 							bet = Integer.parseInt(betString);
 							index += i;
 							cmd += (" " + bet);
@@ -130,9 +131,13 @@ public class DoubleBonusTenSeven extends DoubleBonus{
 							bet = player.getLastBet();
 							index += 2;
 						}
-
+						
 						this.printCommand(cmd);
-						this.bet(player, bet);
+						if((bet <= 5) && (player.getCredit() - bet >= 0) && (bet > 0)){
+							this.bet(player, bet);
+						}else{
+							System.out.println("b: illegal amount");
+						}
 						break;
 					
 					case '$':
