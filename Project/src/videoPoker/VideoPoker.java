@@ -49,7 +49,7 @@ public abstract class VideoPoker {
 
 	public void bet(Player player, int bet){
 		if(state == INITIATING || state == BETTING){
-			if(bet <= 5 && player.getCredit() - bet >= 0){
+			if((bet <= 5) && (player.getCredit() - bet >= 0) && (bet > 0)){
 				player.setLastBet(bet);
 				System.out.println("player is betting " + player.getLastBet());
 				state = BETTING;
