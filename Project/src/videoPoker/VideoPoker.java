@@ -47,7 +47,7 @@ public abstract class VideoPoker {
 		this.state = state;
 	}
 
-	protected void bet(Player player, int bet){
+	public void bet(Player player, int bet){
 		if(state == INITIATING || state == BETTING){
 			if(bet <= 5 && player.getCredit() - bet >= 0){
 				player.setLastBet(bet);
@@ -60,11 +60,11 @@ public abstract class VideoPoker {
 		return;
 	}
 	
-	protected void shuffle(){
+	public void shuffle(){
 		this.deck = new Deck();
 	}
 	
-	protected void deal(Player player){
+	public void deal(Player player){
 		if(state == BETTING){
 			player.setCredit(player.getCredit()-player.getLastBet());
 			player.hand = new Hand(deck);
