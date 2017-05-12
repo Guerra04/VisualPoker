@@ -36,7 +36,19 @@ public class DoubleBonusTenSeven extends DoubleBonus{
 					for(int i = 2; i < line.length(); i++){
 						betString += line.charAt(i);
 					}
-					bet = Integer.parseInt(betString);
+					try{
+						bet = Integer.parseInt(betString);
+						if((bet <= 5) && (player.getCredit() - bet >= 0) && (bet > 0)){
+							this.bet(player, bet);
+							break;
+						}else{
+							System.out.println("b: illegal amount");
+							break;
+						}
+					}catch(NumberFormatException e){
+						System.out.println("b: illegal amount");
+						break;
+					}
 				}else
 					bet = player.getLastBet();
 				this.bet(player, bet);
