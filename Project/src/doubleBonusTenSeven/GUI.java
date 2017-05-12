@@ -1,45 +1,43 @@
-package doublebonus10_7;
+package doubleBonusTenSeven;
 
 import java.awt.EventQueue;
 
 import javax.swing.*;
 
-import java.awt.FlowLayout;
 import javax.imageio.ImageIO;
-import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
-import java.util.Arrays;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
 import player.Player;
-import videoPoker.VideoPoker;
 import java.awt.Image;
-import javax.swing.event.AncestorListener;
 
 import com.sun.glass.events.WindowEvent;
 
-import javax.swing.event.AncestorEvent;
+import doubleBonus.DoubleBonus;
 
-public class GUI extends DoubleBonus10_7 {
+//import javax.swing.event.AncestorEvent;
+
+public class GUI extends DoubleBonusTenSeven {
 	
 	String print = "";
 	int[] cardsclicked = new int[5];
 	int dealpressed = 0;
 	static int credits = 0;
 	String input;
-	DoubleBonus10_7 game = new DoubleBonus10_7();
-	//Player player = new Player(credits, DoubleBonus10_7.nWinningHands);
+	DoubleBonusTenSeven game = new DoubleBonusTenSeven();
 	Player player;
 	int ValueBet = 5;
 	int c;
 	ImageIcon cardBack;
 	private JFrame frame;
 	private JTextField textField;
-	int pressed=1;
+	
+	
+	int statVisibility;
+	JFrame statsFrame = new JFrame();
+	
 	
 	/**
 	 * Launch the application.
@@ -63,7 +61,10 @@ public class GUI extends DoubleBonus10_7 {
 	public GUI() {
 		while(credits<=0){	
 			try{
-				input = JOptionPane.showInputDialog(null, "Input amount of credits to be used:");			
+				input = JOptionPane.showInputDialog(null, "Input amount of credits to be used:");
+				if(input==null){
+					System.exit(0);
+				}
 				credits = Integer.parseInt(input);
 				if(credits <= 0){
 					JOptionPane.showMessageDialog(null, "You must insert credits!");
@@ -71,9 +72,10 @@ public class GUI extends DoubleBonus10_7 {
 				if(credits >= 1000000){
 					JOptionPane.showMessageDialog(null, "Please insert an amount inferior to 99999999.");
 				}
-				player = new Player(credits, DoubleBonus10_7.nWinningHands);
+				player = new Player(credits, DoubleBonus.nWinningHands);
 			}catch(NumberFormatException e){
 				JOptionPane.showMessageDialog(null, "Credits must be a numeric value!");
+				
 			}
 		}
 		initialize();
@@ -93,7 +95,22 @@ public class GUI extends DoubleBonus10_7 {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);	
 		
-
+		
+		//Setting a statistics window frame setiings
+		statsFrame.setResizable(false);
+		statsFrame.getContentPane().setBackground(Color.BLACK);
+		statsFrame.getContentPane().setForeground(new Color(255, 255, 224));
+		statsFrame.setLocationRelativeTo ( null );
+		statsFrame.setResizable(false);
+		statsFrame.setBounds(100, 100, 644, 450);
+		statsFrame.addWindowListener(new WindowAdapter() {
+		    public void windowClosing(WindowEvent evt) {
+		    	statVisibility = 0;
+		    	statsFrame.setVisible(false);
+		    	System.out.println(statVisibility);
+		  }
+		});
+		
 		
 		JButton[] base = new JButton[5];
 		
@@ -212,6 +229,10 @@ public class GUI extends DoubleBonus10_7 {
 					player.incStatistics(score);
 					player.incHandsPlayed();
 					game.setState(BETTING);
+					/**If the statistics frame is visible, the sats will be updated**/
+					if(statsFrame.isVisible()){
+						framestatistics(player);
+					}
 				}else
 					JOptionPane.showMessageDialog(null,"You can't hold right now!");
 				
@@ -250,8 +271,11 @@ public class GUI extends DoubleBonus10_7 {
 				if(game.getState() == BETTING||game.getState()==INITIATING)
 					if(ValueBet > player.getCredit())
 						JOptionPane.showMessageDialog(null, "You can't bet more that the amount of credits you have!");
-					else
+					else{
+						textField.setText("Player bet: "+ ValueBet);
 						game.bet(player, ValueBet);
+						
+					}
 				else
 					JOptionPane.showMessageDialog(null, "You can only bet before dealing!");
 			}
@@ -267,7 +291,7 @@ public class GUI extends DoubleBonus10_7 {
 			public void actionPerformed(ActionEvent e) {
 				if(game.getState()==DEALING){
 					int[] shouldhold = new int[5];
-					shouldhold = AdviseDoubleBonus10_7.cardsToHold(player, game);
+					shouldhold = AdviseDoubleBonusTenSeven.cardsToHold(player, game);
 					adviseHighlight(shouldhold, card);
 					cardsclicked=shouldhold;
 					for(int i=0;i<5;i++){
@@ -296,7 +320,7 @@ public class GUI extends DoubleBonus10_7 {
 		try{
 			Image back= ImageIO.read((GUI.class.getResource("/cardsPNG/403px-Card_back-Overwatch.png")));
 			back = back.getScaledInstance(89, 119, Image.SCALE_SMOOTH);
-			cardBack = new ImageIcon(back);
+			cardBack = new ImageIcon(back);;
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -308,10 +332,7 @@ public class GUI extends DoubleBonus10_7 {
 		JButton statisticsBtn = new JButton("Statistics");
 		statisticsBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(pressed==1){
-					framestatistics(player,pressed);
-					pressed=0;
-				}
+				framestatistics(player);
 			}
 		});
 		statisticsBtn.setFont(new Font("Cambria Math", Font.PLAIN, 17));
@@ -322,12 +343,17 @@ public class GUI extends DoubleBonus10_7 {
 		deck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(game.getState()== BETTING){
-					resetallbtn(card);
-					game.shuffle();
-					game.deal(player);
-					paintHand(card, player);
-					game.setState(DEALING);
-					textField.setText("");
+					if(ValueBet > player.getCredit())
+						JOptionPane.showMessageDialog(null, "You can't bet more that the amount of credits you have!");
+					else{
+						resetallbtn(card);
+						game.shuffle();
+						game.deal(player);
+						paintHand(card, player);
+						game.setState(DEALING);
+						textField.setText("");
+					}
+					
 				}else
 					JOptionPane.showMessageDialog(null, "You can only deal after betting!");
 			}
@@ -387,18 +413,14 @@ public class GUI extends DoubleBonus10_7 {
 	}
 	
 	//method that calls a new frame
-	void framestatistics(Player player, int prompt){
-		if(prompt==1){
-			JFrame statsFrame = new JFrame();
-			statsFrame.setResizable(false);
-			statsFrame.getContentPane().setBackground(Color.BLACK);
-			statsFrame.getContentPane().setForeground(new Color(255, 255, 224));
-			statsFrame.setLocationRelativeTo ( null );
-			statsFrame.setResizable(false);
-			statsFrame.setBounds(100, 100, 644, 450);
-			statsFrame.setVisible(true);
+	void framestatistics(Player player){
+			
 		
-			JTextArea statArea = new JTextArea(statsFrame.getHeight(),statsFrame.getWidth());
+			statsFrame.setVisible(true);
+			statVisibility = 1;
+			/**Adding a window action so, the statistics frame close button just hides it's visibility**/
+
+	        JTextArea statArea = new JTextArea(statsFrame.getHeight(),statsFrame.getWidth());
 			statArea.setFont(new Font("Malgun Gothic", Font.PLAIN, 16));
 			statArea.setEnabled(false);
 			statArea.setEditable(false);
@@ -424,7 +446,5 @@ public class GUI extends DoubleBonus10_7 {
 			statArea.append("   ---------------------------------\n");
 			statArea.append("   Credit              "+ String.valueOf(player.getCredit())+"(" +
 					String.valueOf(((double)player.getCredit())/player.getInitialCredit()*100)+")");
-		}
-	
 	}
 }
