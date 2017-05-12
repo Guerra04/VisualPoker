@@ -1,9 +1,6 @@
 package player;
 
-import java.util.*;
 import cards.*;
-import videoPoker.*;
-
 
 /**
  * The Class Hand.

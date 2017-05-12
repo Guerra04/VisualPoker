@@ -19,7 +19,7 @@ package cards;
  ------------------------------------------------------------------------------*/
 
 /**
- * The Class Card.
+ * Class to represent each card.
  */
 public class Card {
 	
@@ -29,8 +29,9 @@ public class Card {
 	/** The suit. */
 	public int suit;
 	
-	/** The Constant T. */
 	//Ranks
+	
+	/** The Constant T. */
 	private final static int T = 10;
 	
 	/** The Constant J. */

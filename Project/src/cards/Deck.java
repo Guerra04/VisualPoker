@@ -6,12 +6,18 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Deck.
  */
 public class Deck {								
+	
+	/** The cards. */
 	private LinkedList<Card> cards = new LinkedList<Card>();   //Linked list that will contain the shuffled deck
 	
+	/**
+	 * Instantiates a new deck.
+	 */
 	//Insert card by card in a random position among the other cards
 	public Deck(){
 		int total = 0;
@@ -30,6 +36,11 @@ public class Deck {
 		}
 	}
 	
+	/**
+	 * Instantiates a new deck.
+	 *
+	 * @param card_file the card file
+	 */
 	//Constructor for debugging mode
 	public Deck(String card_file){
 		BufferedReader br = null;
@@ -63,6 +74,11 @@ public class Deck {
 		}
 	}
 	
+	/**
+	 * Draw.
+	 *
+	 * @return the card
+	 */
 	public Card draw(){
 		return this.cards.pop();
 	}
