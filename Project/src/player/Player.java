@@ -20,7 +20,7 @@ public class Player {
 		this.lastBet = bet;
 		return;
 	}
-	
+
 	public void setCredit(int credit){
 		this.credit = credit;
 		return;
@@ -34,6 +34,7 @@ public class Player {
 	public void incHandsPlayed(){
 		this.handsPlayed += 1;
 	}
+	
 	
 	//Getters
 	public int getLastBet(){
