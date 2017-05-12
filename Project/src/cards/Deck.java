@@ -80,6 +80,12 @@ public class Deck {
 	 * @return the card
 	 */
 	public Card draw(){
-		return this.cards.pop();
+		try{
+			return this.cards.pop();
+		}catch(Exception e){
+			System.out.println("Deck is empty");
+			System.exit(4);
+			return this.cards.pop(); //dummy
+		}
 	}
 }

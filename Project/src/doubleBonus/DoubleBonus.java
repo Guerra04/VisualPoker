@@ -31,6 +31,14 @@ public abstract class DoubleBonus extends VideoPoker{
 	}
 	
 	public void statistics(Player player){
+		double percentage = ((double)player.getCredit())/player.getInitialCredit()*100;
+		String percentageStr = String.valueOf(percentage);
+		int maxLength = 5;
+		if(percentageStr.length() < 5)
+			maxLength = percentageStr.length();
+		
+		percentageStr = percentageStr.substring(0, maxLength);
+		
 		System.out.printf("\n%-20s %-5s\n", "Hand", "Nb");
 		System.out.printf("---------------------------\n");
 		System.out.printf("%-20s %-5s\n", "Jacks or Better", String.valueOf(player.statistics[JACKS_OR_BETTER]));
@@ -47,8 +55,7 @@ public abstract class DoubleBonus extends VideoPoker{
 		System.out.printf("---------------------------\n");
 		System.out.printf("%-20s %-5s\n", "Total", String.valueOf(player.handsPlayed));
 		System.out.printf("---------------------------\n");
-		System.out.printf("%-15s %s (%s)\n\n", "Credit", String.valueOf(player.getCredit()), 
-				String.valueOf(((double)player.getCredit())/player.getInitialCredit()*100));
+		System.out.printf("%-15s %s (%s)\n\n", "Credit", String.valueOf(player.getCredit()), percentageStr);
 	}
 	
 	public String scoreToString(int score){

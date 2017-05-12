@@ -1,6 +1,7 @@
 package Main;
 
 import doubleBonusTenSeven.DoubleBonusTenSeven;
+import doubleBonusTenSeven.GUI;
 
 /**
  * The Class Main.
@@ -17,7 +18,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 
-		if(args.length < 2){
+		if(args.length < 1){
 			usage();
 		}
 		
@@ -54,6 +55,10 @@ public class Main {
 			game.simulationMode(initialCredit, bet, nbdeals);
 			
 		}//END SIMULATION MODE
+		/**********************************GUI********************************************/
+		else if(args[0].equals("-g")){
+			GUI.main(args);
+		}
 		else{
 			usage();
 		}
