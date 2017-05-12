@@ -428,23 +428,23 @@ public class GUI extends DoubleBonusTenSeven {
 			statArea.setBackground(Color.BLACK);
 			statsFrame.getContentPane().add(statArea);
 			
-			statArea.append("\n   Hand                    Nb\n");
+			statArea.append("\n   Hand\t\tNb\n");
 			statArea.append("   ---------------------------------\n");
-			statArea.append("   Jacks or Better"+"          " + String.valueOf(player.statistics[JACKS_OR_BETTER])+ "\n");
-			statArea.append("   Two Pair" +"                  " + String.valueOf(player.statistics[TWO_PAIR]+ "\n"));
-			statArea.append("   Three of a Kind" +"          " + String.valueOf(player.statistics[THREE_OF_A_KIND]+ "\n"));
-			statArea.append("   Straight" +"                   "+  String.valueOf(player.statistics[STRAIGHT])+ "\n");
-			statArea.append("   Flush" + String.valueOf(player.statistics[FLUSH])+ "\n");
-			statArea.append("   Full house" + String.valueOf(player.statistics[FULL_HOUSE])+ "\n");
-			statArea.append("   Four of a Kind"+ String.valueOf(player.statistics[FOUR_ACES] 
+			statArea.append("   Jacks or Better"+"\t" + String.valueOf(player.statistics[JACKS_OR_BETTER])+ "\n");
+			statArea.append("   Two Pair" +"\t\t" + String.valueOf(player.statistics[TWO_PAIR]+ "\n"));
+			statArea.append("   Three of a Kind" +"\t" + String.valueOf(player.statistics[THREE_OF_A_KIND]+ "\n"));
+			statArea.append("   Straight" +"\t\t"+  String.valueOf(player.statistics[STRAIGHT])+ "\n");
+			statArea.append("   Flush" +"\t\t"+ String.valueOf(player.statistics[FLUSH])+ "\n");
+			statArea.append("   Full house" +"\t\t"+ String.valueOf(player.statistics[FULL_HOUSE])+ "\n");
+			statArea.append("   Four of a Kind" +"\t"+ String.valueOf(player.statistics[FOUR_ACES] 
 						+ player.statistics[FOUR_2_4] + player.statistics[FOUR_5_K])+ "\n");
-			statArea.append("   Straight Flush      " + String.valueOf(player.statistics[STRAIGHT_FLUSH])+ "\n");
-			statArea.append("   Royal Flush         "+ String.valueOf(player.statistics[ROYAL_FLUSH])+ "\n");
-			statArea.append("   Other               " + String.valueOf(player.statistics[OTHER])+ "\n");
+			statArea.append("   Straight Flush" +"\t"+ String.valueOf(player.statistics[STRAIGHT_FLUSH])+ "\n");
+			statArea.append("   Royal Flush" +"\t\t"+ String.valueOf(player.statistics[ROYAL_FLUSH])+ "\n");
+			statArea.append("   Other" +"\t\t"+ String.valueOf(player.statistics[OTHER])+ "\n");
 			statArea.append("   ---------------------------------\n");
-			statArea.append("   Total               " + String.valueOf(player.handsPlayed)+ "\n");
+			statArea.append("   Total" +"\t\t"+ String.valueOf(player.handsPlayed)+ "\n");
 			statArea.append("   ---------------------------------\n");
-			statArea.append("   Credit              "+ String.valueOf(player.getCredit())+"(" +
+			statArea.append("   Credit" +"\t\t"+ String.valueOf(player.getCredit())+"(" +
 					String.valueOf(((double)player.getCredit())/player.getInitialCredit()*100)+")");
 	}
 }
