@@ -17,9 +17,6 @@ import com.sun.glass.events.WindowEvent;
 
 import doubleBonus.DoubleBonus;
 
-// TODO: Auto-generated Javadoc
-//import javax.swing.event.AncestorEvent;
-
 /**
  * The Class GUI.
  */
@@ -114,7 +111,7 @@ public class GUI extends DoubleBonusTenSeven {
 	}//End of GUI function
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of the main frame.
 	 */
 	private void initialize() {
 		//Creating the frame/window of the GUI(the place where all the interface will be located)
@@ -129,7 +126,9 @@ public class GUI extends DoubleBonusTenSeven {
 		frame.getContentPane().setLayout(null);	
 		
 		
-		//Setting a statistics window frame settings
+		/**
+		 * Setting a statistics window frame settings
+		 */
 		statsFrame.setResizable(false);
 		statsFrame.getContentPane().setBackground(Color.BLACK);
 		statsFrame.getContentPane().setForeground(new Color(255, 255, 224));
@@ -148,7 +147,9 @@ public class GUI extends DoubleBonusTenSeven {
 		
 		JButton[] base = new JButton[5];
 		
-		//Label that displays the player's credits
+		/**
+		 * Label that displays the player's credits
+		 */
 		JLabel lblCredits = new JLabel("");
 		lblCredits.setForeground(new Color(255, 250, 250));
 		lblCredits.setFont(new Font("Cambria Math", Font.PLAIN, 17));
@@ -156,7 +157,9 @@ public class GUI extends DoubleBonusTenSeven {
 		frame.getContentPane().add(lblCredits);
 		lblCredits.setText(Integer.toString(player.getCredit()));
 	
-		//Text Field to display, player winnings and losses, etc
+		/**
+		 * Text Field to display, player winnings and losses, etc
+		 */
 		textField = new JTextField();
 		textField.setFont(new Font("Malgun Gothic", Font.ITALIC, 16));
 		textField.setEnabled(false);
@@ -167,20 +170,29 @@ public class GUI extends DoubleBonusTenSeven {
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		//Layered pane to place buttons on-top of shadows
+		/**
+		 * Layered pane to place buttons on-top of shadows
+		 */
 		JLayeredPane pane = new JLayeredPane();
 		pane.setBounds(0, 163, 638, 164);
 		frame.getContentPane().add(pane);
 		
-		//Buttons that represent the cards and the 
+		/**
+		 * Button array that represent the cards in hand 
+		 */
 		JButton[] card = new JButton[5];
-		//Generating hand cards, as buttons
+		/**
+		 * Generating hand cards
+		 */
 		for(c=0; c<5; c++){
 			card[c] = new JButton();
 			card[c].setBounds(20+(120*c),10, 89, 119);
 			pane.add(card[c], 2, 0);
 		}
 		
+		/**
+		 * Defining action listeners for the cards in hand
+		 */
 		card[0].addActionListener(new ActionListener() {	//Card Action
 			public void actionPerformed(ActionEvent e) {
 				if(cardsclicked[0] == 0 && game.getState()==DEALING){
@@ -238,7 +250,9 @@ public class GUI extends DoubleBonusTenSeven {
 		});		
 		
 		
-		//Buttons that represent the different types of commands the user can do
+		/**
+		 * Hold button for holding the selected cards and 
+		 */
 		JButton btnHold = new JButton("Hold");
 		btnHold.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -285,9 +299,10 @@ public class GUI extends DoubleBonusTenSeven {
 		btnHold.setBounds(21, 96, 89, 23);
 		frame.getContentPane().add(btnHold);
 		
-		//Bet action button with slider that represents the amount the player will bet.
-		//After the slider is set, if the user presses bet, he will bet that amount 
-		
+		/**
+		 * Bet action button with slider that represents the amount the player will bet.
+		 * After the slider is set, if the user presses bet, he will bet that amount 
+		 */
 		JSlider Betslider = new JSlider(1,5,5);
 		Betslider.setPaintLabels(true);
 		Betslider.setMinorTickSpacing(1);
@@ -319,7 +334,10 @@ public class GUI extends DoubleBonusTenSeven {
 		frame.getContentPane().add(btnBet);
 		
 		
-		//Advice action button
+		/**
+		 * Button responsible for generating the best move for the current hand
+		 * based on the predetermined strategy
+		 */
 		JButton btnAdvise = new JButton("Advise");
 		btnAdvise.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -340,7 +358,9 @@ public class GUI extends DoubleBonusTenSeven {
 		btnAdvise.setBounds(268, 96, 89, 23);
 		frame.getContentPane().add(btnAdvise);
 		
-		//Credits title label
+		/**
+		 * Simple label to set the "Credits:" title 
+		 */
 		JLabel lblPlayerCredits = new JLabel("Credits:");
 		lblPlayerCredits.setForeground(new Color(255, 255, 224));
 		lblPlayerCredits.setFont(new Font("Cambria Math", Font.BOLD, 17));
@@ -348,7 +368,10 @@ public class GUI extends DoubleBonusTenSeven {
 		frame.getContentPane().add(lblPlayerCredits);
 		
 		
-		//Button that represents the deck
+		/**
+		 * Button that represents the deck, pressing it will deal the cards
+		 * (Set tool tip in case it is unclear that the deal button is the deck)
+		 */
 		JButton deck = new JButton();
 		deck.setToolTipText("Press this button to deal the cards");
 		try{
@@ -358,22 +381,6 @@ public class GUI extends DoubleBonusTenSeven {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		deck.setIcon(cardBack);
-		deck.setBounds(517, 19, 89, 119);
-		frame.getContentPane().add(deck);
-		
-		//Button that prompts up the statistics board
-		JButton statisticsBtn = new JButton("Statistics");
-		statisticsBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				framestatistics(player);
-			}
-		});
-		statisticsBtn.setFont(new Font("Cambria Math", Font.PLAIN, 17));
-		statisticsBtn.setBounds(383, 96, 105, 23);
-		frame.getContentPane().add(statisticsBtn);
-		
-
 		deck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(game.getState()== BETTING){
@@ -392,8 +399,27 @@ public class GUI extends DoubleBonusTenSeven {
 					JOptionPane.showMessageDialog(null, "You can only deal after you bet or after this turned is resolved!");
 			}
 		});
+		deck.setIcon(cardBack);
+		deck.setBounds(517, 19, 89, 119);
+		frame.getContentPane().add(deck);
 		
-		//Highlighting buttons
+		/**
+		 * Button that prompts up the statistics board
+		 */
+		JButton statisticsBtn = new JButton("Statistics");
+		statisticsBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framestatistics(player);
+			}
+		});
+		statisticsBtn.setFont(new Font("Cambria Math", Font.PLAIN, 17));
+		statisticsBtn.setBounds(383, 96, 105, 23);
+		frame.getContentPane().add(statisticsBtn);
+		
+		
+		/**
+		 * Generating of buttons to act as shadow for the card ones
+		 */
 		for(int i=0; i<5; i++){
 			base[i] = new JButton();
 			base[i].setBackground(Color.DARK_GRAY);
@@ -401,28 +427,32 @@ public class GUI extends DoubleBonusTenSeven {
 			base[i].setBounds(20+(120*i),10, 89, 119);
 			pane.add(base[i], 1, 0);
 		}
-
+		
+		/**
+		 * Initiating the cards in hand with the card back
+		 */
 		paintHand(card, player);
 	}
 	
 	/**
 	 * Highlightbtn.
+	 * Method that elevates a single button to represent that it is being held
 	 *
 	 * @param card the card
 	 * @param index the index
 	 */
-	//Function that elevates a single button to represent that it is being held
 	void highlightbtn(JButton card, int index){			
 		card.setBounds(30+(120*index),0, 89, 119);
 	}
 	
 	/**
 	 * Advise highlight.
-	 *
-	 * @param shouldhold the shouldhold
-	 * @param card the card
+	 * Method that elevates some buttons to represent that they are currently being held
+	 * 
+	 * @param shouldhold, array of integers of cards that should be held
+	 * @param card, array of the buttons that represent the cards in hand
 	 */
-	//Function that elevates some buttons to represent that it should be held
+
 	void adviseHighlight(int[] shouldhold, JButton[] card){
 		for(int i=0; i<5; i++){
 			if(shouldhold[i]==1){
@@ -433,19 +463,20 @@ public class GUI extends DoubleBonusTenSeven {
 	
 	/**
 	 * Resetbtn.
-	 *
-	 * @param card the card
-	 * @param index the index
+	 * Method that resets a single button to its original position
+	 * @param card , a JButton 
+	 * @param index, an Integer
 	 */
-	//Function that resets a single button to its original position
+	//
 	void resetbtn(JButton card, int index){				
 		card.setBounds(20+(120*index), 10, 89, 119);	
 	}
 	
 	/**
 	 * Resetallbtn.
+	 *	Method that resets all buttons to they initial position	
 	 *
-	 * @param card the card
+	 * @param card, array of all the JButtons that represent the cards in hand 
 	 */
 	//Function that resets all buttons to its original position
 	void resetallbtn(JButton[] card){	
@@ -456,11 +487,11 @@ public class GUI extends DoubleBonusTenSeven {
 	
 	/**
 	 * Paint hand.
-	 *
-	 * @param card the card
-	 * @param player the player
+	 *	Method that places the image of the card dealt in the respective buttons
+	 *	
+	 * @param card , array of buttons, places the cards in the players hand in the respective buttons in the array
+	 * @param player, of type, sent as parameter so it is possible to access the player hand
 	 */
-	//Method that places images on the cards
 	void paintHand(JButton[] card,Player player){
 		String image ;
 		for(int i = 0; i<5; i++){
@@ -481,17 +512,17 @@ public class GUI extends DoubleBonusTenSeven {
 	
 	/**
 	 * Framestatistics.
+	 * Method that makes the statistics frame visible, refreshing it so the players statistics are the current ones
 	 *
-	 * @param player the player
+	 * @param player , Player variable, so the player statistics can be acessed
 	 */
 	//method that calls a new frame
 	void framestatistics(Player player){
-			
-		
 			statsFrame.setVisible(true);
 			statVisibility = 1;
-			/**Adding a window action so, the statistics frame close button just hides it's visibility**/
-
+			/**
+			 * Adding a window action so, the statistics frame close button just hides it's visibility
+			 */
 	        JTextArea statArea = new JTextArea(statsFrame.getHeight(),statsFrame.getWidth());
 			statArea.setFont(new Font("Malgun Gothic", Font.PLAIN, 16));
 			statArea.setEnabled(false);
