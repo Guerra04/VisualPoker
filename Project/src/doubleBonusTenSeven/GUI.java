@@ -390,6 +390,7 @@ public class GUI extends DoubleBonusTenSeven {
 						resetallbtn(card);
 						game.shuffle();
 						game.deal(player);
+						lblCredits.setText(Integer.toString(player.getCredit()));
 						paintHand(card, player);
 						game.setState(DEALING);
 						textField.setText("");
