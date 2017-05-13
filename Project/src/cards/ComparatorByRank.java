@@ -3,9 +3,8 @@ package cards;
 import java.util.Comparator;
 
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ComparatorByRank.
+ * Class that implements Comparator, to compare objects of type Card and to be able to sort them.
  */
 
 public class ComparatorByRank implements Comparator<Card> {

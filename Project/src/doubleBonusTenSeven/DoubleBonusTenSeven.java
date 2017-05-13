@@ -13,9 +13,9 @@ import player.CardsToStraightFlush;
 import player.Hand;
 import player.Player;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class DoubleBonusTenSeven.
+ * Class DoubleBonusTenSeven, class that extends the class DoubleBonus.
+ * Class in which the different modes are defined, the Reward Table is filled and the advice cards are also defined. 
  */
 public class DoubleBonusTenSeven extends DoubleBonus{
 

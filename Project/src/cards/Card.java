@@ -21,47 +21,38 @@ package cards;
  */
 public class Card {
 	
-	/** The rank. */
+	/** Rank of the card. */
 	public int rank;
 	
-	/** The suit. */
+	/** Suit of the card. */
 	public int suit;
 	
 	//Ranks
 	
-	/** The Constant T. */
 	private final static int T = 10;
 	
-	/** The Constant J. */
 	private final static int J = 11;
 	
-	/** The Constant Q. */
 	private final static int Q = 12;
 	
-	/** The Constant K. */
 	private final static int K = 13;
 	
-	/** The Constant A. */
 	private final static int A = 1;
 	
-	/** The Constant H. */
 	//Suits
 	private final static int H = 1;
 	
-	/** The Constant D. */
 	private final static int D = 2;
-	
-	/** The Constant C. */
+
 	private final static int C = 3;
 	
-	/** The Constant S. */
 	private final static int S = 4;
 	
 	/**
-	 * Instantiates a new card.
+	 * Constructor.
 	 *
-	 * @param rank the rank
-	 * @param suit the suit
+	 * @param rank rank of the card
+	 * @param suit suit of the card
 	 */
 	public Card(int rank, int suit){
 		this.rank = rank;
@@ -71,8 +62,8 @@ public class Card {
 	/**
 	 * Rank to string.
 	 *
-	 * @param rank the rank
-	 * @return the string
+	 * @param rank rank of the card
+	 * @return string
 	 */
 	//Translates rank integer to string
 	private String rankToString(int rank){
@@ -93,8 +84,8 @@ public class Card {
 	/**
 	 * String to rank.
 	 *
-	 * @param rank the rank
-	 * @return the int
+	 * @param rank rank of the card
+	 * @return int
 	 */
 	//Translates string to rank integer
 	public static int stringToRank(char rank){
@@ -115,8 +106,8 @@ public class Card {
 	/**
 	 * Suit to string.
 	 *
-	 * @param suit the suit
-	 * @return the string
+	 * @param suit suit of the card
+	 * @return string
 	 */
 	//Translates suit integer to string
 	private String suitToString(int suit){
@@ -135,8 +126,8 @@ public class Card {
 	/**
 	 * String to suit.
 	 *
-	 * @param suit the suit
-	 * @return the int
+	 * @param suit suit of the card
+	 * @return int
 	 */
 	//Translates string to rank integer
 	public static int stringToSuit(char suit){

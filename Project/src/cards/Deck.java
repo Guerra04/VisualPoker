@@ -6,17 +6,17 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Class Deck.
+ * Class Deck, in which all the cards are randomly sorted and a card can be drawn. 
  */
 public class Deck {								
 	
-	/** The cards. */
-	private LinkedList<Card> cards = new LinkedList<Card>();   //Linked list that will contain the shuffled deck
+	/** Linked list that will contain the shuffled deck. */
+	private LinkedList<Card> cards = new LinkedList<Card>();
 	
 	/**
-	 * Instantiates a new deck.
+	 * Constructor.
 	 */
 	//Insert card by card in a random position among the other cards
 	public Deck(){
@@ -37,7 +37,7 @@ public class Deck {
 	}
 	
 	/**
-	 * Instantiates a new deck.
+	 * Constructor (for debugging mode).
 	 *
 	 * @param card_file the card file
 	 */
@@ -75,9 +75,9 @@ public class Deck {
 	}
 	
 	/**
-	 * Draw.
+	 * Draw a card from the deck.
 	 *
-	 * @return the card
+	 * @return card drawn
 	 */
 	public Card draw(){
 		try{
