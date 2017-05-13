@@ -13,8 +13,15 @@ import player.CardsToStraightFlush;
 import player.Hand;
 import player.Player;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DoubleBonusTenSeven.
+ */
 public class DoubleBonusTenSeven extends DoubleBonus{
 
+	/* (non-Javadoc)
+	 * @see videoPoker.VideoPoker#interactiveMode(int)
+	 */
 	public void interactiveMode(int initialCredit){
 		Player player = new Player(initialCredit, nWinningHands);
 		Scanner scan = null;
@@ -96,6 +103,9 @@ public class DoubleBonusTenSeven extends DoubleBonus{
 		return;
 	}
 	
+	/* (non-Javadoc)
+	 * @see videoPoker.VideoPoker#debugMode(int, java.lang.String, java.lang.String)
+	 */
 	public void debugMode(int initialCredit, String cmd_file, String card_file){
 		Player player = new Player(initialCredit, nWinningHands);
 		deck = new Deck(card_file);
@@ -204,6 +214,9 @@ public class DoubleBonusTenSeven extends DoubleBonus{
 		return;
 	}
 	
+	/* (non-Javadoc)
+	 * @see videoPoker.VideoPoker#simulationMode(int, int, int)
+	 */
 	public void simulationMode(int initialCredit, int bet, int nbdeals){
 		if(bet > 5 || bet < 1){
 			System.out.println("b: illegal amount");
@@ -235,6 +248,9 @@ public class DoubleBonusTenSeven extends DoubleBonus{
 		this.statistics(player);
 	}
 	
+	/* (non-Javadoc)
+	 * @see videoPoker.VideoPoker#fillRewardTable()
+	 */
 	protected int[][] fillRewardTable(){
 		int[][] rewardTable = new int[nWinningHands+1][nBets+1];
 		for(int bet = 1; bet <= nBets; bet++){
@@ -255,6 +271,9 @@ public class DoubleBonusTenSeven extends DoubleBonus{
 		return rewardTable;
 	}
 	
+	/* (non-Javadoc)
+	 * @see videoPoker.VideoPoker#cardsToHold(player.Player)
+	 */
 	protected int[] cardsToHold(Player player){
  		
  		int[] indexes = {0,0,0,0,0};	//vector of cards to hold

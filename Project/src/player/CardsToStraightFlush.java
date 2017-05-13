@@ -2,18 +2,29 @@ package player;
 
 import cards.Card;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class CardsToStraightFlush.
  */
 public class CardsToStraightFlush extends CardsTo{
+	
+	/** The type. */
 	public int type;
+	
+	/** The n high cards. */
 	public int nHighCards;
 	
+	/**
+	 * Instantiates a new cards to straight flush.
+	 */
 	public CardsToStraightFlush(){
 		super();
 		type = 4; //to facilitate conditions
 	}
 	
+	/* (non-Javadoc)
+	 * @see player.CardsTo#compute(int, int, player.Hand)
+	 */
 	public void compute(int maxSameSuit, int mostRepSuit, Hand hand){
 		//in sorted hand, two first cards can start the candidate straight		
 		Card[] sortedHand = hand.handSort();

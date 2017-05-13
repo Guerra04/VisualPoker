@@ -1,16 +1,25 @@
 package player;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class CardsToFlush.
  */
 public class CardsToFlush extends CardsTo{
+	
+	/** The n high cards. */
 	public int nHighCards;
 	
+	/**
+	 * Instantiates a new cards to flush.
+	 */
 	public CardsToFlush(){
 		super();
 		nHighCards = 0;
 	}
 	
+	/* (non-Javadoc)
+	 * @see player.CardsTo#compute(int, int, player.Hand)
+	 */
 	public void compute(int maxSameSuit, int mostRepSuit, Hand hand){
 		if(maxSameSuit == 4){
 			for(int i = 0; i < 5; i++){

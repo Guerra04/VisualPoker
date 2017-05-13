@@ -17,30 +17,62 @@ import com.sun.glass.events.WindowEvent;
 
 import doubleBonus.DoubleBonus;
 
+// TODO: Auto-generated Javadoc
 //import javax.swing.event.AncestorEvent;
 
+/**
+ * The Class GUI.
+ */
 public class GUI extends DoubleBonusTenSeven {
 	
+	/** The print. */
 	String print = "";
+	
+	/** The cardsclicked. */
 	int[] cardsclicked = new int[5];
+	
+	/** The dealpressed. */
 	int dealpressed = 0;
+	
+	/** The credits. */
 	static int credits = 0;
+	
+	/** The input. */
 	String input;
+	
+	/** The game. */
 	DoubleBonusTenSeven game = new DoubleBonusTenSeven();
+	
+	/** The player. */
 	Player player;
+	
+	/** The Value bet. */
 	int ValueBet = 5;
+	
+	/** The c. */
 	int c;
+	
+	/** The card back. */
 	ImageIcon cardBack;
+	
+	/** The frame. */
 	private JFrame frame;
+	
+	/** The text field. */
 	private JTextField textField;
 	
 	
+	/** The stat visibility. */
 	int statVisibility;
+	
+	/** The stats frame. */
 	JFrame statsFrame = new JFrame();
 	
 	
 	/**
 	 * Launch the application.
+	 *
+	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -373,10 +405,23 @@ public class GUI extends DoubleBonusTenSeven {
 		paintHand(card, player);
 	}
 	
+	/**
+	 * Highlightbtn.
+	 *
+	 * @param card the card
+	 * @param index the index
+	 */
 	//Function that elevates a single button to represent that it is being held
 	void highlightbtn(JButton card, int index){			
 		card.setBounds(30+(120*index),0, 89, 119);
 	}
+	
+	/**
+	 * Advise highlight.
+	 *
+	 * @param shouldhold the shouldhold
+	 * @param card the card
+	 */
 	//Function that elevates some buttons to represent that it should be held
 	void adviseHighlight(int[] shouldhold, JButton[] card){
 		for(int i=0; i<5; i++){
@@ -385,16 +430,36 @@ public class GUI extends DoubleBonusTenSeven {
 			}
 		}
 	}
+	
+	/**
+	 * Resetbtn.
+	 *
+	 * @param card the card
+	 * @param index the index
+	 */
 	//Function that resets a single button to its original position
 	void resetbtn(JButton card, int index){				
 		card.setBounds(20+(120*index), 10, 89, 119);	
 	}
+	
+	/**
+	 * Resetallbtn.
+	 *
+	 * @param card the card
+	 */
 	//Function that resets all buttons to its original position
 	void resetallbtn(JButton[] card){	
 		for(int i=0; i<5; i++){
 			card[i].setBounds(20+(120*i), 10, 89, 119);
 		}
 	}
+	
+	/**
+	 * Paint hand.
+	 *
+	 * @param card the card
+	 * @param player the player
+	 */
 	//Method that places images on the cards
 	void paintHand(JButton[] card,Player player){
 		String image ;
@@ -414,6 +479,11 @@ public class GUI extends DoubleBonusTenSeven {
 		}
 	}
 	
+	/**
+	 * Framestatistics.
+	 *
+	 * @param player the player
+	 */
 	//method that calls a new frame
 	void framestatistics(Player player){
 			

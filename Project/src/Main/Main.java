@@ -3,11 +3,15 @@ package Main;
 import doubleBonusTenSeven.DoubleBonusTenSeven;
 import doubleBonusTenSeven.GUI;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Main.
  */
 public class Main {
 
+	/**
+	 * Usage.
+	 */
 	public static void usage(){
 		System.out.println("Usage for different execution modes:");
 		System.out.println("---INTERACTIVE MODE: java -jar <<YOUR-JAR-NAME>>.jar -i credit");
@@ -16,6 +20,11 @@ public class Main {
 		System.exit(1);
 	}
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 
 		if(args.length < 1){

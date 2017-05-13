@@ -4,32 +4,65 @@ import cards.Card;
 import player.Player;
 import videoPoker.VideoPoker;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class DoubleBonus10_7.
  */
 public abstract class DoubleBonus extends VideoPoker{
 
+	/** The Constant nWinningHands. */
 	public static final int nWinningHands = 11;
+	
+	/** The Constant nBets. */
 	public static final int nBets = 5;
 	
+	/** The Constant ROYAL_FLUSH. */
 	//WinningH Hands
 	public static final int ROYAL_FLUSH = 1;
+	
+	/** The Constant FOUR_ACES. */
 	public static final int FOUR_ACES = 2;
+	
+	/** The Constant FOUR_2_4. */
 	public static final int FOUR_2_4 = 3;
+	
+	/** The Constant FOUR_5_K. */
 	public static final int FOUR_5_K = 4;
+	
+	/** The Constant STRAIGHT_FLUSH. */
 	public static final int STRAIGHT_FLUSH = 5;
+	
+	/** The Constant FULL_HOUSE. */
 	public static final int FULL_HOUSE = 6;
+	
+	/** The Constant FLUSH. */
 	public static final int FLUSH = 7;
+	
+	/** The Constant STRAIGHT. */
 	public static final int STRAIGHT = 8;
+	
+	/** The Constant THREE_OF_A_KIND. */
 	public static final int THREE_OF_A_KIND = 9;
+	
+	/** The Constant TWO_PAIR. */
 	public static final int TWO_PAIR = 10;
+	
+	/** The Constant JACKS_OR_BETTER. */
 	public static final int JACKS_OR_BETTER = 11;
+	
+	/** The Constant OTHER. */
 	public static final int OTHER = 0;
 	
+	/**
+	 * Instantiates a new double bonus.
+	 */
 	public DoubleBonus(){
 		this.rewardTable = fillRewardTable();
 	}
 	
+	/* (non-Javadoc)
+	 * @see videoPoker.VideoPoker#statistics(player.Player)
+	 */
 	public void statistics(Player player){
 		double percentage = ((double)player.getCredit())/player.getInitialCredit()*100;
 		String percentageStr = String.valueOf(percentage);
@@ -58,6 +91,9 @@ public abstract class DoubleBonus extends VideoPoker{
 		System.out.printf("%-15s %s (%s)\n\n", "Credit", String.valueOf(player.getCredit()), percentageStr);
 	}
 	
+	/* (non-Javadoc)
+	 * @see videoPoker.VideoPoker#scoreToString(int)
+	 */
 	public String scoreToString(int score){
  		switch(score){
  		case(ROYAL_FLUSH):
@@ -87,6 +123,9 @@ public abstract class DoubleBonus extends VideoPoker{
  		}
  	}
 	
+	/* (non-Javadoc)
+	 * @see videoPoker.VideoPoker#handScore(player.Player)
+	 */
 	public int handScore(Player player){		
 		Card[] sortedhand = player.hand.handSort();
 		
@@ -172,6 +211,11 @@ public abstract class DoubleBonus extends VideoPoker{
 		return OTHER;
 	}
 	
+	/**
+	 * Prints the command.
+	 *
+	 * @param cmd the cmd
+	 */
 	protected void printCommand(String cmd){
 		System.out.println("-cmd " + cmd);
 	}

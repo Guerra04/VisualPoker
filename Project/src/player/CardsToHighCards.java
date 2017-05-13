@@ -1,21 +1,47 @@
 package player;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class CardsToHighCards.
  */
 public class CardsToHighCards extends CardsTo{
+	
+	/** The royal. */
 	public boolean royal;
+	
+	/** The AKQ junsuited. */
 	public boolean AKQJunsuited;
+	
+	/** The Q jsuited. */
 	public boolean QJsuited;
+	
+	/** The KQ junsuited. */
 	public boolean KQJunsuited;
+	
+	/** The J tsuited. */
 	public boolean JTsuited;
+	
+	/** The Q junsuited. */
 	public boolean QJunsuited;
+	
+	/** The Q tsuited. */
 	public boolean QTsuited;
+	
+	/** The K Q K junsuited. */
 	public boolean KQ_KJunsuited;
+	
+	/** The Ace. */
 	public boolean Ace;
+	
+	/** The K tsuited. */
 	public boolean KTsuited;
+	
+	/** The k q j. */
 	public boolean K_Q_J;
 	
+	/**
+	 * Instantiates a new cards to high cards.
+	 */
 	public CardsToHighCards(){
 		royal = false;
 		AKQJunsuited = false;
@@ -30,6 +56,9 @@ public class CardsToHighCards extends CardsTo{
 		K_Q_J = false;
 	}
 	
+	/* (non-Javadoc)
+	 * @see player.CardsTo#compute(int, int, player.Hand)
+	 */
 	public void compute(int maxSameSuit, int mostRepSuit, Hand hand){
 		int[] highCards = new int[5]; //stores the position of each card of a royal flush.
 		int nHighCards = 0;

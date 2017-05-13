@@ -2,12 +2,20 @@ package player;
 
 import cards.*;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Hand.
  */
 public class Hand {
+	
+	/** The hand. */
 	public Card[] hand = new Card[5];
 	
+	/**
+	 * Instantiates a new hand.
+	 *
+	 * @param deck the deck
+	 */
 	//Constructor
 	public Hand(Deck deck){
 		for(int i = 0; i < 5; i++){
@@ -15,6 +23,9 @@ public class Hand {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	//toString
 	@Override
 	public String toString() {
@@ -25,6 +36,12 @@ public class Hand {
 		return ("player's hand is " + string);
 	}
 	
+	/**
+	 * Hold.
+	 *
+	 * @param index the index
+	 * @param deck the deck
+	 */
 	public void hold(int index[], Deck deck){
 		for(int i = 0; i < 5; i++){
 			if(!contains(index, i+1)){
@@ -34,6 +51,13 @@ public class Hand {
 		return;
 	}
 	
+	/**
+	 * Contains.
+	 *
+	 * @param index the index
+	 * @param toFind the to find
+	 * @return true, if successful
+	 */
 	private boolean contains(int index[], int toFind){
 		for(int i = 0; i < index.length; i++){
 			if(index[i] == toFind)
@@ -42,6 +66,11 @@ public class Hand {
 		return false;
 	}
 	
+	/**
+	 * Checks if is same rank.
+	 *
+	 * @return the int[]
+	 */
 	public int[] isSameRank(){		//returns the number of times the rank of a card repeats itself in a hand
 		int[] rankcount={1,1,1,1,1};
 		for(int i=0; i<4; i++){
@@ -55,6 +84,11 @@ public class Hand {
 		return rankcount;
 	}
 	
+	/**
+	 * Checks if is same suit.
+	 *
+	 * @return the int[]
+	 */
 	public int[] isSameSuit(){		//returns the number of times there is the same suit
 		int[] samesuit = {1,1,1,1,1};
 			
@@ -69,6 +103,11 @@ public class Hand {
 		return samesuit;
 	}
 	
+	/**
+	 * Hand sort.
+	 *
+	 * @return the card[]
+	 */
 	public Card[] handSort(){
 		Card[] sortedhand = new Card[5];
 		
@@ -79,6 +118,12 @@ public class Hand {
 		return sortedhand;
 	}
 	
+	/**
+	 * Index of rank.
+	 *
+	 * @param rank the rank
+	 * @return the int
+	 */
 	//returns -1 if does not exist
 	protected int indexOfRank(int rank){
 		int index = -1;
@@ -91,6 +136,13 @@ public class Hand {
 		return index;
 	}
 	
+	/**
+	 * Index of card.
+	 *
+	 * @param rank the rank
+	 * @param suit the suit
+	 * @return the int
+	 */
 	//returns -1 if does not exist
 	protected int indexOfCard(int rank, int suit){
 		int index = -1;

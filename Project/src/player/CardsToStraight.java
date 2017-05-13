@@ -2,19 +2,30 @@ package player;
 
 import cards.Card;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class CardsToStraight.
  */
 public class CardsToStraight extends CardsTo{
+	
+	/** The n high cards. */
 	public int nHighCards;
+	
+	/** The outside. */
 	public boolean outside;
 	
+	/**
+	 * Instantiates a new cards to straight.
+	 */
 	public CardsToStraight(){
 		super();
 		nHighCards = 0;
 		outside = false;
 	}
 	
+	/* (non-Javadoc)
+	 * @see player.CardsTo#compute(int, int, player.Hand)
+	 */
 	public void compute(int maxSameSuit, int mostRepSuit, Hand hand){
 		//in sorted hand, three first cards can start the candidate straight		
 		Card[] sortedHand = hand.handSort();
