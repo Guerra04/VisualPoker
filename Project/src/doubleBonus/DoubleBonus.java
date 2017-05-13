@@ -14,18 +14,41 @@ public abstract class DoubleBonus extends VideoPoker{
 	/** Number of possible values that can be bet(1 2 3 4 5)*/
 	public static final int nBets = 5;
 	
-	/** Defining the value of the winning hands*/
+	//Defining the value of the winning hands
+	/** Winning Hand Royal Flush*/
 	public static final int ROYAL_FLUSH = 1;
+	
+	/** Winning Hand Four Aces*/
 	public static final int FOUR_ACES = 2;
+	
+	/** Winning Hand Four 2-4*/
 	public static final int FOUR_2_4 = 3;
+	
+	/** Winning Hand Four 5-K*/
 	public static final int FOUR_5_K = 4;
+	
+	/** Winning Hand Straight Flush*/
 	public static final int STRAIGHT_FLUSH = 5;
+	
+	/** Winning Hand Full House*/
 	public static final int FULL_HOUSE = 6;
+	
+	/** Winning Hand Flush*/
 	public static final int FLUSH = 7;
+	
+	/** Winning Hand Straight*/
 	public static final int STRAIGHT = 8;
+	
+	/** Winning Hand Three of a Kind*/
 	public static final int THREE_OF_A_KIND = 9;
+	
+	/** Winning Hand Two Pair*/
 	public static final int TWO_PAIR = 10;
+	
+	/** Winning Hand Pair of Jacks or Better*/
 	public static final int JACKS_OR_BETTER = 11;
+	
+	/** Nothing in hand*/
 	public static final int OTHER = 0;
 	
 	/**
