@@ -17,6 +17,7 @@ public class Main {
 		System.out.println("---INTERACTIVE MODE: java -jar <<YOUR-JAR-NAME>>.jar -i credit");
 		System.out.println("---DEBUG       MODE: java -jar <<YOUR-JAR-NAME>>.jar -d credit cmd-file card-file");
 		System.out.println("---SIMULATION  MODE: java -jar <<YOUR-JAR-NAME>>.jar -s credit bet nbdeals");
+		System.out.println("---GUI         MODE: java -jar <<YOUR-JAR-NAME>>.jar -g");
 		System.exit(1);
 	}
 	
