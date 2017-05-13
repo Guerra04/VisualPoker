@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.2.0" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
-  associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+<class-diagram version="1.2.0" icons="false" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="cards.Deck" project="VisualPoker" file="/VisualPoker/Project/src/cards/Deck.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="104" x="223" y="2507"/>    
+    <position height="124" width="104" x="1384" y="546"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="cards.ComparatorByRank" project="VisualPoker" 
     file="/VisualPoker/Project/src/cards/ComparatorByRank.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="161" x="-154" y="2507"/>    
+    <position height="106" width="152" x="352" y="-85"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="doubleBonusTenSeven.DoubleBonusTenSeven" project="VisualPoker" 
     file="/VisualPoker/Project/src/doubleBonusTenSeven/DoubleBonusTenSeven.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="178" width="217" x="-150" y="1329"/>    
+    <position height="178" width="209" x="1488" y="997"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="Main.Main" project="VisualPoker" file="/VisualPoker/Project/src/Main/Main.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="130" x="-150" y="878"/>    
+    <position height="124" width="122" x="544" y="-85"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="cards.Card" project="VisualPoker" file="/VisualPoker/Project/src/cards/Card.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="412" width="159" x="-154" y="2671"/>    
+    <position height="412" width="151" x="1284" y="997"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="doubleBonus.DoubleBonus" project="VisualPoker" 
     file="/VisualPoker/Project/src/doubleBonus/DoubleBonus.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="411" width="178" x="128" y="878"/>    
+    <position height="411" width="169" x="1528" y="546"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="player.CardsToFlush" project="VisualPoker" 
     file="/VisualPoker/Project/src/player/CardsToFlush.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="176" x="25" y="1891"/>    
+    <position height="124" width="168" x="352" y="546"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="player.CardsToStraightFlush" project="VisualPoker" 
     file="/VisualPoker/Project/src/player/CardsToStraightFlush.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="142" width="179" x="-194" y="1891"/>    
+    <position height="142" width="168" x="560" y="546"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="player.Hand" project="VisualPoker" 
     file="/VisualPoker/Project/src/player/Hand.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="232" width="172" x="-10" y="2235"/>    
+    <position height="232" width="160" x="1184" y="546"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="player.CardsToHighCards" project="VisualPoker" 
     file="/VisualPoker/Project/src/player/CardsToHighCards.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="304" width="176" x="-647" y="1891"/>    
+    <position height="304" width="168" x="768" y="546"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="player.CardsTo" project="VisualPoker" 
     file="/VisualPoker/Project/src/player/CardsTo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="141" width="177" x="-348" y="1547"/>    
+    <position height="141" width="169" x="706" y="-85"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="player.CardsToStraight" project="VisualPoker" 
     file="/VisualPoker/Project/src/player/CardsToStraight.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="142" width="176" x="-431" y="1891"/>    
+    <position height="142" width="168" x="976" y="546"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="player.Player" project="VisualPoker" 
     file="/VisualPoker/Project/src/player/Player.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="304" width="154" x="110" y="1547"/>    
+    <position height="304" width="146" x="1184" y="-85"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="videoPoker.VideoPoker" project="VisualPoker" 
     file="/VisualPoker/Project/src/videoPoker/VideoPoker.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="591" width="247" x="157" y="247"/>    
+    <position height="591" width="238" x="1456" y="-85"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -128,213 +128,61 @@
     </display>  
   </class>  
   <association id="15">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="16" name="cards"/>      
-      <multiplicity id="17" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="18">    
-    <bendpoint x="357" y="878"/>    
-    <bendpoint x="357" y="1329"/>    
-    <bendpoint x="357" y="1547"/>    
-    <bendpoint x="357" y="1891"/>    
-    <bendpoint x="336" y="2235"/>    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="19" name="deck"/>      
-      <multiplicity id="20" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="21">    
-    <bendpoint x="-392" y="2235"/>    
-    <bendpoint x="-392" y="2507"/>    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="22">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="23">    
-    <bendpoint x="97" y="878"/>    
-    <bendpoint x="97" y="1329"/>    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="13"/>  
-  </dependency>  
-  <dependency id="24">    
-    <bendpoint x="-379" y="1547"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
-  <dependency id="25">    
-    <bendpoint x="-400" y="1547"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="10"/>  
-  </dependency>  
-  <dependency id="26">    
-    <bendpoint x="192" y="2235"/>    
-    <bendpoint x="192" y="2507"/>    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <generalization id="27">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <dependency id="28">    
-    <bendpoint x="315" y="1329"/>    
-    <bendpoint x="336" y="1547"/>    
-    <bendpoint x="336" y="1891"/>    
-    <bendpoint x="357" y="2235"/>    
-    <bendpoint x="357" y="2507"/>    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="29">    
-    <bendpoint x="58" y="1547"/>    
-    <bendpoint x="231" y="1891"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <dependency id="30">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <dependency id="31">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <association id="32">    
-    <bendpoint x="252" y="1891"/>    
     <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="33" name="hand"/>      
-      <multiplicity id="34" minimum="0" maximum="1"/>    
+      <attribute id="16" name="hand"/>      
+      <multiplicity id="17" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="35">    
-    <bendpoint x="79" y="1547"/>    
-    <bendpoint x="315" y="1891"/>    
-    <bendpoint x="315" y="2235"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <dependency id="36">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="13"/>  
-  </dependency>  
-  <dependency id="37">    
-    <bendpoint x="-53" y="1547"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <generalization id="38">    
+  <generalization id="18">    
     <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="11"/>  
   </generalization>  
-  <dependency id="39">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <dependency id="40">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <dependency id="41">    
-    <bendpoint x="-225" y="1891"/>    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <generalization id="42">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <dependency id="43">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <generalization id="44">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="14"/>  
-  </generalization>  
-  <generalization id="45">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <dependency id="46">    
-    <bendpoint x="294" y="1329"/>    
-    <bendpoint x="294" y="1547"/>    
-    <bendpoint x="273" y="1891"/>    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <dependency id="47">    
-    <bendpoint x="-141" y="1547"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <dependency id="48">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="11"/>  
-  </dependency>  
-  <dependency id="49">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="50">    
-    <bendpoint x="-283" y="2235"/>    
-    <bendpoint x="-283" y="2507"/>    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="51">    
-    <bendpoint x="128" y="1329"/>    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="13"/>  
-  </dependency>  
-  <association id="52">    
-    <bendpoint x="37" y="2507"/>    
+  <association id="19">    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="53" name="hand"/>      
-      <multiplicity id="54" minimum="0" maximum="2147483647"/>    
+      <attribute id="20" name="hand"/>      
+      <multiplicity id="21" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="55">    
+  <generalization id="22">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <generalization id="23">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <generalization id="24">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <generalization id="25">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <generalization id="26">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="11"/>  
   </generalization>  
-  <dependency id="56">    
-    <bendpoint x="-185" y="2235"/>    
-    <bendpoint x="-185" y="2507"/>    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="57">    
-    <bendpoint x="336" y="878"/>    
-    <bendpoint x="336" y="1329"/>    
-    <bendpoint x="315" y="1547"/>    
-    <bendpoint x="294" y="1891"/>    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <dependency id="58">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <dependency id="59">    
-    <bendpoint x="-678" y="1547"/>    
-    <bendpoint x="-678" y="1891"/>    
-    <bendpoint x="-678" y="2235"/>    
-    <bendpoint x="-678" y="2507"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
+  <association id="27">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="28" name="deck"/>      
+      <multiplicity id="29" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="30">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="31" name="cards"/>      
+      <multiplicity id="32" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
