@@ -137,7 +137,8 @@ public class GUI extends DoubleBonusTenSeven {
 		statsFrame.setBounds(100, 100, 275, 425);
 		statsFrame.setTitle("Statitics");
 		statsFrame.addWindowListener(new WindowAdapter() {
-		    public void windowClosing(WindowEvent evt) {
+		    @SuppressWarnings("unused")
+			public void windowClosing(WindowEvent evt) {
 		    	statVisibility = 0;
 		    	statsFrame.setVisible(false);
 		    	System.out.println(statVisibility);
