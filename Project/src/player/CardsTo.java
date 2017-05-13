@@ -1,8 +1,8 @@
 package player;
 
 /**
- * CardsTo - Abastract Class to be extended by classes that compute the number
- * of cards to a specific hand
+ * Abstract Class to be extended by classes that compute the number
+ * of cards to a specific hand.
  */
 public abstract class CardsTo {
 	
@@ -21,12 +21,12 @@ public abstract class CardsTo {
 	}
 	
 	/**
-	 * Compute - computes the number of cards 
+	 * Computes the number of cards to the specific hand.
 	 *
-	 * @param maxSameSuit - array with 5 positions. Each position has the number
-	 * of cards with the same suit as the card in that position
-	 * @param mostRepSuit - most represented suit
-	 * @param hand  - player's hand
+	 * @param maxSameSuit Array with 5 positions. Each position has the number
+	 * of cards with the same suit as the card in that position.
+	 * @param mostRepSuit Most represented suit.
+	 * @param hand Player's hand.
 	 */
 	abstract public void compute(int maxSameSuit, int mostRepSuit, Hand hand);
 }

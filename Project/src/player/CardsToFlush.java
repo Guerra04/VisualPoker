@@ -2,7 +2,7 @@ package player;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class CardsToFlush.
+ * CardsToFlush.
  */
 public class CardsToFlush extends CardsTo{
 	
