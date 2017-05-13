@@ -2,20 +2,21 @@ package player;
 
 import cards.Card;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class CardsToStraight.
+ * Stores the number of cards to a straight, their indexes, the
+ * number of high cards and the indication if the straight is an outside 
+ * or an inside one.
  */
 public class CardsToStraight extends CardsTo{
 	
-	/** The n high cards. */
+	/** Number of high cards. */
 	public int nHighCards;
 	
-	/** The outside. */
+	/** Outside = true. Inside = false*/
 	public boolean outside;
 	
 	/**
-	 * Instantiates a new cards to straight.
+	 * Constructor.
 	 */
 	public CardsToStraight(){
 		super();
@@ -39,20 +40,26 @@ public class CardsToStraight extends CardsTo{
 			outsideAux = true;
 			nHighCardsAux = 0;
 			nCardsToAux = 0;
-			straightIndexes = new int[4];
+			straightIndexes = new int[4]; //stores the cards to a straight
 			
 			first = sortedHand[i].rank;
 			for(int j = 0; j < 5; j++){
+				/*Searches for the next cards to a straight beginning in the
+				rank of the selected card*/
 				if(hand.indexOfRank(first + j) != -1){
 					straightIndexes[nCardsToAux] = hand.indexOfRank(first + j);
 					if(hand.hand[straightIndexes[nCardsToAux]].isHighCard())
 						nHighCardsAux++;
 					nCardsToAux++;
 				}else{
+					/*If the second, third or the fourth card is missing, it
+					can't be an outside straight*/
 					if(j != 4 && first != 10 && first != 11)
 						outsideAux = false;
 				}
-				if((first == 10 && j == 4) || (first == 11 && j == 3)){ //sequences starting in 10 or J have to take into account if exists an Ace
+				/*sequences starting in 10 or J have to take into account
+				if exists an Ace*/
+				if((first == 10 && j == 4) || (first == 11 && j == 3)){ 
 					if(hand.indexOfRank(1) != -1){
 						straightIndexes[nCardsToAux] = hand.indexOfRank(1);
 						nCardsToAux++;
@@ -71,7 +78,8 @@ public class CardsToStraight extends CardsTo{
 						this.outside = true;
 						this.nCardsTo = nCardsToAux;
 						this.nHighCards = nHighCardsAux;
-						this.indexes = new int[5]; //clean indexes in case there are 2 candidates to straight
+						//clean indexes in case there are 2 candidates to straight
+						this.indexes = new int[5]; 
 						for(int j = 0; j < nCardsToAux; j++)
 							this.indexes[straightIndexes[j]] = 1;
 					}
@@ -80,7 +88,8 @@ public class CardsToStraight extends CardsTo{
 					if(!this.outside && nHighCardsAux >= this.nHighCards){
 						this.nCardsTo = nCardsToAux;
 						this.nHighCards = nHighCardsAux;
-						this.indexes = new int[5]; //clean indexes in case there are 2 candidates to straight
+						//clean indexes in case there are 2 candidates to straight
+						this.indexes = new int[5]; 
 						for(int j = 0; j < nCardsToAux; j++)
 							this.indexes[straightIndexes[j]] = 1;
 					}

@@ -1,46 +1,46 @@
 package player;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class CardsToHighCards.
+ * Stores the number of cards to a royal flush or if there is a
+ * a combination of high cards and the indexes of those cards
  */
 public class CardsToHighCards extends CardsTo{
 	
-	/** The royal. */
+	/** Rotal Flush. */
 	public boolean royal;
 	
-	/** The AKQ junsuited. */
+	/** AKQJ unsuited. */
 	public boolean AKQJunsuited;
 	
-	/** The Q jsuited. */
+	/** QJ suited. */
 	public boolean QJsuited;
 	
-	/** The KQ junsuited. */
+	/** KQJ unsuited. */
 	public boolean KQJunsuited;
 	
-	/** The J tsuited. */
+	/** JT suited. */
 	public boolean JTsuited;
 	
-	/** The Q junsuited. */
+	/** QJ unsuited. */
 	public boolean QJunsuited;
 	
-	/** The Q tsuited. */
+	/** QT suited. */
 	public boolean QTsuited;
 	
-	/** The K Q K junsuited. */
+	/** KQ or KJ unsuited. */
 	public boolean KQ_KJunsuited;
 	
-	/** The Ace. */
+	/** Ace. */
 	public boolean Ace;
 	
-	/** The K tsuited. */
+	/** KT suited. */
 	public boolean KTsuited;
 	
-	/** The k q j. */
+	/** K, Q or J. */
 	public boolean K_Q_J;
 	
 	/**
-	 * Instantiates a new cards to high cards.
+	 * Constructor.
 	 */
 	public CardsToHighCards(){
 		royal = false;
@@ -63,11 +63,12 @@ public class CardsToHighCards extends CardsTo{
 		int[] highCards = new int[5]; //stores the position of each card of a royal flush.
 		int nHighCards = 0;
 		
- 		highCards[0] = hand.indexOfRank(10);
- 		highCards[1] = hand.indexOfRank(11);
- 		highCards[2] = hand.indexOfRank(12);
- 		highCards[3] = hand.indexOfRank(13);
- 		highCards[4] = hand.indexOfRank(1);
+		//Indexes of the high cards
+ 		highCards[0] = hand.indexOfRank(10); //Ten
+ 		highCards[1] = hand.indexOfRank(11); //Jack
+ 		highCards[2] = hand.indexOfRank(12); //Queen
+ 		highCards[3] = hand.indexOfRank(13); //King
+ 		highCards[4] = hand.indexOfRank(1);  //Ace
  		
  		for(int i = 1; i < 5; i++){
  			if(highCards[i] != -1)
@@ -83,6 +84,7 @@ public class CardsToHighCards extends CardsTo{
 			}
 		}
 		
+		//If there are more than 3 cards to a royal flush
 		if(nCardsTo >= 3){
 			for(int i = 0; i < nCardsTo; i++){
 				if(royalCards[i] != -1){
@@ -93,7 +95,7 @@ public class CardsToHighCards extends CardsTo{
 			return;
 		}
 
-		//Check high cards
+		//Check combination of high cards
  		if(nHighCards >= 4){
  			if(highCards[1] != -1 && highCards[2] != -1 && highCards[3] != -1 && highCards[4] != -1){
  				this.AKQJunsuited = true;

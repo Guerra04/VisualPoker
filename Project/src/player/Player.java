@@ -1,36 +1,35 @@
 package player;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Player.
+ * Player 
  */
 public class Player {
 	
-	/** The credit. */
+	/** Player's current credit. */
 	private int credit;
 	
-	/** The initial credit. */
+	/** Player's initial credit. */
 	private final int initialCredit;
 	
-	/** The last bet. */
+	/** Player's last bet (default = 5). */
 	private int lastBet = 5;
 	
-	/** The hand. */
+	/** Player's hand. */
 	public Hand hand;
 	
-	/** The statistics. */
+	/** Player's statistics. */
 	public int statistics[];
 	
-	/** The hands played. */
+	/** Number of hands played by the player. */
 	public int handsPlayed;
 	
 	/**
-	 * Instantiates a new player.
+	 * Contructor.
 	 *
-	 * @param credit the credit
-	 * @param nWinningHands the n winning hands
+	 * @param credit Player's initial credit.
+	 * @param nWinningHands Number of hands that return credits (may differ
+	 * between game modes.
 	 */
-	//Contructor
 	public Player(int credit, int nWinningHands){
 		this.credit = credit;
 		this.initialCredit = credit;
@@ -38,20 +37,19 @@ public class Player {
 	}
 	
 	/**
-	 * Sets the last bet.
+	 * Sets the player's last bet.
 	 *
-	 * @param bet the new last bet
+	 * @param bet New bet
 	 */
-	//Setters
 	public void setLastBet(int bet){
 		this.lastBet = bet;
 		return;
 	}
 
 	/**
-	 * Sets the credit.
+	 * Sets the plauer's credit.
 	 *
-	 * @param credit the new credit
+	 * @param credit New credit
 	 */
 	public void setCredit(int credit){
 		this.credit = credit;
@@ -59,9 +57,9 @@ public class Player {
 	}
 	
 	/**
-	 * Inc statistics.
+	 * Increments statistics.
 	 *
-	 * @param score the score
+	 * @param score Score of the hand of the player (from handScore)
 	 */
 	public void incStatistics(int score){
 		this.statistics[score]++;
@@ -69,7 +67,7 @@ public class Player {
 	}
 	
 	/**
-	 * Inc hands played.
+	 * Increments hands played.
 	 */
 	public void incHandsPlayed(){
 		this.handsPlayed += 1;
@@ -77,28 +75,27 @@ public class Player {
 	
 	
 	/**
-	 * Gets the last bet.
+	 * Gets the player's last bet.
 	 *
-	 * @return the last bet
+	 * @return Player's last bet
 	 */
-	//Getters
 	public int getLastBet(){
 		return this.lastBet;
 	}
 	
 	/**
-	 * Gets the credit.
+	 * Gets the player's current credit.
 	 *
-	 * @return the credit
+	 * @return Player's current credit
 	 */
 	public int getCredit(){
 		return this.credit;
 	}
 	
 	/**
-	 * Gets the initial credit.
+	 * Gets the player's initial credit.
 	 *
-	 * @return the initial credit
+	 * @return Player's initial credit
 	 */
 	public int getInitialCredit(){
 		return this.initialCredit;

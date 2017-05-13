@@ -4,114 +4,115 @@ import cards.Deck;
 import player.Hand;
 import player.Player;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class VideoPoker.
+ * Defines the needed methods to run the game and implements the common methods
+ * to all the game modes.
  */
 public abstract class VideoPoker {
 	
-	/** The reward table. */
+	/** The reward table with the different winning hands in different rows and
+	 * the possible bets in each column
+	 */
 	protected int[][] rewardTable;
 	
-	/** The deck. */
+	/** Deck being used. */
 	protected Deck deck;
 	
-	/** The Constant INITIATING. */
-	//States
+	/** State INITIATING. */
 	protected final static int INITIATING = 0;
 	
-	/** The Constant BETTING. */
+	/** State BETTING. */
 	protected final static int BETTING = 1;
 	
-	/** The Constant DEALING. */
+	/** State DEALING. */
 	protected final static int DEALING = 2;
 	
-	/** The Constant QUITTING. */
+	/** State QUITTING. */
 	protected final static int QUITTING = 3;
 	
-	/** The state. */
+	/** Current state. */
 	protected int state = INITIATING ;
 
 	/**
-	 * Reward.
+	 * Returns the number credits won by the player in the current turn.
 	 *
-	 * @param score the score
-	 * @param bet the bet
-	 * @return the int
+	 * @param score Score of the player's hand (from handScore).
+	 * @param bet Bet used in the current turn of the game.
+	 * @return Reward according to the score of the hand and the used bet.
 	 */
 	protected int reward(int score, int bet){
 		return rewardTable[score][bet];
 	}
 	
 	/**
-	 * Fill reward table.
+	 * Constructs reward table.
 	 *
-	 * @return the int[][]
+	 * @return Reward table.
 	 */
 	protected abstract int[][] fillRewardTable();
 	
 	/**
-	 * Statistics.
+	 * Prints the statistics of the player.
 	 *
-	 * @param player the player
+	 * @param player Player.
 	 */
 	protected abstract void statistics(Player player);
 	
 	/**
-	 * Hand score.
+	 * Returns the score of the player's hand.
 	 *
-	 * @param player the player
-	 * @return the int
+	 * @param player Player.
+	 * @return Score of the player's hand.
 	 */
 	protected abstract int handScore(Player player);
 	
 	/**
-	 * Score to string.
+	 * Translates the score represented by an integer to a string.
 	 *
-	 * @param score the score
-	 * @return the string
+	 * @param score Score of the player's hand.
+	 * @return String corresponding to the score.
 	 */
 	protected abstract String scoreToString(int score);
 	
 	/**
-	 * Cards to hold.
+	 * Computes the cards that the player should hold given his hand.
 	 *
-	 * @param player the player
-	 * @return the int[]
+	 * @param player Player
+	 * @return Array representing what cards the player should hold. In each position
+	 * a 1 means the card in that position should be held and a 0 means the opposite.
 	 */
 	protected abstract int[] cardsToHold(Player player);
 	
 	/**
-	 * Interactive mode.
+	 * Method to play the game in interactive mode.
 	 *
-	 * @param initialCredit the initial credit
+	 * @param initialCredit Player's initial credit.
 	 */
 	public abstract void interactiveMode(int initialCredit);
 	
 	/**
-	 * Debug mode.
+	 * Method to play the game in debug mode.
 	 *
-	 * @param initialCredit the initial credit
-	 * @param cmd_file the cmd file
-	 * @param card_file the card file
+	 * @param initialCredit Player's initial credit.
+	 * @param cmd_file File with sequence of commands.
+	 * @param card_file File with sequence of cards representing the deck.
 	 */
 	public abstract void debugMode(int initialCredit, String cmd_file, String card_file);
 	
 	/**
-	 * Simulation mode.
+	 * Method to play the game in simulation mode.
 	 *
-	 * @param initialCredit the initial credit
-	 * @param bet the bet
-	 * @param nbdeals the nbdeals
+	 * @param initialCredit Player's initial credit.
+	 * @param bet Bet to be used in all the turns of the game.
+	 * @param nbdeals Number of turns to be played.
 	 */
 	public abstract void simulationMode(int initialCredit, int bet, int nbdeals);
 
 	/**
 	 * Gets the deck.
 	 *
-	 * @return the deck
+	 * @return Deck
 	 */
-	//Deck Getter
 	public Deck getDeck() {
 		return deck;
 	}
@@ -119,9 +120,8 @@ public abstract class VideoPoker {
 	/**
 	 * Gets the state.
 	 *
-	 * @return the state
+	 * @return Current state. 
 	 */
-	//State getter and setter
 	public int getState() {
 		return state;
 	}
@@ -129,17 +129,18 @@ public abstract class VideoPoker {
 	/**
 	 * Sets the state.
 	 *
-	 * @param state the new state
+	 * @param state New state.
 	 */
 	public void setState(int state) {
 		this.state = state;
 	}
 
 	/**
-	 * Bet.
+	 * Checks if the bet command can be used in the current state and
+	 * if it is possible sets the player's bet value to the parameter value.
 	 *
-	 * @param player the player
-	 * @param bet the bet
+	 * @param player Player.
+	 * @param bet New bet value.
 	 */
 	public void bet(Player player, int bet){
 		if(state == INITIATING || state == BETTING){
@@ -152,16 +153,18 @@ public abstract class VideoPoker {
 	}
 	
 	/**
-	 * Shuffle.
+	 * Shuffles the deck by creating a new one
 	 */
 	public void shuffle(){
 		this.deck = new Deck();
 	}
 	
 	/**
-	 * Deal.
+	 * Checks if the deal command can be used in the current state and 
+	 * if it is possible gives the player a new hand
+	 * by drawing five cards from the deck.
 	 *
-	 * @param player the player
+	 * @param player Player.
 	 */
 	public void deal(Player player){
 		if(state == BETTING){
@@ -176,18 +179,21 @@ public abstract class VideoPoker {
 	}
 	
 	/**
-	 * Hold and results.
+	 * Checks if the hold command can be used in the current state and
+	 * if it possible draws new cards for the positions the player
+	 * didn't want to hold.
 	 *
-	 * @param player the player
-	 * @param indexes the indexes
-	 * @param deck the deck
+	 * @param player Player.
+	 * @param indexes Array with the indexes to be hold, inputted by the player.
+	 * @param deck Deck.
 	 */
 	protected void holdAndResults(Player player, int[] indexes, Deck deck){
 		if(state == DEALING){
-			player.hand.hold(indexes, deck);
+			player.hand.hold(indexes, deck); //Holds the pretended cards
 			System.out.println(player.hand);
 			
-			int score = this.handScore(player);
+			int score = this.handScore(player); //checks the score
+			//Increments the credits.
 			player.setCredit(player.getCredit() + reward(score, player.getLastBet()));
 			if(score == 0)
 				System.out.println("Player lost and his credit is " + player.getCredit());
@@ -201,6 +207,7 @@ public abstract class VideoPoker {
 		}else
 			this.illegalCommand('h');
 		
+		//Check if the player reached 0 credits
 		if(player.getCredit() == 0){
 			System.out.println("GAME OVER");
 			System.exit(3);
@@ -209,9 +216,9 @@ public abstract class VideoPoker {
 	}
 	
 	/**
-	 * Credit.
+	 * Prints the player's current credit.
 	 *
-	 * @param player the player
+	 * @param player Player.
 	 */
 	protected void credit(Player player){
 		System.out.println("player's credit is " + player.getCredit());
@@ -219,10 +226,10 @@ public abstract class VideoPoker {
 	}
 	
 	/**
-	 * Gets the advise.
+	 * Checks if the advise command can be used in the current state
+	 * and gets the advise according to the player's hand.
 	 *
-	 * @param player the player
-	 * @return the advise
+	 * @param player Player.
 	 */
 	protected void getAdvise(Player player){
 		if(state == DEALING){
@@ -233,10 +240,11 @@ public abstract class VideoPoker {
 	}
 	
 	/**
-	 * Advise.
+	 * Prints the advise to be given to the player according
+	 * to the player's hand.
 	 *
-	 * @param player the player
-	 * @return the string
+	 * @param player Player
+	 * @return Advise string.
 	 */
 	public String advise(Player player){
  		String adviseString = "player should hold cards";
@@ -255,8 +263,7 @@ public abstract class VideoPoker {
 	/**
 	 * Gets the statistics.
 	 *
-	 * @param player the player
-	 * @return the statistics
+	 * @param player Player.
 	 */
 	protected void getStatistics(Player player){
 		this.statistics(player);
@@ -264,9 +271,11 @@ public abstract class VideoPoker {
 	}
 	
 	/**
-	 * Quit.
+	 * Checks if the quit command can be used in the current state,
+	 * prints the player's statistic for the current game and terminates
+	 * the program.
 	 *
-	 * @param player the player
+	 * @param player Player
 	 */
 	protected void quit(Player player){
 		if(state == INITIATING || state == BETTING){
@@ -279,9 +288,9 @@ public abstract class VideoPoker {
 	}
 	
 	/**
-	 * Illegal command.
+	 * Prints the input command followed by ": illegal command".
 	 *
-	 * @param command the command
+	 * @param command Input Command.
 	 */
 	protected void illegalCommand(char command){
 		System.out.println(command + ": illegal command");

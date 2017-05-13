@@ -2,21 +2,19 @@ package player;
 
 import cards.*;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Hand.
+ * Player's hand.
  */
 public class Hand {
 	
-	/** The hand. */
+	/** Array of cards that represent the player's hand. */
 	public Card[] hand = new Card[5];
 	
 	/**
-	 * Instantiates a new hand.
+	 * Constructor.
 	 *
-	 * @param deck the deck
+	 * @param deck Deck from which the cards are drawn.
 	 */
-	//Constructor
 	public Hand(Deck deck){
 		for(int i = 0; i < 5; i++){
 			hand[i] = deck.draw();
@@ -26,7 +24,6 @@ public class Hand {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
-	//toString
 	@Override
 	public String toString() {
 		String string = new String();
@@ -37,10 +34,11 @@ public class Hand {
 	}
 	
 	/**
-	 * Hold.
+	 * Draws cards to the positions that the player don't want to hold.
+	 * Receives postions starting in 1 instead of 0.
 	 *
-	 * @param index the index
-	 * @param deck the deck
+	 * @param index Array with the indexes inputed by the player.
+	 * @param deck Deck from which the cards are drawn.
 	 */
 	public void hold(int index[], Deck deck){
 		for(int i = 0; i < 5; i++){
@@ -52,11 +50,11 @@ public class Hand {
 	}
 	
 	/**
-	 * Contains.
+	 * Check if the integer exists in an array
 	 *
-	 * @param index the index
-	 * @param toFind the to find
-	 * @return true, if successful
+	 * @param index Array
+	 * @param toFind Integer to find
+	 * @return true, if toFind exists in index.
 	 */
 	private boolean contains(int index[], int toFind){
 		for(int i = 0; i < index.length; i++){
@@ -67,11 +65,13 @@ public class Hand {
 	}
 	
 	/**
-	 * Checks if is same rank.
+	 * Computes the number of cards with the same rank as the one in each
+	 * position
 	 *
-	 * @return the int[]
+	 * @return Array that in each position has the number of cards with 
+	 * the same rank as the card in that position
 	 */
-	public int[] isSameRank(){		//returns the number of times the rank of a card repeats itself in a hand
+	public int[] isSameRank(){
 		int[] rankcount={1,1,1,1,1};
 		for(int i=0; i<4; i++){
 			for(int j=i+1; j<5; j++){
@@ -85,11 +85,13 @@ public class Hand {
 	}
 	
 	/**
-	 * Checks if is same suit.
+	 * Computes the number of cards with the same suit as the one in each
+	 * position
 	 *
-	 * @return the int[]
+	 * @return Array that in each position has the number of cards with 
+	 * the same suit as the card in that position
 	 */
-	public int[] isSameSuit(){		//returns the number of times there is the same suit
+	public int[] isSameSuit(){
 		int[] samesuit = {1,1,1,1,1};
 			
 		for(int i=0; i<4; i++){
@@ -104,9 +106,9 @@ public class Hand {
 	}
 	
 	/**
-	 * Hand sort.
+	 * Copys the player's hand to a new hand and sorts and returns the new one
 	 *
-	 * @return the card[]
+	 * @return Sorted hand
 	 */
 	public Card[] handSort(){
 		Card[] sortedhand = new Card[5];
@@ -119,12 +121,12 @@ public class Hand {
 	}
 	
 	/**
-	 * Index of rank.
+	 * Returns the index of the first card in the hand with the same rank as the
+	 * integer argument.
 	 *
-	 * @param rank the rank
-	 * @return the int
+	 * @param rank Rank of the card to find
+	 * @return Index of the card. -1 if it doesn't exist.
 	 */
-	//returns -1 if does not exist
 	protected int indexOfRank(int rank){
 		int index = -1;
 		for(int i = 0; i < 5; i++){
@@ -137,13 +139,13 @@ public class Hand {
 	}
 	
 	/**
-	 * Index of card.
+	 * Returns the index of the first card in the hand with the same rank and
+	 *  suit as the arguments.
 	 *
-	 * @param rank the rank
-	 * @param suit the suit
-	 * @return the int
+	 * @param rank Rank of the card to find
+	 * @param suit Suit of the card to find
+	 * @return Index of the card. -1 if it doesn't exist.
 	 */
-	//returns -1 if does not exist
 	protected int indexOfCard(int rank, int suit){
 		int index = -1;
 		Card card = new Card(rank, suit);
