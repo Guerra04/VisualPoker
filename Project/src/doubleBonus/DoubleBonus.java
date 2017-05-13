@@ -5,56 +5,31 @@ import player.Player;
 import videoPoker.VideoPoker;
 
 // TODO: Auto-generated Javadoc
-/**
- * The Class DoubleBonus10_7.
- */
+/**Class DoubleBonus. Class that is to be extended by all DoubleBonus game modes */
 public abstract class DoubleBonus extends VideoPoker{
 
-	/** The Constant nWinningHands. */
+	/** Total number of hands that are scored/that are winning hands*/
 	public static final int nWinningHands = 11;
 	
-	/** The Constant nBets. */
+	/** Number of possible values that can be bet(1 2 3 4 5)*/
 	public static final int nBets = 5;
 	
-	/** The Constant ROYAL_FLUSH. */
-	//WinningH Hands
+	/** Defining the value of the winning hands*/
 	public static final int ROYAL_FLUSH = 1;
-	
-	/** The Constant FOUR_ACES. */
 	public static final int FOUR_ACES = 2;
-	
-	/** The Constant FOUR_2_4. */
 	public static final int FOUR_2_4 = 3;
-	
-	/** The Constant FOUR_5_K. */
 	public static final int FOUR_5_K = 4;
-	
-	/** The Constant STRAIGHT_FLUSH. */
 	public static final int STRAIGHT_FLUSH = 5;
-	
-	/** The Constant FULL_HOUSE. */
 	public static final int FULL_HOUSE = 6;
-	
-	/** The Constant FLUSH. */
 	public static final int FLUSH = 7;
-	
-	/** The Constant STRAIGHT. */
 	public static final int STRAIGHT = 8;
-	
-	/** The Constant THREE_OF_A_KIND. */
 	public static final int THREE_OF_A_KIND = 9;
-	
-	/** The Constant TWO_PAIR. */
 	public static final int TWO_PAIR = 10;
-	
-	/** The Constant JACKS_OR_BETTER. */
 	public static final int JACKS_OR_BETTER = 11;
-	
-	/** The Constant OTHER. */
 	public static final int OTHER = 0;
 	
 	/**
-	 * Instantiates a new double bonus.
+	 * .
 	 */
 	public DoubleBonus(){
 		this.rewardTable = fillRewardTable();
@@ -150,7 +125,9 @@ public abstract class DoubleBonus extends VideoPoker{
 		if (suit[0] == 5)
 			flush=1;
 		
-		/*Is straight */
+		/**
+		 * Checking if it's a straight or a play that derivates from a  straight  
+		 * */
 	
 		if(straight==5){
 			if(flush==1)
@@ -161,12 +138,15 @@ public abstract class DoubleBonus extends VideoPoker{
 			else				
 				return STRAIGHT;		//Has a straight in hand
 		}
-		/*Checking pairs, three and four of a kind*/
+		/**
+		 * Checking pairs three and four of a kind
+		 * */
 		
 		int[] ranks = player.hand.isSameRank();
 		
 		int four=0, three=0, pair=0;
-		int rank_pos=0;	//Variable that will save the position of the possible four or three of a kind, so the rank can be determined
+		int rank_pos=0;	//Variable that will save the position of the possible four or three of a kind
+					   //so the rank can be determined
 		
 		for(int i=0; i<5; i++) {
 			if(ranks[i]==4){
@@ -214,7 +194,7 @@ public abstract class DoubleBonus extends VideoPoker{
 	/**
 	 * Prints the command.
 	 *
-	 * @param cmd the cmd
+	 * @param cmd string of the inserted command
 	 */
 	protected void printCommand(String cmd){
 		System.out.println("-cmd " + cmd);
