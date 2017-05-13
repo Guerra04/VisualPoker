@@ -7,7 +7,7 @@ package player;
 public abstract class CardsTo {
 	
 	/** Indicator of the cards that belong to the specific hand. */
-	public int[] indexes; //1 belongs; 0 doesn't belong
+	public int[] indexes; //1 belongs; 0 dont belong
 	
 	/** Number of cards to the specific hand. */
 	public int nCardsTo;

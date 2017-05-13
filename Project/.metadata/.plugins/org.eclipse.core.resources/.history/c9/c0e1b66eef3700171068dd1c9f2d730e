@@ -25,51 +25,51 @@ public class GUI extends DoubleBonusTenSeven {
 	/** The print. */
 	String print = "";
 	
-	/**cardsclicked. array that saves if a card button was pressed or not
-	 * saves 1 if it was and 0 if it wasn't
-	 * (if it was at 1 and is pressed again it is set to 0)  */
+	/** The cardsclicked. */
 	int[] cardsclicked = new int[5];
 	
-	/**credits. Saves the credits that the player inserted as an integer */
+	/** The dealpressed. */
+	int dealpressed = 0;
+	
+	/** The credits. */
 	static int credits = 0;
 	
-	/** input. variable that will save the string written on the beginning prompt */
+	/** The input. */
 	String input;
 	
-	/**game. creates a new DoubleBonus10_7 game*/
+	/** The game. */
 	DoubleBonusTenSeven game = new DoubleBonusTenSeven();
 	
-	/**player. new player*/
+	/** The player. */
 	Player player;
 	
-	/** Value bet. value bet in each  */
+	/** The Value bet. */
 	int ValueBet = 5;
 	
+	/** The c. */
 	int c;
 	
-	/** card back. icon variable that will place images in the cards*/
+	/** The card back. */
 	ImageIcon cardBack;
 	
-	/**frame. main game frame*/
+	/** The frame. */
 	private JFrame frame;
 	
-	/**text field. text field that will contain game messages*/
+	/** The text field. */
 	private JTextField textField;
 	
 	
-	/**statvisibility. variable that defines the statistics frame visibility 
-	 * 1 if visible and 0 if not*/
+	/** The stat visibility. */
 	int statVisibility;
 	
-	/**stats frame. Frame that will show the player statistics */
+	/** The stats frame. */
 	JFrame statsFrame = new JFrame();
 	
 	
 	/**
-	 * Launch the application. main method that runs the GUI
+	 * Launch the application.
 	 *
-	 * @param args, arguments of the main method
-	 * (the GUI has no use for arguments)
+	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -91,14 +91,14 @@ public class GUI extends DoubleBonusTenSeven {
 		while(credits<=0){	
 			try{
 				input = JOptionPane.showInputDialog(null, "Input amount of credits to be used:");
-				if(input==null){//In case the user closes the window, the program exits
+				if(input==null){
 					System.exit(0);
 				}
 				credits = Integer.parseInt(input);
-				if(credits <= 0){//Minimum amount of credits
+				if(credits <= 0){
 					JOptionPane.showMessageDialog(null, "You must insert credits!");
 				}
-				if(credits >= 1000000){//Maximum amount of credits
+				if(credits >= 1000000){
 					JOptionPane.showMessageDialog(null, "Please insert an amount inferior to 99999999.");
 				}
 				player = new Player(credits, DoubleBonus.nWinningHands);
@@ -108,10 +108,10 @@ public class GUI extends DoubleBonusTenSeven {
 			}
 		}
 		initialize();
-	}//End of GUI method
+	}//End of GUI function
 
 	/**
-	 * Initialization of the contents of the main frame.
+	 * Initialize the contents of the main frame.
 	 */
 	private void initialize() {
 		//Creating the frame/window of the GUI(the place where all the interface will be located)
@@ -158,7 +158,7 @@ public class GUI extends DoubleBonusTenSeven {
 		lblCredits.setText(Integer.toString(player.getCredit()));
 	
 		/**
-		 * Text Field to display player winnings and losses, etc
+		 * Text Field to display, player winnings and losses, etc
 		 */
 		textField = new JTextField();
 		textField.setFont(new Font("Malgun Gothic", Font.ITALIC, 16));
@@ -277,7 +277,7 @@ public class GUI extends DoubleBonusTenSeven {
 					player.incStatistics(score);
 					player.incHandsPlayed();
 					game.setState(BETTING);
-					/**If the statistics frame is visible the sats will be updated**/
+					/**If the statistics frame is visible, the sats will be updated**/
 					if(statsFrame.isVisible()){
 						framestatistics(player);
 					}
@@ -301,7 +301,7 @@ public class GUI extends DoubleBonusTenSeven {
 		
 		/**
 		 * Bet action button with slider that represents the amount the player will bet.
-		 * After the slider is set if the user presses bet he will bet that amount 
+		 * After the slider is set, if the user presses bet, he will bet that amount 
 		 */
 		JSlider Betslider = new JSlider(1,5,5);
 		Betslider.setPaintLabels(true);
@@ -319,8 +319,7 @@ public class GUI extends DoubleBonusTenSeven {
 				ValueBet = Betslider.getValue();
 				if(game.getState() == BETTING||game.getState()==INITIATING)
 					if(ValueBet > player.getCredit())
-						JOptionPane.showMessageDialog(null, 
-								"You can't bet more that the amount of credits you have!");
+						JOptionPane.showMessageDialog(null, "You can't bet more that the amount of credits you have!");
 					else{
 						textField.setText("Player bet: "+ ValueBet);
 						game.bet(player, ValueBet);
@@ -370,7 +369,7 @@ public class GUI extends DoubleBonusTenSeven {
 		
 		
 		/**
-		 * Button that represents the deck pressing it will deal the cards
+		 * Button that represents the deck, pressing it will deal the cards
 		 * (Set tool tip in case it is unclear that the deal button is the deck)
 		 */
 		JButton deck = new JButton();
@@ -386,8 +385,7 @@ public class GUI extends DoubleBonusTenSeven {
 			public void actionPerformed(ActionEvent e) {
 				if(game.getState()== BETTING){
 					if(ValueBet > player.getCredit())
-						JOptionPane.showMessageDialog(null, 
-								"You can't bet more that the amount of credits you have!");
+						JOptionPane.showMessageDialog(null, "You can't bet more that the amount of credits you have!");
 					else{
 						resetallbtn(card);
 						game.shuffle();
@@ -399,8 +397,7 @@ public class GUI extends DoubleBonusTenSeven {
 					}
 					
 				}else
-					JOptionPane.showMessageDialog(null,
-							"You can only deal after you bet or after this turned is resolved!");
+					JOptionPane.showMessageDialog(null, "You can only deal after you bet or after this turned is resolved!");
 			}
 		});
 		deck.setIcon(cardBack);
@@ -439,20 +436,22 @@ public class GUI extends DoubleBonusTenSeven {
 	}
 	
 	/**
-	 * Highlightbtn. Method that elevates a single button to represent that it is being held
+	 * Highlightbtn.
+	 * Method that elevates a single button to represent that it is being held
 	 *
-	 * @param card JButton to be highlighted
-	 * @param index index of the JButton to be highlighted
+	 * @param card the card
+	 * @param index the index
 	 */
 	void highlightbtn(JButton card, int index){			
 		card.setBounds(30+(120*index),0, 89, 119);
 	}
 	
 	/**
-	 * Advise highlight. Method that elevates some buttons to represent that they are currently being held
+	 * Advise highlight.
+	 * Method that elevates some buttons to represent that they are currently being held
 	 * 
-	 * @param shouldhold array of integers of cards that should be held
-	 * @param card array of the buttons that represent the cards in hand
+	 * @param shouldhold, array of integers of cards that should be held
+	 * @param card, array of the buttons that represent the cards in hand
 	 */
 
 	void adviseHighlight(int[] shouldhold, JButton[] card){
@@ -464,9 +463,10 @@ public class GUI extends DoubleBonusTenSeven {
 	}
 	
 	/**
-	 * Resetbtn. Method that resets a single button to its original position
-	 * @param card  JButton  to be reset
-	 * @param index the index of the JButton to be reset
+	 * Resetbtn.
+	 * Method that resets a single button to its original position
+	 * @param card , a JButton 
+	 * @param index, an Integer
 	 */
 	//
 	void resetbtn(JButton card, int index){				
@@ -474,9 +474,10 @@ public class GUI extends DoubleBonusTenSeven {
 	}
 	
 	/**
-	 * Resetallbtn. Method that resets all buttons to they initial position	
+	 * Resetallbtn.
+	 *	Method that resets all buttons to they initial position	
 	 *
-	 * @param card array of all the JButtons that represent the cards in hand 
+	 * @param card, array of all the JButtons that represent the cards in hand 
 	 */
 	//Function that resets all buttons to its original position
 	void resetallbtn(JButton[] card){	
@@ -486,10 +487,11 @@ public class GUI extends DoubleBonusTenSeven {
 	}
 	
 	/**
-	 * Paint hand.Method that places the image of the card dealt in the respective buttons
+	 * Paint hand.
+	 *	Method that places the image of the card dealt in the respective buttons
 	 *	
-	 * @param card  array of buttons, places the cards in the players hand in the respective buttons in the array
-	 * @param player of type sent as parameter so it is possible to access the player hand
+	 * @param card , array of buttons, places the cards in the players hand in the respective buttons in the array
+	 * @param player, of type, sent as parameter so it is possible to access the player hand
 	 */
 	void paintHand(JButton[] card,Player player){
 		String image ;
@@ -510,12 +512,12 @@ public class GUI extends DoubleBonusTenSeven {
 	}
 	
 	/**
-	 * Framestatistics. Method that makes the statistics frame visible
-	 *  refreshing it so the players statistics are the current ones
+	 * Framestatistics.
+	 * Method that makes the statistics frame visible, refreshing it so the players statistics are the current ones
 	 *
-	 * @param player Player variable so the player statistics can be accessed
-	 * */
-
+	 * @param player , Player variable, so the player statistics can be acessed
+	 */
+	//method that calls a new frame
 	void framestatistics(Player player){
 			statsFrame.setVisible(true);
 			statVisibility = 1;
@@ -530,8 +532,6 @@ public class GUI extends DoubleBonusTenSeven {
 			statArea.setBackground(Color.BLACK);
 			statsFrame.getContentPane().add(statArea);
 			
-			//Minimizing the length of the percentage of credits that will appear in frame
-			//so it does not extend outside the frame
 			double percentage = ((double)player.getCredit())/player.getInitialCredit()*100;
 			String percentageStr = String.valueOf(percentage);
 			int maxLength = 5;
@@ -542,25 +542,20 @@ public class GUI extends DoubleBonusTenSeven {
 			
 			statArea.append("\n   Hand\t\tNb\n");
 			statArea.append("   ---------------------------------\n");
-			statArea.append("   Jacks or Better"+"\t" + 
-											String.valueOf(player.statistics[JACKS_OR_BETTER])+ "\n");
-			statArea.append("   Two Pair" +"\t\t" + 
-											String.valueOf(player.statistics[TWO_PAIR]+ "\n"));
-			statArea.append("   Three of a Kind" +"\t" + 
-											String.valueOf(player.statistics[THREE_OF_A_KIND]+ "\n"));
+			statArea.append("   Jacks or Better"+"\t" + String.valueOf(player.statistics[JACKS_OR_BETTER])+ "\n");
+			statArea.append("   Two Pair" +"\t\t" + String.valueOf(player.statistics[TWO_PAIR]+ "\n"));
+			statArea.append("   Three of a Kind" +"\t" + String.valueOf(player.statistics[THREE_OF_A_KIND]+ "\n"));
 			statArea.append("   Straight" +"\t\t"+  String.valueOf(player.statistics[STRAIGHT])+ "\n");
 			statArea.append("   Flush" +"\t\t"+ String.valueOf(player.statistics[FLUSH])+ "\n");
 			statArea.append("   Full house" +"\t\t"+ String.valueOf(player.statistics[FULL_HOUSE])+ "\n");
 			statArea.append("   Four of a Kind" +"\t"+ String.valueOf(player.statistics[FOUR_ACES] 
 						+ player.statistics[FOUR_2_4] + player.statistics[FOUR_5_K])+ "\n");
-			statArea.append("   Straight Flush" +"\t"+ 
-												String.valueOf(player.statistics[STRAIGHT_FLUSH])+ "\n");
+			statArea.append("   Straight Flush" +"\t"+ String.valueOf(player.statistics[STRAIGHT_FLUSH])+ "\n");
 			statArea.append("   Royal Flush" +"\t\t"+ String.valueOf(player.statistics[ROYAL_FLUSH])+ "\n");
 			statArea.append("   Other" +"\t\t"+ String.valueOf(player.statistics[OTHER])+ "\n");
 			statArea.append("   ---------------------------------\n");
 			statArea.append("   Total" +"\t\t"+ String.valueOf(player.handsPlayed)+ "\n");
 			statArea.append("   ---------------------------------\n");
-			statArea.append("   Credit" +"                 "+ 
-										String.valueOf(player.getCredit())+" (" + percentageStr +")");
+			statArea.append("   Credit" +"                 "+ String.valueOf(player.getCredit())+" (" + percentageStr +")");
 	}
 }
