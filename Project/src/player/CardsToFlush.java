@@ -1,16 +1,16 @@
 package player;
 
-// TODO: Auto-generated Javadoc
 /**
- * CardsToFlush.
+ * Stores the number of cards to a flush, the indexes of those cards
+ * and the number of high cards among those cards.
  */
 public class CardsToFlush extends CardsTo{
 	
-	/** The n high cards. */
+	/** Number of high cards */
 	public int nHighCards;
 	
 	/**
-	 * Instantiates a new cards to flush.
+	 * Contructor
 	 */
 	public CardsToFlush(){
 		super();
@@ -21,7 +21,7 @@ public class CardsToFlush extends CardsTo{
 	 * @see player.CardsTo#compute(int, int, player.Hand)
 	 */
 	public void compute(int maxSameSuit, int mostRepSuit, Hand hand){
-		if(maxSameSuit == 4){
+		if(maxSameSuit == 4){ //Check if there are 4 cards of the same suit
 			for(int i = 0; i < 5; i++){
 				if(hand.hand[i].suit == mostRepSuit)
 					this.indexes[i] = 1;
@@ -29,7 +29,7 @@ public class CardsToFlush extends CardsTo{
 			this.nCardsTo = 4;
 			return;
 		}
-		if(maxSameSuit == 3){
+		if(maxSameSuit == 3){ //Check if there are 3 cards of the same suit
 			for(int i = 0; i < 5; i++){
 				if(hand.hand[i].suit == mostRepSuit){
 					this.indexes[i] = 1;
